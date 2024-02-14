@@ -1,1 +1,21 @@
-<p>nav-side works!</p>
+<div
+  style="min-height: 600px"
+  class="vh-100 me-4 p-3 pe-5 d-flex flex-column justify-content-between border-end border-1 border-color"
+>
+  <div>
+    <h1 class="fw-bolder mb-5">Dashboard</h1>
+    <ul>
+      @if(authorities.Orders) {
+      <li>Orders</li>
+      } @if(authorities.Products) {
+      <li>Products</li>
+      } @if(authorities.Users) {
+      <li>Users</li>
+      }
+    </ul>
+  </div>
+  <ul class="pb-5">
+    <li>username</li>
+    <li>logout</li>
+  </ul>
+</div>
