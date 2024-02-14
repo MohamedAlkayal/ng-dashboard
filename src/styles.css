@@ -4,15 +4,21 @@
   --light: #ddd;
 }
 
-* {
-  list-style: none;
-}
+
 
 ul {
   padding: 0 !important;
   margin: 0 !important;
 }
 
+
+/* Utilities  */
 .border-color {
   border-color: #dee2e6;
 }
+
+a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+

@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/homePages/home.component';
 import { OrdersComponent } from './pages/ordersPages/orders/orders.component';
 import { OneOrderComponent } from './pages/ordersPages/one-order/one-order.component';
+import { HomeComponent } from './pages/homePages/home.component';
 import { ProductsComponent } from './pages/productsPages/products/products.component';
-import { AddProductComponent } from './pages/productsPages/add-product/add-product.component';
 import { OneProductComponent } from './pages/productsPages/one-product/one-product.component';
 import { UsersComponent } from './pages/usersPages/users/users.component';
 import { OneUserComponent } from './pages/usersPages/one-user/one-user.component';
+import { AddProductComponent } from './pages/productsPages/add-product/add-product.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
