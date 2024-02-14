@@ -1,1 +1,70 @@
-<p>nav-side works!</p>
+<nav
+  style="min-height: 600px"
+  class="me-4 d-flex flex-column justify-content-between border-end border-color vh-100"
+>
+  <div>
+    <h1 class="p-4 fs-4 fw-bolder mb-5 border-bottom border-color">
+      DASHBOARD
+    </h1>
+    <ul>
+      <a (click)="select('home')" routerLink="">
+        <li
+          [ngClass]="selectedTab == 'home' ? selectedClass : ''"
+          class="d-flex align-items-center gap-3 p-3"
+        >
+          <i class="fa-solid fa-house"></i>
+          <span>Home</span>
+        </li>
+      </a>
+      @if(user.authorities.orders) {
+      <a (click)="select('orders')" routerLink="/orders">
+        <li
+          [ngClass]="selectedTab == 'orders' ? selectedClass : ''"
+          class="d-flex align-items-center gap-3 p-3"
+        >
+          <i class="fa-solid fa-truck-fast"></i>
+          <span>Orders</span>
+        </li>
+      </a>
+      } @if(user.authorities.products) {
+      <a (click)="select('products')" routerLink="/products">
+        <li
+          [ngClass]="selectedTab == 'products' ? selectedClass : ''"
+          class="d-flex align-items-center gap-3 p-3"
+        >
+          <i class="fa-solid fa-bag-shopping fs-5"></i>
+          <span>Products</span>
+        </li>
+      </a>
+      } @if(user.authorities.users) {
+      <a (click)="select('users')" routerLink="/users">
+        <li
+          [ngClass]="selectedTab == 'users' ? selectedClass : ''"
+          class="d-flex align-items-center gap-3 p-3"
+        >
+          <i class="fa-solid fa-user-group"></i>
+          <span>Users</span>
+        </li>
+      </a>
+
+      }
+    </ul>
+  </div>
+  <ul class="pb-2">
+    <a (click)="select('username')" routerLink="">
+      <li
+        [ngClass]="selectedTab == 'username' ? selectedClass : ''"
+        class="d-flex align-items-center gap-3 p-3"
+      >
+        <i class="fa-solid fa-gear fs-5"></i>
+        <span>{{ user.username }}</span>
+      </li>
+    </a>
+    <a routerLink="">
+      <li class="d-flex align-items-center gap-3 p-3">
+        <i class="fa-solid fa-right-from-bracket fs-5"></i>
+        <span>Logout</span>
+      </li>
+    </a>
+  </ul>
+</nav>
