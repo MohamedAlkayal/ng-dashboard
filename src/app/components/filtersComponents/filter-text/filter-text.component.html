@@ -2,9 +2,13 @@
     <label for={{lable}} class="form-label">{{lable}}</label>
     <input id={{lable}}    [(ngModel)]="inptValue"  (ngModelChange)="onValueChange($event)" type={{textType}}  class="form-control"> 
 </div>
-<!-- <div [formGroup]="reqValidation" class="reg input-grou my-3">
-    <label for="{{lable}}" class="form-label">{{lable}}</label>
-    <input id="{{lable}}" formControlName="value" type="{{lable}}" class="form-control"> 
+
+
+
+
+
+<!-- <div class="w-20 mx-auto border border-1 border-dark-subtle rounded-4 p-4">
+    <app-filter-text [lable]="'User'" [textType]="'text'" (value)="numFilterValue($event)"></app-filter-text>
+    <app-filter-text [lable]="'Tracking Number'" [textType]="'number'" (value)="numFilterValue($event)"></app-filter-text>
+    <app-filter-dropdown [dropdownTitle]="' City'" [cities]="city" (dropdownValue)="cityDropdownValue($event)" ></app-filter-dropdown>
 </div> -->
-
-
