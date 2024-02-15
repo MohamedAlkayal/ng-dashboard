@@ -9,10 +9,7 @@ import { OneUserComponent } from './pages/usersPages/one-user/one-user.component
 import { AddProductComponent } from './pages/productsPages/add-product/add-product.component';
 
 export const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent,
-  },
+  { path: '', component: HomeComponent },
   {
     path: 'orders',
     children: [

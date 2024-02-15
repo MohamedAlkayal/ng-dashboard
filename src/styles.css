@@ -4,14 +4,15 @@
   --light: #ddd;
 }
 
+
+
 ul {
-  list-style: none;
   padding: 0 !important;
   margin: 0 !important;
 }
 
-/* Utilities  */
 
+/* Utilities  */
 .border-color {
   border-color: #dee2e6;
 }
@@ -20,3 +21,4 @@ a {
   text-decoration: none !important;
   color: inherit !important;
 }
+
