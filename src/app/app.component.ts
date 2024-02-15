@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavSideComponent } from './components/navComponents/nav-side/nav-side.component';
 
@@ -10,6 +10,7 @@ import { NavSideComponent } from './components/navComponents/nav-side/nav-side.c
   styleUrl: './app.component.css',
 })
 export class AppComponent {
+
   title = 'dashboard';
   // this data should be requested from an end point
   user = {
