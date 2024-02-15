@@ -14,14 +14,7 @@ import { FilterDropdownComponent } from './components/filtersComponents/filter-d
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent  implements OnInit {
-  ngOnInit(): void {
-
-  }
-  city:string[]=["Cairo","Giza","Zagazig","Alex"]
-  title = 'dashboard';
- @Input() numFilterValue(data:any){
-    console.log(data)
-  }
+export class AppComponent {
+ 
 
 }
