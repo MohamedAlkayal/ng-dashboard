@@ -8,6 +8,7 @@ import { FormsModule, NgControl } from '@angular/forms';
 import { FilterDropdownComponent } from './components/filtersComponents/filter-dropdown/filter-dropdown.component';
 import { InputTextComponent } from './components/formComponents/input-text/input-text.component';
 import { InputDropdownComponent } from './components/formComponents/input-dropdown/input-dropdown.component';
+import { InputTwoFieldsComponent } from './components/formComponents/input-two-fields/input-two-fields.component';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ import { InputDropdownComponent } from './components/formComponents/input-dropdo
   imports: [
     RouterOutlet,
     LoginComponent,
+    InputTwoFieldsComponent,
     InputTextComponent,
     InputDropdownComponent,
     FilterDropdownComponent,
