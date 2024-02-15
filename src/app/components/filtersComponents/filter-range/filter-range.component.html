@@ -1,1 +1,34 @@
-<p>filter-range works!</p>
+<div class="wrapper">
+  <label class="mb-3"> {{ lable }} </label>
+  <div class="slider">
+    <div class="progress" [ngStyle]="{ left: left, right: right }"></div>
+  </div>
+  <div class="range-input">
+    <input
+      type="range"
+      class="range-min"
+      min="0"
+      [max]="allMax"
+      [(ngModel)]="slider1"
+      [step]="step"
+      (input)="updateValues()"
+    />
+    <input
+      type="range"
+      class="range-max"
+      min="0"
+      [max]="allMax"
+      [(ngModel)]="slider2"
+      [step]="step"
+      (input)="updateValues()"
+    />
+  </div>
+  <div class="d-flex justify-content-between mt-3">
+    <span class="p-2 w-60 border border-color rounded text-center">{{
+      slider1 < slider2 ? slider1 : slider2
+    }}</span>
+    <span class="p-2 w-60 border border-color rounded text-center">{{
+      slider2 > slider1 ? slider2 : slider1
+    }}</span>
+  </div>
+</div>

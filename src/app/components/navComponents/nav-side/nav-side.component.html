@@ -10,7 +10,7 @@
       <a (click)="select('home')" routerLink="">
         <li
           [ngClass]="selectedTab == 'home' ? selectedClass : ''"
-          class="d-flex align-items-center gap-3 p-3"
+          class="d-flex align-items-center gap-3 p-3 ps-4"
         >
           <i class="fa-solid fa-house"></i>
           <span>Home</span>
@@ -20,7 +20,7 @@
       <a (click)="select('orders')" routerLink="/orders">
         <li
           [ngClass]="selectedTab == 'orders' ? selectedClass : ''"
-          class="d-flex align-items-center gap-3 p-3"
+          class="d-flex align-items-center gap-3 p-3 ps-4"
         >
           <i class="fa-solid fa-truck-fast"></i>
           <span>Orders</span>
@@ -30,9 +30,9 @@
       <a (click)="select('products')" routerLink="/products">
         <li
           [ngClass]="selectedTab == 'products' ? selectedClass : ''"
-          class="d-flex align-items-center gap-3 p-3"
+          class="d-flex align-items-center gap-3 p-3 ps-4"
         >
-          <i class="fa-solid fa-bag-shopping fs-5"></i>
+          <i class="fa-solid fa-bag-shopping"></i>
           <span>Products</span>
         </li>
       </a>
@@ -40,7 +40,7 @@
       <a (click)="select('users')" routerLink="/users">
         <li
           [ngClass]="selectedTab == 'users' ? selectedClass : ''"
-          class="d-flex align-items-center gap-3 p-3"
+          class="d-flex align-items-center gap-3 p-3 ps-4"
         >
           <i class="fa-solid fa-user-group"></i>
           <span>Users</span>
@@ -54,15 +54,15 @@
     <a (click)="select('username')" routerLink="">
       <li
         [ngClass]="selectedTab == 'username' ? selectedClass : ''"
-        class="d-flex align-items-center gap-3 p-3"
+        class="d-flex align-items-center gap-3 p-3 ps-4"
       >
-        <i class="fa-solid fa-gear fs-5"></i>
+        <i class="fa-solid fa-gear"></i>
         <span>{{ user.username }}</span>
       </li>
     </a>
     <a routerLink="">
-      <li class="d-flex align-items-center gap-3 p-3">
-        <i class="fa-solid fa-right-from-bracket fs-5"></i>
+      <li class="d-flex align-items-center gap-3 p-3 ps-4">
+        <i class="fa-solid fa-right-from-bracket"></i>
         <span>Logout</span>
       </li>
     </a>
