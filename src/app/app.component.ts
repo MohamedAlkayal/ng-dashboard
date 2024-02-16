@@ -1,27 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-<<<<<<< HEAD
-import { LoginComponent } from './pages/login/login.component';
-import { FilterTextComponent } from './components/filtersComponents/filter-text/filter-text.component';
-import { FilterNumberComponent } from './components/filtersComponents/filter-number/filter-number.component';
-import { CommonModule } from '@angular/common';
-import { FormsModule, NgControl } from '@angular/forms';
-import { FilterDropdownComponent } from './components/filtersComponents/filter-dropdown/filter-dropdown.component';
-import { InputTextComponent } from './components/formComponents/input-text/input-text.component';
-import { InputDropdownComponent } from './components/formComponents/input-dropdown/input-dropdown.component';
-import { InputTwoFieldsComponent } from './components/formComponents/input-two-fields/input-two-fields.component';
-=======
 import { NavSideComponent } from './components/navComponents/nav-side/nav-side.component';
->>>>>>> 697a506728a55f4d024b0e3135b076164b92920c
+import { InputTextareaComponent } from './components/formComponents/input-textarea/input-textarea.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-<<<<<<< HEAD
-  imports: [RouterOutlet,LoginComponent,InputTwoFieldsComponent,InputTextComponent,InputDropdownComponent,FilterDropdownComponent,FilterTextComponent,FilterNumberComponent,CommonModule,FormsModule],
-=======
-  imports: [RouterOutlet, NavSideComponent],
->>>>>>> 697a506728a55f4d024b0e3135b076164b92920c
+  imports: [RouterOutlet, NavSideComponent,InputTextareaComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
