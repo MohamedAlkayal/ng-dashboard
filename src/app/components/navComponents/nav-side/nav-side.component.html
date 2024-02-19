@@ -7,65 +7,82 @@
       DASHBOARD
     </h1>
     <ul>
-      <a (click)="select('home')" routerLink="">
-        <li
-          [ngClass]="selectedTab == 'home' ? selectedClass : ''"
-          class="d-flex align-items-center gap-3 p-3 ps-4"
+      <li
+        [ngClass]="selectedTab == 'home' ? selectedClass : ''"
+        class="p-3 ps-4"
+      >
+        <a
+          (click)="select('home')"
+          routerLink=""
+          class="d-flex align-items-center gap-3"
         >
-          <i class="fa-solid fa-house"></i>
+          <mat-icon>home</mat-icon>
           <span>Home</span>
-        </li>
-      </a>
-      @if(user.authorities.orders) {
-      <a (click)="select('orders')" routerLink="/orders">
-        <li
-          [ngClass]="selectedTab == 'orders' ? selectedClass : ''"
-          class="d-flex align-items-center gap-3 p-3 ps-4"
+        </a>
+      </li>
+      <li
+        [ngClass]="selectedTab == 'orders' ? selectedClass : ''"
+        class="p-3 ps-4"
+        *ngIf="user.authorities.orders"
+      >
+        <a
+          (click)="select('orders')"
+          routerLink="/orders"
+          class="d-flex align-items-center gap-3"
         >
-          <i class="fa-solid fa-truck-fast"></i>
+          <mat-icon> local_shipping </mat-icon>
           <span>Orders</span>
-        </li>
-      </a>
-      } @if(user.authorities.products) {
-      <a (click)="select('products')" routerLink="/products">
-        <li
-          [ngClass]="selectedTab == 'products' ? selectedClass : ''"
-          class="d-flex align-items-center gap-3 p-3 ps-4"
+        </a>
+      </li>
+      <li
+        [ngClass]="selectedTab == 'products' ? selectedClass : ''"
+        class="p-3 ps-4"
+        *ngIf="user.authorities.products"
+      >
+        <a
+          (click)="select('products')"
+          routerLink="/products"
+          class="d-flex align-items-center gap-3"
         >
-          <i class="fa-solid fa-bag-shopping"></i>
+          <mat-icon> shopping_cart </mat-icon>
           <span>Products</span>
-        </li>
-      </a>
-      } @if(user.authorities.users) {
-      <a (click)="select('users')" routerLink="/users">
-        <li
-          [ngClass]="selectedTab == 'users' ? selectedClass : ''"
-          class="d-flex align-items-center gap-3 p-3 ps-4"
+        </a>
+      </li>
+      <li
+        [ngClass]="selectedTab == 'users' ? selectedClass : ''"
+        class="p-3 ps-4"
+        *ngIf="user.authorities.users"
+      >
+        <a
+          (click)="select('users')"
+          routerLink="/users"
+          class="d-flex align-items-center gap-3"
         >
-          <i class="fa-solid fa-user-group"></i>
+          <mat-icon> group </mat-icon>
           <span>Users</span>
-        </li>
-      </a>
-
-      }
+        </a>
+      </li>
     </ul>
   </div>
   <ul class="pb-2">
-    <a (click)="select('username')" routerLink="">
-      <li
-        [ngClass]="selectedTab == 'username' ? selectedClass : ''"
-        class="d-flex align-items-center gap-3 p-3 ps-4"
+    <li
+      [ngClass]="selectedTab == 'username' ? selectedClass : ''"
+      class="d-flex align-items-center gap-3 p-3 ps-4"
+    >
+      <a
+        (click)="select('username')"
+        routerLink=""
+        class="d-flex align-items-center gap-3"
       >
-        <i class="fa-solid fa-gear"></i>
+        <mat-icon> settings </mat-icon>
         <span>{{ user.username }}</span>
-      </li>
-    </a>
-    <a routerLink="">
-      <li class="d-flex align-items-center gap-3 p-3 ps-4">
-        <i class="fa-solid fa-right-from-bracket"></i>
+      </a>
+    </li>
+    <li class="d-flex align-items-center gap-3 p-3 ps-4">
+      <a routerLink="" class="d-flex align-items-center gap-3">
+        <mat-icon> logout </mat-icon>
         <span>Logout</span>
-      </li>
-    </a>
+      </a>
+    </li>
   </ul>
 </nav>
-
