@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-prompt-confirm',
@@ -8,5 +8,8 @@ import { Component } from '@angular/core';
   styles: ``
 })
 export class PromptConfirmComponent {
-
+@Output() ConfirmUpdated = new EventEmitter();
+confirm(updated: boolean):void{
+  this.ConfirmUpdated.emit(updated)
+}
 }
