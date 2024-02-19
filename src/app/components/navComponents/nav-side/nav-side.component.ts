@@ -1,6 +1,6 @@
 import { CommonModule, NgClass } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -11,6 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './nav-side.component.css',
 })
 export class NavSideComponent {
+  constructor(private router: ActivatedRoute) {}
+
   @Input() user!: {
     message: string;
     token: string;
@@ -25,6 +27,8 @@ export class NavSideComponent {
 
   selectedClass = 'bg-dark text-light';
   selectedTab = 'home';
+
+  currentPath: string = '';
 
   select(name: string) {
     this.selectedTab = name;
