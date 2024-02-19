@@ -3,11 +3,24 @@ import { RouterOutlet } from '@angular/router';
 import { NavSideComponent } from './components/navComponents/nav-side/nav-side.component';
 import { InputTextareaComponent } from './components/formComponents/input-textarea/input-textarea.component';
 import { InputInnerLableComponent } from './components/formComponents/input-inner-lable/input-inner-lable.component';
+import { CardCtaComponent } from './components/cardComponents/card-cta/card-cta.component';
+import { CardAlertComponent } from './components/cardComponents/card-alert/card-alert.component';
+import { CardPromptComponent } from './components/cardComponents/card-prompt/card-prompt.component';
+import { PromptDangerComponent } from './components/messagesComponents/prompt-danger/prompt-danger.component';
+import { PromptConfirmComponent } from './components/messagesComponents/prompt-confirm/prompt-confirm.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, NavSideComponent, InputTextareaComponent],
+  imports: [
+    RouterOutlet,
+    CardCtaComponent,
+    CardAlertComponent,
+    CardPromptComponent,
+    PromptDangerComponent,
+    PromptConfirmComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
