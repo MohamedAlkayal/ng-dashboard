@@ -1,34 +1,17 @@
 import { Component } from '@angular/core';
-import { TableComponent } from '../../components/tableComponents/table/table.component';
-import { HttpClientModule } from '@angular/common/http';
-import { UsersControlServicesService } from '../../services/user/users-control-services.service';
-import { AdminServices } from '../../services/admin/admin.service';
+import { InputInnerLableComponent } from '../../components/formComponents/input-inner-lable/input-inner-lable.component';
+import { LoginComponent } from '../login/login.component';
+import { InputInnerDropdownLableComponent } from '../../components/formComponents/input-inner-dropdown-lable/input-inner-dropdown-lable.component';
+import { InputTextareaComponent } from '../../components/formComponents/input-textarea/input-textarea.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [TableComponent, HttpClientModule],
-  providers: [UsersControlServicesService, AdminServices],
+  imports: [InputTextareaComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  res: any;
-  constructor(
-    private service: UsersControlServicesService,
-    private admin: AdminServices
-  ) {
-    this.admin.loginAdmin('jessica', 'jessicaPassword@A1').subscribe({
-      next(x: any) {
-        console.log(x.username);
-        localStorage.setItem(
-          'currentUser',
-          JSON.stringify({ username: x.username, token: x.token })
-        );
-      },
-      error(error) {
-        console.log(error);
-      },
-    });
-  }
+  cities: string[] = ['Cairo', 'Giza'];
+  states: string[] = ['Kitkat'];
 }
