@@ -1,1 +1,18 @@
-<p>open-ticket works!</p>
+<div class=" d-flex justify-content-center align-items-center layer position-absolute end-0 start-0 top-0 bottom-0 ">
+    <div class=" danger bg-white d-flex flex-column border border-1 rounded-2 p-3 w-35">
+        <div class="d-flex align-items-center">
+            <!-- <p class="text-danger me-2"></p> -->
+        </div>
+        <div>
+            <p> Please type your issue or what you would like assistance with below :</p>
+        </div>
+        <input [(ngModel)]="Ticket" class=" form-control" type="text" placeholder='Write "Type Your Issue" '>
+        <div class="d-flex justify-content-between m-auto  mt-3 w-100">
+            <div class="w-50 pe-1"><button (click)="confirm(true)" [value]="" class="w-100 btn btn-warning">Open
+                    Ticket</button>
+            </div>
+            <div class="w-50 ps-1"><button (click)="confirm(false)"
+                    class="w-100 btn btn-outline-secondary">Cancel</button></div>
+        </div>
+    </div>
+</div>

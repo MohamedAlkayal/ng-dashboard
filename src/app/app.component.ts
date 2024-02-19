@@ -5,6 +5,7 @@ import { CardAlertComponent } from './components/cardComponents/card-alert/card-
 import { CardPromptComponent } from './components/cardComponents/card-prompt/card-prompt.component';
 import { PromptDangerComponent } from './components/messagesComponents/prompt-danger/prompt-danger.component';
 import { PromptConfirmComponent } from './components/messagesComponents/prompt-confirm/prompt-confirm.component';
+import { OpenTicketComponent } from './components/messagesComponents/open-ticket/open-ticket.component';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ import { PromptConfirmComponent } from './components/messagesComponents/prompt-c
     CardAlertComponent,
     CardPromptComponent,
     PromptDangerComponent,
-    PromptConfirmComponent
+    PromptConfirmComponent,
+    OpenTicketComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

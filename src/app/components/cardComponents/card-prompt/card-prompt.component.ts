@@ -11,7 +11,7 @@ export class CardPromptComponent {
   @Input() config!:{
     data:string,
     color:string,
-    text:string
+    text:string 
   }
 
 }
