@@ -2,11 +2,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavSideComponent } from './components/navComponents/nav-side/nav-side.component';
 import { InputTextareaComponent } from './components/formComponents/input-textarea/input-textarea.component';
+import { InputInnerLableComponent } from './components/formComponents/input-inner-lable/input-inner-lable.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavSideComponent,InputTextareaComponent],
+  imports: [RouterOutlet, NavSideComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
