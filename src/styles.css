@@ -4,13 +4,14 @@
   --light: #ddd;
 }
 
-
+* {
+  box-sizing: border-box !important;
+}
 
 ul {
   padding: 0 !important;
   margin: 0 !important;
 }
-
 
 /* Utilities  */
 .border-color {
@@ -22,6 +23,15 @@ a {
   color: inherit !important;
 }
 
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.btn-width {
+  width: 100px;
+}
