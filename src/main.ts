@@ -5,11 +5,3 @@ import { AppComponent } from './app/app.component';
 bootstrapApplication(AppComponent, appConfig).catch((err) =>
   console.error(err)
 );
-
-const obj = {
-  name: 'keko',
-  age: 27,
-  status: 'fager',
-};
-
-console.log(JSON.stringify(obj));

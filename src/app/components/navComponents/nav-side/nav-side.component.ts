@@ -1,12 +1,12 @@
-import { NgClass } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-nav-side',
   standalone: true,
-  imports: [RouterModule, NgClass],
+  imports: [RouterModule, NgClass, CommonModule, MatIconModule],
   templateUrl: './nav-side.component.html',
   styleUrl: './nav-side.component.css',
 })

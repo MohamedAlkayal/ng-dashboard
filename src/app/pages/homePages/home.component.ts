@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { FilterRangeComponent } from '../../components/filtersComponents/filter-range/filter-range.component';
+import { TableComponent } from '../../components/tableComponents/table/table.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FilterRangeComponent],
+  imports: [TableComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
