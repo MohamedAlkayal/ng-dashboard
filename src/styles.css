@@ -3,16 +3,19 @@
   --dark: #333;
   --light: #ddd;
 }
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
-.lightWarning {
-  background-color: #fffbf6;
+
+ul {
+  padding: 0 !important;
+  margin: 0 !important;
 }
-.lightInfo {
-  background-color: #f8f9ff;
+
+/* Utilities  */
+.border-color {
+  border-color: #dee2e6;
 }
 .w-30 {
   width: 30%;
@@ -26,18 +29,16 @@
 .w-45 {
   width: 45%;
 }
-.w-60 {
-  width: 40%;
+
+html,
+body {
+  height: 100%;
 }
-.w-80 {
-  width: 80%;
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-.w-90 {
-  width: 90%;
-}
-.layer {
-  background-color: rgba(58, 57, 57, 0.2);
-}
-.hidden {
-  display: none;
+
+.btn-width {
+  width: 100px;
 }
