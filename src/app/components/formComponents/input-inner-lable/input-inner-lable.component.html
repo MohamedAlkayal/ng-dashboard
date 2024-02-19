@@ -1,1 +1,5 @@
-<p>input-inner-lable works!</p>
+
+<div class="input-group-sm  mb-3 d-flex align-items-center">
+  <span class="input-group-text w-10" id="basic-addon1">{{inputTitle}}</span>
+  <input type="text" class="form-control" [(ngModel)]="selectValue" (ngModelChange)="onValueChange($event)" aria-label="Username" aria-describedby="basic-addon1">
+</div>
