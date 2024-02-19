@@ -1,0 +1,21 @@
+.users {
+  padding: 16px;
+  min-height: 600px;
+  height: calc(100vh - 32px);
+}
+
+.upper {
+  height: 64px;
+}
+
+.right {
+  width: 120px;
+  flex-grow: 1;
+  border: 1px solid red;
+  height: 100%;
+}
+
+.action-table-wrap {
+  height: 100%;
+  flex-grow: 4;
+}
