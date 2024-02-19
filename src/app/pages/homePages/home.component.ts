@@ -4,7 +4,7 @@ import { TableComponent } from '../../components/tableComponents/table/table.com
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [TableComponent],
+  imports: [],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })

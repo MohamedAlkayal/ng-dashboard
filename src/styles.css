@@ -4,6 +4,10 @@
   --light: #ddd;
 }
 
+* {
+  box-sizing: border-box !important;
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -30,7 +34,6 @@
 .w-60{
   width: 40%;
 }
-=======
 
 .h-10{
   height:10%;
@@ -107,7 +110,6 @@ ul {
   margin: 0 !important;
 }
 
-
 /* Utilities  */
 .border-color {
   border-color: #dee2e6;
@@ -118,6 +120,15 @@ a {
   color: inherit !important;
 }
 
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.btn-width {
+  width: 100px;
+}
