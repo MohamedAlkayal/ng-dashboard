@@ -1,12 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-open-ticket',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './open-ticket.component.html',
   styles: ``
 })
 export class OpenTicketComponent {
 
+  Ticket!:string
+  isDisplayed:boolean=true
+  toggleDisplay(){
+    this.isDisplayed = !this.isDisplayed
+  
+  }
+  
+  
+  @Output() confirmDelete=new EventEmitter();
+  confirm(deleted: boolean): void {
+    console.log(this.Ticket);
+
+    this.confirmDelete.emit(deleted);
+  }
+ 
 }
+
