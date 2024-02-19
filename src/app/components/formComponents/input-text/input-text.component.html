@@ -1,1 +1,4 @@
-<p>input-text works!</p>
+<div class="input-grou d-flex  align-items-center mb-3">
+    <label for={{lable}} class="form-label fw-bold w-10">{{lable}}</label>
+    <input id={{lable}} [(ngModel)]="inptValue" disabled={{disabed}}  (ngModelChange)="onValueChange($event)" type={{textType}}  class="form-control form-control-sm w-75 "> 
+</div>
