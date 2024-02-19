@@ -1,1 +1,4 @@
-<p>input-textarea works!</p>
+<div class="input-container d-flex align-items-start mb-3">
+    <label for="message" class="fw-bold w-auto me-3 ">Description</label>
+    <textarea id="message" class="w-100 form-control" style="min-height: 100px" [(ngModel)]="message" (ngModelChange)="sendData()"></textarea>
+</div>

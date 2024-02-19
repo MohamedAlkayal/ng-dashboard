@@ -1,13 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavSideComponent } from './components/navComponents/nav-side/nav-side.component';
-import { FilterRangeComponent } from './components/filtersComponents/filter-range/filter-range.component';
-import { TableComponent } from './components/tableComponents/table/table.component';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavSideComponent],
+  imports: [RouterOutlet, NavSideComponent,InputTextareaComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
