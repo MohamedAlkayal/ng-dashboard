@@ -1,1 +1,7 @@
-<p>filter-dropdown works!</p>
+<label for="exampleDataList" class="form-label ">{{dropdownTitle}}</label>
+  <select id="exampleDataList" class="form-select form-select-sm " [(ngModel)]="selectValue" (ngModelChange)="onValueChange($event)" aria-label=".form-select-sm example">
+    <option selected></option>
+    
+    <option *ngFor="let city of cities" >{{city}}</option>
+  </select>
+  
