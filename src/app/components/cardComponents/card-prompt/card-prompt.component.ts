@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-card-prompt',
@@ -8,5 +8,10 @@ import { Component } from '@angular/core';
   styles: ``
 })
 export class CardPromptComponent {
+  @Input() config!:{
+    data:string,
+    color:string,
+    text:string
+  }
 
 }
