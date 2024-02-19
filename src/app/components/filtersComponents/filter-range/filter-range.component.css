@@ -1,0 +1,58 @@
+.wrapper {
+  margin-top: 80px;
+  margin-bottom: 30px;
+  width: 200px;
+}
+
+.slider {
+  height: 5px;
+  border-radius: 5px;
+  background-color: #ddd;
+  position: relative;
+}
+
+.slider .progress {
+  height: 5px;
+  left: 25%;
+  right: 25%;
+  position: absolute;
+  border-radius: 5px;
+  background-color: #333;
+}
+
+.range-input {
+  position: relative;
+}
+
+.range-input input {
+  position: absolute;
+  top: -5px;
+  height: 5px;
+  width: 100%;
+  background: none;
+  pointer-events: none;
+  -webkit-appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  pointer-events: auto;
+  -webkit-appearance: none;
+  background: #333;
+}
+
+input[type="range"]::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  border: none;
+  border-radius: 50%;
+  pointer-events: auto;
+  -moz-appearance: none;
+  background: #333;
+}
+
+.w-60 {
+  width: 60px;
+}
