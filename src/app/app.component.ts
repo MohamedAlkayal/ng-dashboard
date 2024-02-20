@@ -5,12 +5,11 @@ import { NavSideComponent } from './components/navComponents/nav-side/nav-side.c
   selector: 'app-root',
   standalone: true,
 
-  imports: [RouterOutlet, NavSideComponent,InputTextareaComponent],
+  imports: [RouterOutlet, NavSideComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-
   title = 'dashboard';
   // this data should be requested from an end point
   user = {

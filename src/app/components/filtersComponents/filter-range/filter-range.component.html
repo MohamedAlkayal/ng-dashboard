@@ -7,7 +7,7 @@
     <input
       type="range"
       class="range-min"
-      min="0"
+      [min]="allMin"
       [max]="allMax"
       [(ngModel)]="slider1"
       [step]="step"
@@ -16,7 +16,7 @@
     <input
       type="range"
       class="range-max"
-      min="0"
+      [min]="allMin"
       [max]="allMax"
       [(ngModel)]="slider2"
       [step]="step"

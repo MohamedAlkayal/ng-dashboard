@@ -21,8 +21,7 @@ export class TableComponent {
   @Output() selectedEmiiter = new EventEmitter();
 
   selectedElements: any = [];
-
-  ngOnInit() {}
+  isAllSelected: boolean = false;
 
   navigateTo(row: any) {
     console.log(row._id);
@@ -42,7 +41,7 @@ export class TableComponent {
   }
 
   selectAll() {
-    if (this.selectedElements.length == this.data.length) {
+    if (this.isAllSelected) {
       this.selectedElements = [];
       this.data.map((u: any) => (u.selected = false));
       this.selectedEmiiter.emit(this.selectedElements);

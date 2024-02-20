@@ -1,17 +1,14 @@
 .users {
   padding: 16px;
   min-height: 600px;
-  height: calc(100vh - 32px);
+  height: 100vh;
 }
 
-.upper {
-  height: 64px;
+.users-controls {
 }
 
-.right {
-  width: 120px;
-  flex-grow: 1;
-  border: 1px solid red;
+.users-filters {
+  width: 260px;
   height: 100%;
 }
 
