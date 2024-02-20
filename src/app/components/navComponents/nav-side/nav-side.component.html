@@ -1,6 +1,6 @@
 <nav
-  style="min-height: 600px"
-  class="me-4 d-flex flex-column justify-content-between border-end border-color vh-100"
+  style="min-height: 600px; width: 200px"
+  class="overflow-scroll d-flex position-fixed bg-white flex-column justify-content-between border-end border-color vh-100"
 >
   <div>
     <h1 class="p-4 fs-4 fw-bolder mb-5 border-bottom border-color">
@@ -64,7 +64,7 @@
       </li>
     </ul>
   </div>
-  <ul class="pb-2">
+  <ul>
     <li
       [ngClass]="selectedTab == 'username' ? selectedClass : ''"
       class="d-flex align-items-center gap-3 p-3 ps-4"

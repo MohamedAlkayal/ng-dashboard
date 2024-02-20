@@ -1,18 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-
 import { NavSideComponent } from './components/navComponents/nav-side/nav-side.component';
-import { InputTextareaComponent } from './components/formComponents/input-textarea/input-textarea.component';
+
 @Component({
   selector: 'app-root',
   standalone: true,
-
-  imports: [RouterOutlet, NavSideComponent,InputTextareaComponent],
+  imports: [RouterOutlet, NavSideComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-
   title = 'dashboard';
   // this data should be requested from an end point
   user = {
