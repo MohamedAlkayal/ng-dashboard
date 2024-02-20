@@ -1,3 +1,23 @@
-div {
-  color: red;
+.table-wrap {
+  height: calc(100% - 80px);
+  overflow-y: scroll;
+}
+
+.table-header {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1;
+}
+
+td,
+th {
+  padding: 16px !important;
+  cursor: pointer;
+  text-align: center;
+}
+
+th input,
+td input {
+  cursor: pointer;
 }
