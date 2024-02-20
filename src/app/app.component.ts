@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavSideComponent } from './components/navComponents/nav-side/nav-side.component';
+
 @Component({
   selector: 'app-root',
   standalone: true,
-
   imports: [RouterOutlet, NavSideComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

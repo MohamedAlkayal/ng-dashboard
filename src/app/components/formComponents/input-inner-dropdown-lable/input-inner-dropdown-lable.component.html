@@ -1,0 +1,8 @@
+<div class="input-group-sm  mb-3 d-flex align-items-center">
+    <span class="input-group-text w-10" id="basic-addon1" >{{dropdownTitle}}</span>
+    <select id="basic-addon1" class="form-select" [(ngModel)]="selectValue" (ngModelChange)="onValueChange($event)" aria-label=".form-select " aria-describedby="basic-addon1">
+      <option selected></option>
+      <option *ngFor="let item of dropdownItems" >{{item}}</option>
+    </select>
+</div>
+
