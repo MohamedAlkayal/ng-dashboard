@@ -1,6 +1,6 @@
 <div class="d-flex align-items-center">
     <label for={{label}} class=" form-label w-10 fw-bold">{{label}}</label>
-    <input  id={{label}} class=" w-50 form-control mx-3" [(ngModel)]="color" (ngModelChange)="sendData() " placeholder={{placeholderColor}}>
+    <input  id={{label}} class=" w-50 form-control mx-3 " [(ngModel)]="color" (ngModelChange)="sendData() " placeholder={{placeholderColor}}>
     <input type={{type}} class="w-25 form-control" [(ngModel)]="colorValue" (ngModelChange)="sendData()" placeholder={{placeholderValue}}>
   </div>
   
