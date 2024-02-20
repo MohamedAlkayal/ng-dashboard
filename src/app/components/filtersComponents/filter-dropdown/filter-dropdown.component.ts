@@ -6,22 +6,22 @@ import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-filter-dropdown',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,RouterOutlet,FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterOutlet, FormsModule],
   templateUrl: './filter-dropdown.component.html',
-  styles: ``
+  styles: ``,
 })
 export class FilterDropdownComponent {
+  @Input() id!: string;
 
- @Input() cities:string[]=[]
-  city:string[] = []
+  @Input() items: string[] = [];
+  item: string[] = [];
 
- @Input() dropdownTitle:any;
- constructor() { }
- selectValue:string = ""
- 
-@Output() dropdownValue= new EventEmitter<string>()
- onValueChange(data:any){
-  console.log(data)
-  this.dropdownValue.emit(data)
- }
+  @Input() lable: any;
+  constructor() {}
+  selectValue: string = '';
+
+  @Output() dropdownEmmiter = new EventEmitter<string>();
+  onValueChange(data: any) {
+    this.dropdownEmmiter.emit(data);
+  }
 }
