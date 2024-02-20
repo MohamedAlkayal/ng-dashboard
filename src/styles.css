@@ -4,6 +4,10 @@
   --light: #ddd;
 }
 
+* {
+  box-sizing: border-box !important;
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -30,12 +34,15 @@
 .w-60{
   width: 40%;
 }
+<<<<<<< HEAD
 .w-75{
   width: 75%;
 }
 .h-5{
   height: 5%;
 }
+=======
+>>>>>>> 4625d398a0f630e3d2477fbea0329b6c5a0c4c71
 
 .h-10{
   height:10%;
@@ -115,7 +122,6 @@ ul {
   margin: 0 !important;
 }
 
-
 /* Utilities  */
 .border-color {
   border-color: #dee2e6;
@@ -126,6 +132,15 @@ a {
   color: inherit !important;
 }
 
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.btn-width {
+  width: 100px;
+}
