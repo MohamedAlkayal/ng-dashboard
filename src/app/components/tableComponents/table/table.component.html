@@ -1,4 +1,3 @@
-
 <div class="table-wrap border rounded rounded-2 position-relative">
   <table class="table table-striped table-hover table-light">
     <thead class="table-header shadow shadow-sm">
@@ -32,7 +31,6 @@
               row[col.colData] === 'Suspended'
                 ? 'bg-warning'
                 : row[col.colData] === 'Active' ||
-                  row[col.colData] === 'shipping' ||
                   row[col.colData] === 'delivered'
                 ? 'bg-success text-white'
                 : row[col.colData] === 'pending' ||
@@ -40,6 +38,8 @@
                 ? 'bg-secondary text-white'
                 : row[col.colData] === 'canceled'
                 ? 'bg-danger text-white'
+                : row[col.colData] === 'shipping'
+                ? 'bg-primary text-white'
                 : ''
             "
           >
@@ -50,4 +50,3 @@
     </tbody>
   </table>
 </div>
-
