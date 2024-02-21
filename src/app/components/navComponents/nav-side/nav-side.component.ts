@@ -11,7 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './nav-side.component.css',
 })
 export class NavSideComponent {
-  constructor(private router: ActivatedRoute) {}
+  constructor(private route: Router) {}
 
   @Input() user!: {
     message: string;
@@ -24,13 +24,4 @@ export class NavSideComponent {
       categories: boolean;
     };
   };
-
-  selectedClass = 'bg-dark text-light';
-  selectedTab = 'home';
-
-  currentPath: string = '';
-
-  select(name: string) {
-    this.selectedTab = name;
-  }
 }

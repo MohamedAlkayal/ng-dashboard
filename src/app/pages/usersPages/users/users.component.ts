@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FilterTextComponent } from '../../../components/filtersComponents/filter-text/filter-text.component';
 import { FilterDropdownComponent } from '../../../components/filtersComponents/filter-dropdown/filter-dropdown.component';
 import { FilterRangeComponent } from '../../../components/filtersComponents/filter-range/filter-range.component';
+import { TableControlsComponent } from '../../../components/tableComponents/table-controls/table-controls.component';
 
 @Component({
   selector: 'app-users',
@@ -16,12 +17,19 @@ import { FilterRangeComponent } from '../../../components/filtersComponents/filt
     FilterTextComponent,
     FilterDropdownComponent,
     FilterRangeComponent,
+    TableControlsComponent,
   ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css',
 })
 export class UsersComponent {
-  tableCols = { col1: 'Name', col2: 'Email', col3: 'Phone', col4: 'Status' };
+  tableCols = [
+    { lable: 'Name', colData: 'fullName' },
+    { lable: 'Email', colData: 'email' },
+    { lable: 'Phone', colData: 'mainPhone' },
+    { lable: 'Orders', colData: 'ordersCount' },
+    { lable: 'Status', colData: 'isActive' },
+  ];
   users: any = [
     {
       _id: '65d28902e66358a2bbe92202',
@@ -337,21 +345,6 @@ export class UsersComponent {
       updatedAt: '2024-02-19T10:30:36.120Z',
       __v: 0,
     },
-    {
-      _id: '65d28902e66358a2bbe92222',
-      firstName: 'Liam',
-      lastName: 'Murphy',
-      email: 'liammurphy@example.com',
-      active: true,
-      phones: [7890123456],
-      wishlist: [],
-      orders: [],
-      addresses: [],
-      cart: [],
-      createdAt: '2024-02-18T22:47:30.534Z',
-      updatedAt: '2024-02-19T10:30:36.120Z',
-      __v: 0,
-    },
   ];
   locations: any[] = [
     {
@@ -540,17 +533,17 @@ export class UsersComponent {
     'South Sinai',
     'Suez',
   ];
-  selectedCities: string[] = [];
   selectedItems: string[] = [];
+  selectedCities: string[] = [];
   selectedGov!: any;
 
   ngOnInit() {
     this.users.map((u: any) => {
       u.selected = false;
-      u.col1 = u.firstName + ' ' + u.lastName;
-      u.col2 = u.email;
-      u.col3 = u.phones[0];
-      u.col4 = u.active ? 'Active' : 'Suspended';
+      u.fullName = u.firstName + ' ' + u.lastName;
+      u.ordersCount = u.orders.length;
+      u.mainPhone = u.phones[0];
+      u.isActive = u.active ? 'Active' : 'Suspended';
     });
   }
 
