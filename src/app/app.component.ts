@@ -1,17 +1,26 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavSideComponent } from './components/navComponents/nav-side/nav-side.component';
+import { AdminServices } from './services/admin/admin.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavSideComponent],
+  imports: [RouterOutlet, NavSideComponent, HttpClientModule],
+  providers: [AdminServices],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'dashboard';
-  // this data should be requested from an end point
+
+  constructor(private auth: AdminServices) {}
+
+  // ngOnInit() {
+  //   this.auth.loginAdmin("")
+  // }
+
   user = {
     message: 'Login successful',
     token:

@@ -1,6 +1,6 @@
 <nav
   style="min-height: 600px; width: 200px"
-  class="overflow-scroll d-flex position-fixed bg-white flex-column justify-content-between border-end border-color vh-100"
+  class="overflow-scroll d-flex bg-white flex-column justify-content-between border-end border-color h-100"
 >
   <div>
     <h1 class="p-4 fs-4 fw-bolder mb-5 border-bottom border-color">
@@ -8,72 +8,54 @@
     </h1>
     <ul>
       <li
-        [ngClass]="selectedTab == 'home' ? selectedClass : ''"
         class="p-3 ps-4"
+        routerLinkActive="bg-dark text-light"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
-        <a
-          (click)="select('home')"
-          routerLink=""
-          class="d-flex align-items-center gap-3"
-        >
+        <a routerLink="/" class="d-flex align-items-center gap-3">
           <mat-icon>home</mat-icon>
           <span>Home</span>
         </a>
       </li>
       <li
-        [ngClass]="selectedTab == 'orders' ? selectedClass : ''"
         class="p-3 ps-4"
         *ngIf="user.authorities.orders"
+        routerLinkActive="bg-dark text-light"
       >
-        <a
-          (click)="select('orders')"
-          routerLink="/orders"
-          class="d-flex align-items-center gap-3"
-        >
+        <a routerLink="/orders" class="d-flex align-items-center gap-3">
           <mat-icon> local_shipping </mat-icon>
           <span>Orders</span>
         </a>
       </li>
       <li
-        [ngClass]="selectedTab == 'products' ? selectedClass : ''"
         class="p-3 ps-4"
         *ngIf="user.authorities.products"
+        routerLinkActive="bg-dark text-light"
       >
-        <a
-          (click)="select('products')"
-          routerLink="/products"
-          class="d-flex align-items-center gap-3"
-        >
+        <a routerLink="/products" class="d-flex align-items-center gap-3">
           <mat-icon> shopping_cart </mat-icon>
           <span>Products</span>
         </a>
       </li>
       <li
-        [ngClass]="selectedTab == 'users' ? selectedClass : ''"
         class="p-3 ps-4"
         *ngIf="user.authorities.users"
+        routerLinkActive="bg-dark text-light"
       >
-        <a
-          (click)="select('users')"
-          routerLink="/users"
-          class="d-flex align-items-center gap-3"
-        >
+        <a routerLink="/users" class="d-flex align-items-center gap-3">
           <mat-icon> group </mat-icon>
           <span>Users</span>
         </a>
       </li>
     </ul>
   </div>
-  <ul>
+  <!-- <ul>
     <li
-      [ngClass]="selectedTab == 'username' ? selectedClass : ''"
       class="d-flex align-items-center gap-3 p-3 ps-4"
+      routerLinkActive="bg-dark text-light"
+      [routerLinkActiveOptions]="{ exact: true }"
     >
-      <a
-        (click)="select('username')"
-        routerLink=""
-        class="d-flex align-items-center gap-3"
-      >
+      <a routerLink="/adsad" class="d-flex align-items-center gap-3">
         <mat-icon> settings </mat-icon>
         <span>{{ user.username }}</span>
       </a>
@@ -84,5 +66,5 @@
         <span>Logout</span>
       </a>
     </li>
-  </ul>
+  </ul> -->
 </nav>

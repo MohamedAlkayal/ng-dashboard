@@ -31,8 +31,8 @@ export class FilterRangeComponent implements OnInit {
   right!: string;
 
   ngOnInit(): void {
-    this.slider1 = Math.floor(this.allMin + (this.allMax - this.allMin) * 0.2);
-    this.slider2 = Math.ceil(this.allMax - (this.allMax - this.allMin) * 0.2);
+    this.slider1 = this.allMin;
+    this.slider2 = this.allMax;
     this.step = this.myStep || Math.ceil((this.allMax - this.allMin) * 0.01);
     this.updateValues();
   }

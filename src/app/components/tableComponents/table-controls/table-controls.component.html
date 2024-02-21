@@ -1,0 +1,20 @@
+<div
+  class="mb-3 border rounded-2 d-flex align-items-center justify-content-between px-2 py-2"
+>
+  <div class="d-flex align-items-center fw-medium fs-6 ps-2">
+    <span class="pe-2 me-2 border-end"> {{ items.length }} Results </span>
+    <span
+      class="fw-normal"
+      [ngClass]="selectedItems.length ? 'text-primary' : 'text-muted'"
+      >({{ selectedItems.length }}) selected</span
+    >
+  </div>
+  <div class="d-flex gap-3">
+    <button class="btn btn-warning btn-width fw-medium">
+      {{ warningBtn }}
+    </button>
+    <button class="btn btn-danger btn-width fw-medium">
+      {{ dangerBtn }}
+    </button>
+  </div>
+</div>

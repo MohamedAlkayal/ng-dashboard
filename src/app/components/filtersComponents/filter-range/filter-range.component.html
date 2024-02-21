@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper mb-4">
   <label class="mb-3"> {{ lable }} </label>
   <div class="slider">
     <div class="progress" [ngStyle]="{ left: left, right: right }"></div>
@@ -23,11 +23,11 @@
       (input)="updateValues()"
     />
   </div>
-  <div class="d-flex justify-content-between mt-3">
-    <span class="p-2 w-60 border border-color rounded text-center">{{
+  <div class="d-flex justify-content-between gap-2 mt-3">
+    <span class="p-2 w-100 border border-color rounded text-center">{{
       slider1 < slider2 ? slider1 : slider2
     }}</span>
-    <span class="p-2 w-60 border border-color rounded text-center">{{
+    <span class="p-2 w-100 border border-color rounded text-center">{{
       slider2 > slider1 ? slider2 : slider1
     }}</span>
   </div>

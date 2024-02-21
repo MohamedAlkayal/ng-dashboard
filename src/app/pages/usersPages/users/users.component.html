@@ -1,21 +1,11 @@
-<div class="users d-flex gap-4">
-  <div class="action-table-wrap">
-    <div
-      class="users-controls mb-3 border rounded-2 d-flex align-items-center justify-content-between px-2 py-2"
-    >
-      <div class="d-flex align-items-center fw-medium fs-6 ps-2">
-        <span class="pe-2 me-2 border-end"> {{ users.length }} Results </span>
-        <span
-          class="fw-normal"
-          [ngClass]="selectedItems.length ? 'text-primary' : 'text-muted'"
-          >({{ selectedItems.length }}) selected</span
-        >
-      </div>
-      <div class="d-flex gap-3">
-        <button class="btn btn-warning btn-width">Suspend</button>
-        <button class="btn btn-danger btn-width">Delete</button>
-      </div>
-    </div>
+<div class="page d-flex gap-4">
+  <div class="table-wrap">
+    <app-table-controls
+      [items]="users"
+      [selectedItems]="selectedItems"
+      [dangerBtn]="'Delete'"
+      [warningBtn]="'Suspend'"
+    ></app-table-controls>
     <app-table
       (selectedEmiiter)="getSelected($event)"
       [cols]="tableCols"
@@ -24,7 +14,7 @@
     ></app-table>
   </div>
   <div
-    class="users-filters border rounded-2 p-4 d-flex flex-column justify-content-between"
+    class="page-filters border rounded-2 p-4 d-flex flex-column justify-content-between"
   >
     <div>
       <app-filter-text [lable]="'Search'" [type]="'text'"></app-filter-text>
@@ -43,6 +33,11 @@
         [id]="'cityField'"
         [lable]="'City'"
         [items]="selectedCities"
+      ></app-filter-dropdown>
+      <app-filter-dropdown
+        [id]="'sortField'"
+        [lable]="'Sort By'"
+        [items]="['Name', 'Email', 'Phone', 'Orders']"
       ></app-filter-dropdown>
       <app-filter-range
         [allMax]="80"
