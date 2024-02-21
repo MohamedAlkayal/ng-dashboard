@@ -12,7 +12,6 @@ import { NavSideComponent } from './components/navComponents/nav-side/nav-side.c
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-
   title = 'dashboard';
   // this data should be requested from an end point
   user = {
