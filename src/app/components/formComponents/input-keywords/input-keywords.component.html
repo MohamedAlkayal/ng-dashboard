@@ -1,1 +1,9 @@
-<p>input-keywords works!</p>
+<app-input-text [lable]="'Keyword'" [textType]="'text'" (valueChange)="onValueChange($event)"></app-input-text>
+
+<div class="d-flex flex-column justify-content-start align-items-center mb-4 h-5" *ngIf="list.length>0" >
+    <div class="p-1 mb-3 m-auto rounded-1 border border-secondary-subtle d-flex justify-content-start flex-wrap" >
+        <div *ngFor="let item of list" class="bg-dark-subtle me-2 px-2 py-1 text-dark-emphasis w-auto rounded-1 border-1 border-dark-subtle d-flex justify-content-between align-items-center">
+            <div class="fs-6"><mat-icon  class="mt-1 " (click)="deletElement(item)">clear</mat-icon></div>
+        </div>
+    </div>
+</div>

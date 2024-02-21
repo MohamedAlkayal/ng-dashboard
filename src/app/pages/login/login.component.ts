@@ -11,20 +11,20 @@ import { FormGroup, ReactiveFormsModule ,Validators,FormControl} from '@angular/
 })
 export class LoginComponent {
 
-  reqValidation = new FormGroup({
+  loginValidation = new FormGroup({
     email: new FormControl("", [Validators.required,Validators.pattern("\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b")]),
     password: new FormControl("", [Validators.required, Validators.minLength(12), Validators.maxLength(20)])
   })
 
   get emailValid() {
-    return this.reqValidation.controls["email"].valid
+    return this.loginValidation.controls["email"].valid
   }
   get passwordValid() {
-    return this.reqValidation.controls["password"].valid
+    return this.loginValidation.controls["password"].valid
   }
   isValid: boolean = true
   add() {
-  if(this.reqValidation.valid){
+  if(this.loginValidation.valid){
     this.isValid=true
   }else{
     this.isValid=false

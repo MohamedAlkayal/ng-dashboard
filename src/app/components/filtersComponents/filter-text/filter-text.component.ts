@@ -24,8 +24,8 @@ export class FilterTextComponent {
   @Input() type: string = '';
   @Output() value = new EventEmitter<string>();
   inptValue: any;
+
   onValueChange(data: any) {
-    console.log(data);
     this.value.emit(data);
   }
 }

@@ -4,7 +4,9 @@
     id="inpt"
     [(ngModel)]="inptValue"
     (ngModelChange)="onValueChange($event)"
-    type="type"
+    [type]="type"
     class="form-control"
   />
 </div>
+
+
