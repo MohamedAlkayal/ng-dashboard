@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { TokenUtilsService } from '../token/token-utils.service';
+import { TokenUtilsService } from './token/token-utils.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -16,7 +16,9 @@ export class AdminUserServices {
     state?: string,
     city?: string,
     val1?: number,
-    val2?: number
+    val2?: number,
+    sortBy?: string,
+    order?: string
   ) {
     const headers = this.token.getHeader();
     let url = `${this.usersUrl}/api/dashboard/users/?page=${page}&limit=${limit}`;
@@ -36,6 +38,12 @@ export class AdminUserServices {
     }
     if (val1 && val2) {
       url += `&val1=${val1}&val2=${val2}`;
+    }
+    if (sortBy) {
+      url += `&sortBy=${sortBy}`;
+    }
+    if (sortBy) {
+      url += `&sortBy=${sortBy}`;
     }
 
     // Send HTTP GET request with constructed URL and headers
