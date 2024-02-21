@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { InputInnerLableComponent } from '../../components/formComponents/input-inner-lable/input-inner-lable.component';
-import { LoginComponent } from '../login/login.component';
-import { InputInnerDropdownLableComponent } from '../../components/formComponents/input-inner-dropdown-lable/input-inner-dropdown-lable.component';
-import { InputTextareaComponent } from '../../components/formComponents/input-textarea/input-textarea.component';
 import { TableComponent } from '../../components/tableComponents/table/table.component';
+import { FailedComponent } from '../../components/messagesComponents/failed/failed.component';
+import { InvoiceComponent } from '../../components/invoice/invoice.component';
 
 @Component({
   selector: 'app-home',
