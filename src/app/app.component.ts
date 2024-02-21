@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavSideComponent } from './components/navComponents/nav-side/nav-side.component';
+import { PromptConfirmComponent } from './components/messagesComponents/prompt-confirm/prompt-confirm.component';
+import { PromptDangerComponent } from './components/messagesComponents/prompt-danger/prompt-danger.component';
 
 @Component({
   selector: 'app-root',

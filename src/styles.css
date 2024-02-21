@@ -81,6 +81,7 @@
 
 .layer{
   background-color: rgba(58, 57, 57, 0.2);
+display: none;
 }
 .hidden {
   display: none;
