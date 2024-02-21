@@ -16,10 +16,13 @@ export class InputTextComponent {
   @Input() lable: string = '';
   @Input() textType: string = '';
   @Input() disabed:boolean=false;
-  @Output() value = new EventEmitter<string>();
-  inptValue:any ;
-  onValueChange(data:any){
-    console.log(data)
-    this.value.emit(data)
+  @Output() valueChange = new EventEmitter<string>();
+  inptValue:any;
+
+  onValueChange(e:any){
+if(e.code==="Enter"){
+  this.valueChange.emit(this.inptValue)
+  this.inptValue=""
+}
   }
 }

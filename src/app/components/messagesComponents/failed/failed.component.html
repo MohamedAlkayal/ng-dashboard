@@ -1,1 +1,28 @@
-<p>failed works!</p>
+<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+Delete
+  </button>
+  
+  <div class="modal fade bg-opacity-50 bg-black" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header ">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Are you sure you want to Delete !!!</h1>
+        </div>
+        <div class="modal-body d-flex flex-column align-items-center justify-content-center">
+         <div><label for="delet" class="form-label" >Please write your Email and Password here...</label></div>
+         <div class="form-floating h-10 mb-3">
+            <input type="email"  [(ngModel)]="emailValue" class="form-control" id="email" placeholder="Email address">
+            <label for="email">Email address</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" [(ngModel)]="passwordValue" class="form-control" id="password" placeholder="password">
+            <label for="password">Password</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" data-bs-toggle="modal" (click)="getValus()">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>

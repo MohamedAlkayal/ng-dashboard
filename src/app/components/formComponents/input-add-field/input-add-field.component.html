@@ -1,1 +1,16 @@
-<p>input-add-field works!</p>
+
+<div class="mb-3 m-auto  d-flex flex-column justify-content-center align-items-center">
+    <div class="w-100"><app-input-two-fields [label]="'Color'" [placeholderColor]="'Color'" [placeholderValue]="'Value'" ></app-input-two-fields></div>
+    <div class="w-75  d-flex justify-content-center align-items-center mt-2" *ngIf="items.length<1">
+        <button class="w-100 text-dark btn btn-light" (click)="clickToAppend()" >Add new Color</button>
+    </div>
+</div>
+
+<div *ngIf="items.length>0">
+    <div *ngFor="let item of items" class="mb-3 m-auto  d-flex flex-column justify-content-center align-items-center">
+        <div class="w-100"><app-input-two-fields [placeholderColor]="'Color'" [placeholderValue]="'Value'" ></app-input-two-fields></div>
+        <div class="w-75  d-flex justify-content-center align-items-center mt-2" *ngIf="items.length<2">
+            <button class="w-100 text-dark btn btn-light " (click)="clickToAppend()" >Add new Color</button>
+        </div>
+    </div>
+</div>

@@ -20,5 +20,6 @@ export class InputTwoFieldsComponent {
     if(Number(this.colorValue) >= 0){
       this.dataSent.emit({ color: this.color, value: this.colorValue });
     }
+  
   }
 }
