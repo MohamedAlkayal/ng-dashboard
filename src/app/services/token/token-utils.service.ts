@@ -14,8 +14,8 @@ export class TokenUtilsService {
     });
     return headers;
   }
-  storeToken(res: any) {
-    if (typeof localStorage !== 'undefined') {
+  storeTokenAdmin(res: any) {
+    if (typeof localStorage !== 'undefined' && localStorage !== null) {
       localStorage.setItem(
         'currentUser',
         JSON.stringify({
@@ -23,6 +23,17 @@ export class TokenUtilsService {
           token: res.token,
           authorities: res.authorities,
           id: res.id,
+        })
+      );
+    }
+  }
+  storeTokenUser(res: any) {
+    if (typeof localStorage !== 'undefined' && localStorage !== null) {
+      localStorage.setItem(
+        'currentUser',
+        JSON.stringify({
+          token: res.Token,
+          active: res.Active,
         })
       );
     }
