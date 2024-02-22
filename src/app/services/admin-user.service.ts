@@ -11,14 +11,14 @@ export class AdminUserServices {
   getAllUsers(
     page: number = 1,
     limit: number = 10,
+    sortBy?: string,
+    order?: string,
     search?: string,
     gender?: string,
     state?: string,
     city?: string,
     val1?: number,
-    val2?: number,
-    sortBy?: string,
-    order?: string
+    val2?: number
   ) {
     const headers = this.token.getHeader();
     let url = `${this.usersUrl}?page=${page}&limit=${limit}`;
