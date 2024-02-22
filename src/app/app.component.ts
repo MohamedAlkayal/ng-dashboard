@@ -3,12 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { InputTextareaComponent } from './components/formComponents/input-textarea/input-textarea.component';
 import { InputInnerLableComponent } from './components/formComponents/input-inner-lable/input-inner-lable.component';
 import { NavSideComponent } from './components/navComponents/nav-side/nav-side.component';
-<<<<<<< HEAD
-import { PromptConfirmComponent } from './components/messagesComponents/prompt-confirm/prompt-confirm.component';
-import { PromptDangerComponent } from './components/messagesComponents/prompt-danger/prompt-danger.component';
-=======
 import { HttpClientModule } from '@angular/common/http';
->>>>>>> origin
 
 @Component({
   selector: 'app-root',
