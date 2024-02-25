@@ -6,8 +6,8 @@ import { Injectable } from '@angular/core';
 export class TokenUtilsService {
   constructor() {}
   getHeader() {
-    const username: any = localStorage.getItem('currentUser');
-    const userObject: any = JSON.parse(username);
+    const currentUser: any = localStorage.getItem('currentUser');
+    const userObject: any = JSON.parse(currentUser);
 
     const headers = new HttpHeaders({
       Authorization: `Bearer ${userObject.token}`,
