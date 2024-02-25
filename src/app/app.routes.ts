@@ -6,7 +6,6 @@ import { ProductsComponent } from './pages/productsPages/products/products.compo
 import { OneProductComponent } from './pages/productsPages/one-product/one-product.component';
 import { UsersComponent } from './pages/usersPages/users/users.component';
 import { OneUserComponent } from './pages/usersPages/one-user/one-user.component';
-import { AddProductComponent } from './pages/productsPages/add-product/add-product.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,7 +21,7 @@ export const routes: Routes = [
     children: [
       { path: '', component: ProductsComponent },
       { path: ':product_ID', component: OneProductComponent },
-      { path: 'add', component: AddProductComponent },
+      { path: ':add', component: OneProductComponent },
     ],
   },
   {

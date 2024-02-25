@@ -1,1 +1,65 @@
-<p>products works!</p>
+<div class="page d-flex gap-4">
+  <div class="table-wrap">
+    <app-table-controls
+      [items]="products"
+      [selectedItems]="selectedItems"
+      [dangerBtn]="'Delete'"
+      [warningBtn]="'Open Ticket'"
+    ></app-table-controls>
+    <app-table
+      (selectedEmiiter)="getSelected($event)"
+      [cols]="tableCols"
+      [page]="'products'"
+      [data]="products"
+    ></app-table>
+  </div>
+  <div
+    class="offcanvas offcanvas-end"
+    tabindex="-1"
+    id="offcanvasRight"
+    aria-labelledby="offcanvasRightLabel"
+  >
+    <div class="offcanvas-body">
+      <div
+        class="w-100 overflow-scroll p-4 d-flex flex-column justify-content-between"
+      >
+        <div>
+          <h1 class="mb-5">Filters</h1>
+          <app-filter-text
+            [id]="'idField'"
+            [lable]="'ID/Model Number'"
+            [type]="'number'"
+          ></app-filter-text>
+          <app-filter-text [lable]="'Name'" [type]="'text'"></app-filter-text>
+          <app-filter-text
+            [lable]="'Brand Name'"
+            [type]="'text'"
+          ></app-filter-text>
+          <app-filter-dropdown
+            [id]="'catField'"
+            [lable]="'Category'"
+            [items]="['Phones', 'Test1', 'test2', 'test3']"
+          ></app-filter-dropdown>
+          <app-filter-dropdown
+            [id]="'subCatField'"
+            [lable]="'Sub Category'"
+            [items]="['Phones', 'Test1', 'test2', 'test3']"
+          ></app-filter-dropdown>
+          <app-filter-dropdown
+            [id]="'sortField'"
+            [lable]="'Sort By'"
+            [items]="['Name Asc', 'Name Des', 'Price Asc', 'Price Des']"
+          ></app-filter-dropdown>
+          <app-filter-range
+            [allMax]="700000"
+            [allMin]="200"
+            [lable]="'Price'"
+            [myStep]="100"
+          >
+          </app-filter-range>
+        </div>
+        <button class="btn btn-dark w-100">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>

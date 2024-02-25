@@ -1,7 +1,5 @@
 .wrapper {
-  margin-top: 80px;
-  margin-bottom: 30px;
-  width: 200px;
+  width: 100%;
 }
 
 .slider {
@@ -53,6 +51,6 @@ input[type="range"]::-moz-range-thumb {
   background: #333;
 }
 
-.w-60 {
-  width: 60px;
+.my-width {
+  width: 80px;
 }

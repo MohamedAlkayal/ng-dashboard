@@ -1,0 +1,33 @@
+<div
+  class="mb-3 border rounded-2 d-flex align-items-center justify-content-between p-2"
+>
+  <div class="d-flex align-items-center fw-medium fs-6 ps-2">
+    <span class="px-2 me-2 border-end"> {{ items.length }} Results </span>
+    <span
+      class="fw-normal"
+      [ngClass]="selectedItems.length ? 'text-primary' : 'text-muted'"
+      >({{ selectedItems.length }}) selected</span
+    >
+  </div>
+  <div class="d-flex gap-3">
+    <button class="btn btn-warning btn-width fw-medium">
+      {{ warningBtn }}
+    </button>
+    <button class="btn btn-danger btn-width fw-medium">
+      {{ dangerBtn }}
+    </button>
+    <div
+      class="h-100 border ms-3 py-3 bg-dark-subtle text- d-block align-self-center"
+    ></div>
+    <button
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasRight"
+      aria-controls="offcanvasRight"
+      class="btn btn-light btn-width px-3 d-flex align-items-center justify-content-between ms-3"
+    >
+      Filters
+      <mat-icon>tune</mat-icon>
+    </button>
+  </div>
+</div>

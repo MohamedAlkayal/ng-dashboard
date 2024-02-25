@@ -1,0 +1,43 @@
+<table class="table table-light w-50 m-auto text-center">
+  <thead class="table-active">
+    <tr style="border-bottom-style: hidden">
+      <th class="border-radiusTL">ID</th>
+      <th>Name</th>
+      <th class="border-radiusTR">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <div class="p-1">
+      <tr *ngFor="let item of list" class="m-2">
+        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
+        <td>${{ item.price }}</td>
+      </tr>
+      <tr>
+        <td>Items</td>
+        <td></td>
+        <td>{{ invoce.items }} pcs</td>
+      </tr>
+      <tr style="border-top-style: hidden; padding: 10">
+        <td>Sub Total</td>
+        <td></td>
+        <td>${{ invoce.subtotal }}</td>
+      </tr>
+      <tr style="border-top-style: hidden">
+        <td>Tax</td>
+        <td></td>
+        <td>${{ invoce.tax }}</td>
+      </tr>
+      <tr style="border-top-style: hidden">
+        <td>Vouchers</td>
+        <td></td>
+        <td>${{ invoce.vouchersdiscount }}</td>
+      </tr>
+      <tr style="border-style: hidden">
+        <td class="border-radiusBL">Total</td>
+        <td></td>
+        <td class="border-radiusBR">${{ invoce.total }}</td>
+      </tr>
+    </div>
+  </tbody>
+</table>

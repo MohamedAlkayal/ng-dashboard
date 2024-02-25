@@ -1,9 +1,0 @@
-<div class="form-group d-flex align-items-center gx-3 mb-3">
-    <label for="exampleDataList" class="form-label w-10">{{dropdownTitle}}</label>
-    <select id="exampleDataList" class="form-select form-select-sm w-75" [(ngModel)]="selectValue" (ngModelChange)="onValueChange($event)" aria-label=".form-select-sm example">
-      <option selected></option>
-      
-      <option *ngFor="let item of items" >{{item}}</option>
-    </select>
-</div>
-

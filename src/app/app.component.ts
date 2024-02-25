@@ -1,26 +1,42 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavSideComponent } from './components/navComponents/nav-side/nav-side.component';
+import { HttpClientModule } from '@angular/common/http';
+import { NavHeaderComponent } from './components/navComponents/nav-header/nav-header.component';
+import { AdminServices } from './services/admin.service';
+import { TokenUtilsService } from './services/token/token-utils.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, NavSideComponent, InputTextareaComponent],
+
   imports: [
     RouterOutlet,
-    CardCtaComponent,
-    CardAlertComponent,
-    CardPromptComponent,
-    PromptDangerComponent,
-    PromptConfirmComponent,
-    OpenTicketComponent,
+    NavSideComponent,
+    HttpClientModule,
+    NavHeaderComponent,
   ],
+  providers: [AdminServices, TokenUtilsService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'dashboard';
-  // this data should be requested from an end point
+
+  constructor(private auth: AdminServices, private token: TokenUtilsService) {}
+
+  ngOnInit() {
+    this.auth.loginAdmin('jessica', 'jessicaPassword@A1').subscribe({
+      next: (data) => {
+        this.token.storeToken(data);
+      },
+      error(err) {
+        console.log(err);
+      },
+    });
+  }
+
   user = {
     message: 'Login successful',
     token:
