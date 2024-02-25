@@ -20,4 +20,23 @@ export class AdminVouchersService {
     const payload = { voucherCode, discount, type, expiryDate, maxUsage };
     return this.http.post(this.vouchersUrl, payload, { headers: headers });
   }
+  getAll() {
+    const headers = this.token.getHeader();
+    return this.http.get(this.vouchersUrl, { headers: headers });
+  }
+  update(
+    voucherId: string,
+    discount?: number,
+    type?: 'percentage' | 'flat',
+    expiryDate?: Date,
+    maxUsage?: number
+  ) {
+    const headers = this.token.getHeader();
+    const payload = { voucherId, discount, type, expiryDate, maxUsage };
+    console.log(payload);
+
+    return this.http.patch(this.vouchersUrl + `/${voucherId}`, payload, {
+      headers: headers,
+    });
+  }
 }
