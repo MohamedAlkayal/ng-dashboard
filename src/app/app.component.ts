@@ -13,6 +13,7 @@ import { NavHeaderComponent } from './components/navComponents/nav-header/nav-he
     HttpClientModule,
     NavHeaderComponent,
   ],
+
   providers: [],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

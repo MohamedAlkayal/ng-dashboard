@@ -34,7 +34,6 @@
               row[col.colData] === 'Suspended'
                 ? 'bg-warning'
                 : row[col.colData] === 'Active' ||
-                  row[col.colData] === 'shipping' ||
                   row[col.colData] === 'delivered'
                 ? 'bg-success text-white'
                 : row[col.colData] === 'pending' ||
@@ -42,6 +41,8 @@
                 ? 'bg-secondary text-white'
                 : row[col.colData] === 'canceled'
                 ? 'bg-danger text-white'
+                : row[col.colData] === 'shipping'
+                ? 'bg-primary text-white'
                 : ''
             "
           >
