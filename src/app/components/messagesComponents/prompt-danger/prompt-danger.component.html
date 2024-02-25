@@ -1,43 +1,29 @@
-<!-- <button (click)="toggleDisplay()">Click me!</button>
-<div [ngClass]="{'hidden': !isDisplayed}"
-    class=" justify-content-center align-items-center layer position-absolute end-0 start-0 top-0 bottom-0 "
-    (click)="onClickOutside($event)">
-    <div class=" prompt bg-white d-flex flex-column border border-1 rounded-2 p-3 w-35">
-        <div class="d-flex align-items-center">
-            <p class="text-danger me-2">Danger</p>
-            <p>Your are deleting : </p>
-            <p class="fw-bold"> {{ Deleted}} Fields</p>
-        </div>
-        <div>
-            <p>Are you sure you want to delete this data? This action cannot be undone.</p>
-        </div>
-        <input class=" form-control" [(ngModel)]="ConfirmValve" type="text" placeholder='Write "CONFIRM" '>
-        <div class="d-flex justify-content-between m-auto  mt-3 w-100">
-            <div class="w-50 pe-1"><button (click)="confirm(true)" class="w-100 btn btn-danger ">DELETE</button></div>
-            <div class="w-50 ps-1"><button (click)="confirm(false)"
-                    class="w-100 btn btn-outline-secondary">Cancel</button></div>
-        </div>
-    </div>
-</div> -->
-
 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
     X
 </button>
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <input class=" form-control" [(ngModel)]="ConfirmValve" type="text" placeholder='Write "CONFIRM" '>
+                <div class="fs-5 d-flex align-items-center">
+                    <p class="text-danger me-2">Danger</p>
+                    <p>You are deleting : </p>
+                    <p class="fw-bold"> {{ Deleted }} Fields</p>
+                </div>
+                <p>Are you sure you want to delete this data? This action cannot be undone.</p>
+
+                <input class="CheckChackChock form-control" [(ngModel)]="ConfirmValve" type="text"
+                    placeholder='Write "CONFIRM" '>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Delete</button>
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" (click)="ConfirmDelete()" class="btn btn-danger">Delete</button>
             </div>
         </div>
     </div>
