@@ -1,1 +1,59 @@
-<p>one-order works!</p>
+<div class="d-flex gap-5 p-3">
+  <div style="width: 700px" class="d-flex align-items-end flex-column mt-5">
+    <app-input
+      lable="Tracking Number"
+      [disabled]="true"
+      [type]="'text'"
+    ></app-input>
+    <app-input lable="Full Name" [disabled]="true" [type]="'text'"></app-input>
+    <app-input lable="Email" [disabled]="true" [type]="'text'"></app-input>
+    <app-input lable="Phone" [disabled]="true" [type]="'number'"></app-input>
+    <app-input-inner-lable
+      lable="Address"
+      [values]="address"
+      [disabled]="true"
+    ></app-input-inner-lable>
+    <app-input
+      lable="Payment Method"
+      [disabled]="true"
+      [type]="'text'"
+    ></app-input>
+
+    <app-card-cta
+      [config]="{
+        data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+        color: 'secondary',
+        text: 'Freeze'
+      }"
+    ></app-card-cta>
+    <app-card-cta
+      [config]="{
+        data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+        color: 'warning',
+        text: 'Open Ticket'
+      }"
+    ></app-card-cta>
+    <app-card-cta
+      [config]="{
+        data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+        color: 'danger',
+        text: 'Delete'
+      }"
+    ></app-card-cta>
+  </div>
+
+  <!-- ####################################### -->
+  <!-- ####################################### -->
+  <!-- ####################################### -->
+
+  <div class="mt-5" style="width: 400px">
+    <app-card-prompt
+      [config]="{
+        data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+        color: 'success',
+        text: 'Apply Changes'
+      }"
+      [isDisabled]="true"
+    ></app-card-prompt>
+  </div>
+</div>

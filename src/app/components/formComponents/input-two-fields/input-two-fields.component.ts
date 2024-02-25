@@ -1,25 +1,33 @@
+import { CommonModule } from '@angular/common';
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-input-two-fields',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule, MatIcon],
   templateUrl: './input-two-fields.component.html',
-  styles: ``
+  styles: ``,
 })
 export class InputTwoFieldsComponent {
-  color: string = "";
-  colorValue: string = '';
-  @Input() label: string ="" 
-  @Input() placeholderColor:string =""
-  @Input() placeholderValue:string =""
-  @Input() type:string = ""
-  @Output() dataSent = new EventEmitter();
-  sendData() {
-    if(Number(this.colorValue) >= 0){
-      this.dataSent.emit({ color: this.color, value: this.colorValue });
+  @Input() options: any = [];
+  @Input() label: string = '';
+  @Input() mainPlaceholder: string = '';
+  @Input() subPlaceholder: string = '';
+  @Output() valuesEmmiter = new EventEmitter();
+
+  emmitData() {
+    this.valuesEmmiter.emit('test');
+  }
+
+  ngOnInit() {
+    if (this.options.length === 0) {
+      this.options.push({ value: '', subValue: '' });
     }
-  
+  }
+
+  addField() {
+    this.options.push({ value: '', subValue: '' });
   }
 }

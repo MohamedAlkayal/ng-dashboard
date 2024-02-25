@@ -1,29 +1,37 @@
 <div class="container d-flex align-items-center justify-content-center">
-    <div class="w-30 m-auto my-5">
-            <form [formGroup]="loginValidation" class="border border-1 border-dark-subtle p-5 rounded-4" >
-                    <div class="reg input-grou mb-3">
-                        <label for="name" class="form-label">E-mail</label>
-                        <input id="name" formControlName="email" type="email" class="form-control" placeholder="User Name" required>   
-                    </div>
-                    <div class="reg input-grou my-3">
-                        <label for="age" class="form-label">Password</label>
-                        <input  id="age" formControlName="password" type="password" class="form-control " placeholder="Age" required>
-                    </div>
-                    @if (!isValid) {
-                        <div  class="isValid my-3 alert alert-danger">In valid Credential "Only admin can access"</div>
-                    }
-                    <button (click)="add()" class="btn btn-dark w-100">Login</button>
-            </form>
-        </div>
+  <div class="w-30 m-auto my-5">
+    <form
+      [formGroup]="loginValidation"
+      class="border border-1 border-dark-subtle p-5 rounded-4"
+    >
+      <div class="reg input-grou mb-3">
+        <label for="name" class="form-label">Username</label>
+        <input
+          id="name"
+          formControlName="Username"
+          type="text"
+          class="form-control"
+          placeholder="Username"
+          required
+        />
+      </div>
+      <div class="reg input-grou my-3">
+        <label for="age" class="form-label">Password</label>
+        <input
+          id="age"
+          formControlName="password"
+          type="password"
+          class="form-control"
+          placeholder="Age"
+          required
+        />
+      </div>
+      @if (!isValid) {
+      <div class="isValid my-3 alert alert-danger">
+        Invalid Credential "Only admin can access"
+      </div>
+      }
+      <button (click)="add()" class="btn btn-dark w-100">Login</button>
+    </form>
+  </div>
 </div>
-
-
-
-
-
-
-    
-
-
-
-

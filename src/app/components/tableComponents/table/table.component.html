@@ -4,6 +4,7 @@
       <tr>
         <th style="padding-left: 12px !important ; padding-right: 0 !important">
           <input
+            class="form-check-input"
             (click)="selectAll()"
             type="checkbox"
             [(ngModel)]="isAllSelected"
@@ -19,6 +20,7 @@
           (click)="stopPropegation(row, $event)"
         >
           <input
+            class="form-check-input"
             (click)="selectElement(row, $event)"
             [(ngModel)]="row.selected"
             type="checkbox"
@@ -26,6 +28,7 @@
         </td>
         <td *ngFor="let col of cols">
           <span
+            class="text-center"
             style="padding: 2px 5px; border-radius: 4px"
             [ngClass]="
               row[col.colData] === 'Suspended'
