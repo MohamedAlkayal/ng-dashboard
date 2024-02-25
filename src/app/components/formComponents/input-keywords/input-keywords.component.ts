@@ -1,29 +1,30 @@
 import { Component, Input } from '@angular/core';
-import { InputDropdownComponent } from '../input-dropdown/input-dropdown.component';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
-import { InputTextComponent } from '../input-text/input-text.component';
+import { InputComponent } from '../input/input.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-input-keywords',
   standalone: true,
-  imports: [InputDropdownComponent, CommonModule, MatIcon, InputTextComponent],
+  imports: [CommonModule, MatIcon, InputComponent, FormsModule],
   templateUrl: './input-keywords.component.html',
-  styles: './input-keyword.component.css'
 })
 export class InputKeywordsComponent {
-  list: string[] = []
-  inputValue: string = ""
-  lable:string=""
-  onValueChange(e: any) {
-    this.inputValue = e
-    this.inputValue=this.inputValue.trimStart().trimEnd().toLowerCase();
-    if(this.inputValue.length <= 20&&this.inputValue.length>0){
-      this.list.push(this.inputValue);
+  @Input() keywords: string[] = [];
+
+  value: string = '';
+
+  addKeyword(e: any) {
+    if (e.key === 'Enter') {
+      this.keywords.push(this.value);
+      this.value = '';
     }
   }
-  deletElement(e:any){
-    let index=this.list.indexOf(e)
-    this.list.splice(index,1)
+
+  deletElement(e: any) {
+    console.log(e);
+    let index = this.keywords.indexOf(e);
+    this.keywords.splice(index, 1);
   }
 }
