@@ -1,4 +1,10 @@
 <div class="input-container d-flex align-items-start mb-3">
-    <label for="message" class="fw-bold w-auto me-3 ">Description</label>
-    <textarea id="message" class="w-100 form-control" style="min-height: 100px" [(ngModel)]="message" (ngModelChange)="sendData()"></textarea>
+  <label [for]="lable" class="fw-bold w-auto me-3">{{ lable }}</label>
+  <textarea
+    style="min-width: 550px; resize: none; min-height: 160px"
+    [id]="lable"
+    class="w-100 form-control"
+    [(ngModel)]="value"
+    (ngModelChange)="sendData()"
+  ></textarea>
 </div>

@@ -1,23 +1,26 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { InputTextareaComponent } from './components/formComponents/input-textarea/input-textarea.component';
-import { InputInnerLableComponent } from './components/formComponents/input-inner-lable/input-inner-lable.component';
 import { NavSideComponent } from './components/navComponents/nav-side/nav-side.component';
-import { AdminServices } from './services/admin/admin.service';
 import { HttpClientModule } from '@angular/common/http';
+import { NavHeaderComponent } from './components/navComponents/nav-header/nav-header.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavSideComponent, HttpClientModule],
-  providers: [AdminServices],
+  imports: [
+    RouterOutlet,
+    NavSideComponent,
+    HttpClientModule,
+    NavHeaderComponent,
+  ],
+  providers: [],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'dashboard';
 
-  constructor(private auth: AdminServices) {}
+  // constructor(private auth: AdminServices) {}
 
   // ngOnInit() {
   //   this.auth.loginAdmin("")
