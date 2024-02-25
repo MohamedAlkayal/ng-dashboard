@@ -1,5 +1,6 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -14,6 +15,7 @@ export class TokenUtilsService {
     });
     return headers;
   }
+
   storeToken(res: any) {
     if (typeof localStorage !== 'undefined') {
       localStorage.setItem(

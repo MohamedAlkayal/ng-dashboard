@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class AdminServices {
-  private usersUrl = 'http://localhost:8000';
+  private usersUrl = 'http://localhost:8000/api/dashboard';
   constructor(private http: HttpClient) {}
 
   loginAdmin(username: string, password: string) {
@@ -14,6 +14,6 @@ export class AdminServices {
       password: password,
     };
 
-    return this.http.post(this.usersUrl + `/api/dashboard/login`, payload);
+    return this.http.post(this.usersUrl + `/login`, payload);
   }
 }

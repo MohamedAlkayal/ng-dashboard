@@ -3,6 +3,8 @@ import { RouterOutlet } from '@angular/router';
 import { NavSideComponent } from './components/navComponents/nav-side/nav-side.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NavHeaderComponent } from './components/navComponents/nav-header/nav-header.component';
+import { AdminServices } from './services/admin.service';
+import { TokenUtilsService } from './services/token/token-utils.service';
 
 @Component({
   selector: 'app-root',
@@ -13,18 +15,25 @@ import { NavHeaderComponent } from './components/navComponents/nav-header/nav-he
     HttpClientModule,
     NavHeaderComponent,
   ],
-  providers: [],
+  providers: [AdminServices, TokenUtilsService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'dashboard';
 
-  // constructor(private auth: AdminServices) {}
+  constructor(private auth: AdminServices, private token: TokenUtilsService) {}
 
-  // ngOnInit() {
-  //   this.auth.loginAdmin("")
-  // }
+  ngOnInit() {
+    this.auth.loginAdmin('jessica', 'jessicaPassword@A1').subscribe({
+      next: (data) => {
+        this.token.storeToken(data);
+      },
+      error(err) {
+        console.log(err);
+      },
+    });
+  }
 
   user = {
     message: 'Login successful',
