@@ -9,7 +9,9 @@ import { Component, Output, EventEmitter } from '@angular/core';
 })
 export class PromptConfirmComponent {
 @Output() ConfirmUpdated = new EventEmitter();
-confirm(updated: boolean):void{
-  this.ConfirmUpdated.emit(updated)
+Confirm(){
+  // this.ConfirmUpdated.emit()
+  console.log("yeeeessss");
+  
 }
 }

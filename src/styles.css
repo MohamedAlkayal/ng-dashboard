@@ -92,6 +92,7 @@
 
 .layer {
   background-color: rgba(58, 57, 57, 0.2);
+display: none;
 }
 .hidden {
   display: none;
@@ -158,4 +159,15 @@ body {
 .table-wrap {
   height: 100%;
   width: 100%;
+}
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.shake-animation {
+  animation: shake 0.5s ease-in-out; /* Adjust the duration and timing function as needed */
 }
