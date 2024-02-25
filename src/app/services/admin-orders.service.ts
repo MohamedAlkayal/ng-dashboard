@@ -26,6 +26,12 @@ export class AdminOrdersService {
   ) {
     const headers = this.token.getHeader();
     let url = `${this.orderUrl}?page=${page}&limit=${limit}`;
+    if (sortBy) {
+      url += `&sortBy=${sortBy}`;
+    }
+    if (order) {
+      url += `&order=${order}`;
+    }
     if (trackingNumber) {
       url += `&trackingNumber=${trackingNumber}`;
     }
@@ -47,12 +53,38 @@ export class AdminOrdersService {
     if (itemsNumber1 && itemsNumber2) {
       url += `&itemsNumber1=${itemsNumber1}&itemsNumber2=${itemsNumber2}`;
     }
-    if (sortBy) {
-      url += `&sortBy=${sortBy}`;
-    }
-    if (order) {
-      url += `&order=${order}`;
-    }
     return this.http.get(url, { headers: headers });
+  }
+  getOne(orderId: string) {
+    const headers = this.token.getHeader();
+    return this.http.get(this.orderUrl + `/${orderId}`, { headers: headers });
+  }
+  updateStatus(
+    orderId: string,
+    deliveryStatus:
+      | 'pending'
+      | 'packaging'
+      | 'shipping'
+      | 'delivered'
+      | 'canceled'
+  ) {
+    const headers = this.token.getHeader();
+    return this.http.patch(
+      this.orderUrl + `/${orderId}`,
+      { deliveryStatus },
+      { headers: headers }
+    );
+  }
+  addTicket(
+    ticketTitle: string,
+    ticketDescription: string,
+    item_ids: string[]
+  ) {
+    const headers = this.token.getHeader();
+    return this.http.post(
+      this.orderUrl + `/ticket`,
+      { title: ticketTitle, description: ticketDescription, item_ids },
+      { headers: headers }
+    );
   }
 }

@@ -127,4 +127,16 @@ export class AdminProductService {
       headers: headers,
     });
   }
+  addTicket(
+    ticketTitle: string,
+    ticketDescription: string,
+    item_ids: string[]
+  ) {
+    const headers = this.token.getHeader();
+    return this.http.post(
+      this.productsUrl + `/ticket`,
+      { title: ticketTitle, description: ticketDescription, item_ids },
+      { headers: headers }
+    );
+  }
 }
