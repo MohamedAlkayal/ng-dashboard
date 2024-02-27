@@ -29,15 +29,15 @@ export class AdminProductService {
   getAllProducts(
     page: number = 1,
     limit: number = 10,
+    sortBy?: string,
+    order?: string,
     id_modelNumber?: string,
     name?: string,
     brandName?: string,
     category?: string,
     subCategory?: string,
     val1?: number,
-    val2?: number,
-    sortBy?: string,
-    order?: string
+    val2?: number
   ) {
     const headers = this.token.getHeader();
     let url = `${this.productsUrl}?page=${page}&limit=${limit}`;
@@ -65,7 +65,6 @@ export class AdminProductService {
     if (order) {
       url += `&order=${order}`;
     }
-    console.log(url);
     return this.http.get(url, { headers: headers });
   }
   getOneProduct(id: string) {
@@ -127,5 +126,17 @@ export class AdminProductService {
     return this.http.put(this.productsUrl, payload, {
       headers: headers,
     });
+  }
+  addTicket(
+    ticketTitle: string,
+    ticketDescription: string,
+    item_ids: string[]
+  ) {
+    const headers = this.token.getHeader();
+    return this.http.post(
+      this.productsUrl + `/ticket`,
+      { title: ticketTitle, description: ticketDescription, item_ids },
+      { headers: headers }
+    );
   }
 }

@@ -1,9 +1,33 @@
-<app-input-text [lable]="'Keyword'" [textType]="'text'" (valueChange)="onValueChange($event)"></app-input-text>
-
-<div class="d-flex flex-column justify-content-start align-items-center mb-4 h-5" *ngIf="list.length>0" >
-    <div class="p-1 mb-3 m-auto rounded-1 border border-secondary-subtle d-flex justify-content-start flex-wrap" >
-        <div *ngFor="let item of list" class="bg-dark-subtle me-2 px-2 py-1 text-dark-emphasis w-auto rounded-1 border-1 border-dark-subtle d-flex justify-content-between align-items-center">
-            <div class="fs-6"><mat-icon  class="mt-1 " (click)="deletElement(item)">clear</mat-icon></div>
-        </div>
+<div class="input-group d-flex gap-3 align-items-start mb-3">
+  <label for="keywords" class="form-label fw-semibold m-0 pt-1">Keywords</label>
+  <div>
+    <input
+      id="keywords"
+      [(ngModel)]="value"
+      (keypress)="addKeyword($event)"
+      type="text"
+      class="form-control form-control-sm rounded mb-3"
+      style="width: 550px"
+    />
+    <div
+      style="width: 550px"
+      class="border border-color rounded-2 p-1 d-flex gap-2 flex-wrap"
+    >
+      <div *ngIf="keywords.length == 0" class="text-secondary m-0 p-1">
+        Add keywords via the previous input
+      </div>
+      <div
+        class="d-flex align-items-center gap-2 bg-light p-1"
+        *ngFor="let item of keywords"
+      >
+        <span>{{ item }}</span>
+        <mat-icon
+          (click)="deletElement(item)"
+          style="cursor: pointer"
+          class="text-secondary"
+          >cancel</mat-icon
+        >
+      </div>
     </div>
+  </div>
 </div>

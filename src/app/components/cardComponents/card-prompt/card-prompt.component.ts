@@ -5,13 +5,13 @@ import { Component, Input } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './card-prompt.component.html',
-  styles: ``
+  styles: ``,
 })
 export class CardPromptComponent {
-  @Input() config!:{
-    data:string,
-    color:string,
-    text:string 
-  }
-
+  @Input() isDisabled!: boolean;
+  @Input() config!: {
+    data: string;
+    color: string;
+    text: string;
+  };
 }

@@ -1,0 +1,25 @@
+<header
+  class="d-flex align-items-center justify-content-between bg-white border px-4 py-3"
+>
+  <div class="d-flex align-items-center gap-1">
+    <mat-icon class="text-bg-dark p-1 fs-3">style</mat-icon>
+    <h1 class="text-dark m-0 fw-bolder fs-3">Dashmala</h1>
+  </div>
+  <div>
+    <div class="dropdown">
+      <button
+        class="btn btn-light d-flex align-items-center gap-2 p-2 me-3"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <mat-icon>expand_more</mat-icon>
+        <p class="m-0 fs-6 fw-medium">{{ user.username }}</p>
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <ul class="dropdown-menu px-2 py-3">
+        <li><a class="dropdown-item py-3">Settings</a></li>
+        <li><a class="dropdown-item py-3">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</header>

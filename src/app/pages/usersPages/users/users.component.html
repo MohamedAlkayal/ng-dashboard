@@ -14,39 +14,49 @@
     ></app-table>
   </div>
   <div
-    class="page-filters border rounded-2 p-4 d-flex flex-column justify-content-between"
+    class="offcanvas offcanvas-end"
+    tabindex="-1"
+    id="offcanvasRight"
+    aria-labelledby="offcanvasRightLabel"
   >
-    <div>
-      <app-filter-text [lable]="'Search'" [type]="'text'"></app-filter-text>
-      <app-filter-dropdown
-        [id]="'genderField'"
-        [lable]="'Gender'"
-        [items]="['Male', 'Female']"
-      ></app-filter-dropdown>
-      <app-filter-dropdown
-        [id]="'govField'"
-        [lable]="'government'"
-        [items]="governments"
-        (dropdownEmmiter)="getSelectedGov($event)"
-      ></app-filter-dropdown>
-      <app-filter-dropdown
-        [id]="'cityField'"
-        [lable]="'City'"
-        [items]="selectedCities"
-      ></app-filter-dropdown>
-      <app-filter-dropdown
-        [id]="'sortField'"
-        [lable]="'Sort By'"
-        [items]="['Name', 'Email', 'Phone', 'Orders']"
-      ></app-filter-dropdown>
-      <app-filter-range
-        [allMax]="80"
-        [allMin]="10"
-        [lable]="'Age'"
-        [myStep]="1"
+    <div class="offcanvas-body">
+      <div
+        class="w-100 overflow-scroll p-4 d-flex flex-column justify-content-between"
       >
-      </app-filter-range>
+        <div>
+          <h1 class="mb-5">Filters</h1>
+          <app-filter-text [lable]="'Search'" [type]="'text'"></app-filter-text>
+          <app-filter-dropdown
+            [id]="'genderField'"
+            [lable]="'Gender'"
+            [items]="['Male', 'Female']"
+          ></app-filter-dropdown>
+          <app-filter-dropdown
+            [id]="'govField'"
+            [lable]="'government'"
+            [items]="governments"
+            (dropdownEmmiter)="getSelectedGov($event)"
+          ></app-filter-dropdown>
+          <app-filter-dropdown
+            [id]="'cityField'"
+            [lable]="'City'"
+            [items]="selectedCities"
+          ></app-filter-dropdown>
+          <app-filter-dropdown
+            [id]="'sortField'"
+            [lable]="'Sort By'"
+            [items]="['Name', 'Email', 'Phone', 'Orders']"
+          ></app-filter-dropdown>
+          <app-filter-range
+            [allMax]="80"
+            [allMin]="10"
+            [lable]="'Age'"
+            [myStep]="1"
+          >
+          </app-filter-range>
+        </div>
+        <button class="btn btn-dark w-100">Apply</button>
+      </div>
     </div>
-    <button class="btn btn-dark w-100">Apply</button>
   </div>
 </div>

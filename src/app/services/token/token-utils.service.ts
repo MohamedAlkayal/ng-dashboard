@@ -6,16 +6,16 @@ import { Injectable } from '@angular/core';
 export class TokenUtilsService {
   constructor() {}
   getHeader() {
-    const username: any = localStorage.getItem('currentUser');
-    const userObject: any = JSON.parse(username);
+    const currentUser: any = localStorage.getItem('currentUser');
+    const userObject: any = JSON.parse(currentUser);
 
     const headers = new HttpHeaders({
       Authorization: `Bearer ${userObject.token}`,
     });
     return headers;
   }
-  storeToken(res: any) {
-    if (typeof localStorage !== 'undefined') {
+  storeTokenAdmin(res: any) {
+    if (typeof localStorage !== 'undefined' && localStorage !== null) {
       localStorage.setItem(
         'currentUser',
         JSON.stringify({
@@ -23,6 +23,17 @@ export class TokenUtilsService {
           token: res.token,
           authorities: res.authorities,
           id: res.id,
+        })
+      );
+    }
+  }
+  storeTokenUser(res: any) {
+    if (typeof localStorage !== 'undefined' && localStorage !== null) {
+      localStorage.setItem(
+        'currentUser',
+        JSON.stringify({
+          token: res.Token,
+          active: res.Active,
         })
       );
     }

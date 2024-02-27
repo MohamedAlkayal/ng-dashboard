@@ -5,16 +5,13 @@ import { Component, Input, OnInit, input } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './card-cta.component.html',
-  styles: ``
+  styles: ``,
 })
 export class CardCtaComponent implements OnInit {
-ngOnInit(): void {
-// console.log(this.child);
-}
-@Input() config!:{
-  data:string,
-  text: string,
-  color:string
-}
-
+  ngOnInit(): void {}
+  @Input() config!: {
+    data: string;
+    text: string;
+    color: string;
+  };
 }

@@ -1,26 +1,39 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { InputTextareaComponent } from './components/formComponents/input-textarea/input-textarea.component';
-import { InputInnerLableComponent } from './components/formComponents/input-inner-lable/input-inner-lable.component';
 import { NavSideComponent } from './components/navComponents/nav-side/nav-side.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NavHeaderComponent } from './components/navComponents/nav-header/nav-header.component';
+import { AdminServices } from './services/admin.service';
+import { TokenUtilsService } from './services/token/token-utils.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavSideComponent, HttpClientModule],
-  providers: [],
+  imports: [
+    RouterOutlet,
+    NavSideComponent,
+    HttpClientModule,
+    NavHeaderComponent,
+  ],
+  providers: [AdminServices, TokenUtilsService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'dashboard';
 
-  // constructor(private auth: AdminServices) {}
+  constructor(private auth: AdminServices, private token: TokenUtilsService) {}
 
-  // ngOnInit() {
-  //   this.auth.loginAdmin("")
-  // }
+  ngOnInit() {
+    this.auth.loginAdmin('jessica', 'jessicaPassword@A1').subscribe({
+      next: (data) => {
+        this.token.storeToken(data);
+      },
+      error(err) {
+        console.log(err);
+      },
+    });
+  }
 
   user = {
     message: 'Login successful',

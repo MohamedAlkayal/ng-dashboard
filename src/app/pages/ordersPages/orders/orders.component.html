@@ -1,55 +1,35 @@
 <div class="page d-flex gap-4">
-    <div class="table-wrap">
-        <app-table-controls [items]="orders" [selectedItems]="selectedItems" [dangerBtn]="'Cancel'"
-            [warningBtn]="'Open Ticket'"></app-table-controls>
-        <app-table (selectedEmiiter)="getSelected($event)" [cols]="tableCols" [page]="'orders'"
-            [data]="orders"></app-table>
-    </div>
-    <div class="page-filters overflow-scroll border rounded-2 p-4 d-flex flex-column justify-content-between">
+  <div class="table-wrap">
+    <app-table-controls [items]="orders" [selectedItems]="selectedItems" [dangerBtn]="'Cancel'"
+      [warningBtn]="'Open Ticket'"></app-table-controls>
+    <app-table (selectedEmiiter)="getSelected($event)" [cols]="tableCols" [page]="'orders'" [data]="orders"></app-table>
+  </div>
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-body">
+      <div class="w-100 overflow-scroll p-4 d-flex flex-column justify-content-between">
         <div>
-            <app-filter-text [id]="'trckingField'" [lable]="'Tracking Number'" [type]="'number'"></app-filter-text>
-            <app-filter-text [id]="'userField'" [lable]="'User ID'" [type]="'number'"></app-filter-text>
-            <app-filter-dropdown [id]="'deliveryField'" [lable]="'Delivery Status'"
-                [items]="['pending', 'packaging', 'shipping', 'deliverd', 'canceled']"></app-filter-dropdown>
-            <app-filter-dropdown [id]="'govField'" [lable]="'government'" [items]="governments"
-                (dropdownEmmiter)="getSelectedGov($event)"></app-filter-dropdown>
-            <app-filter-dropdown [id]="'cityField'" [lable]="'City'" [items]="selectedCities"></app-filter-dropdown>
-            <app-filter-dropdown [id]="'sortField'" [lable]="'Sort By'"
-                [items]="['test', 'test2', 'test3']"></app-filter-dropdown>
-            <app-filter-range [allMax]="10000" [allMin]="100" [lable]="'Price'" [myStep]="100">
-            </app-filter-range>
-            <app-filter-range [allMax]="100" [allMin]="1" [lable]="'Items'" [myStep]="1">
-            </app-filter-range>
-            <!-- <app-filter-text [lable]="'Search'" [type]="'text'"></app-filter-text>
-      <app-filter-dropdown
-        [id]="'genderField'"
-        [lable]="'Gender'"
-        [items]="['Male', 'Female']"
-      ></app-filter-dropdown>
-      <app-filter-dropdown
-        [id]="'govField'"
-        [lable]="'government'"
-        [items]="governments"
-        (dropdownEmmiter)="getSelectedGov($event)"
-      ></app-filter-dropdown>
-      <app-filter-dropdown
-        [id]="'cityField'"
-        [lable]="'City'"
-        [items]="selectedCities"
-      ></app-filter-dropdown>
-      <app-filter-dropdown
-        [id]="'sortField'"
-        [lable]="'Sort By'"
-        [items]="['Name', 'Email', 'Phone', 'Orders']"
-      ></app-filter-dropdown>
-      <app-filter-range
-        [allMax]="80"
-        [allMin]="10"
-        [lable]="'Age'"
-        [myStep]="1"
-      >
-      </app-filter-range> -->
+          <h1 class="mb-5">Filters</h1>
+          <app-filter-text [id]="'trckingField'" [lable]="'Tracking Number'" [type]="'number'"></app-filter-text>
+          <app-filter-text [id]="'userField'" [lable]="'User ID'" [type]="'number'"></app-filter-text>
+          <app-filter-dropdown [id]="'deliveryField'" [lable]="'Delivery Status'" [items]="[
+              'pending',
+              'packaging',
+              'shipping',
+              'deliverd',
+              'canceled'
+            ]"></app-filter-dropdown>
+          <app-filter-dropdown [id]="'govField'" [lable]="'government'" [items]="governments"
+            (dropdownEmmiter)="getSelectedGov($event)"></app-filter-dropdown>
+          <app-filter-dropdown [id]="'cityField'" [lable]="'City'" [items]="selectedCities"></app-filter-dropdown>
+          <app-filter-dropdown [id]="'sortField'" [lable]="'Sort By'"
+            [items]="['test', 'test2', 'test3']"></app-filter-dropdown>
+          <app-filter-range [allMax]="10000" [allMin]="100" [lable]="'Price'" [myStep]="100">
+          </app-filter-range>
+          <app-filter-range [allMax]="100" [allMin]="1" [lable]="'Items'" [myStep]="1">
+          </app-filter-range>
         </div>
         <button class="btn btn-dark w-100">Apply</button>
+      </div>
     </div>
+  </div>
 </div>
