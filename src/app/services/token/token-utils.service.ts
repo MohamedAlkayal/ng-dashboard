@@ -7,45 +7,44 @@ import { StringDecoder } from 'string_decoder';
   providedIn: 'root',
 })
 export class TokenUtilsService {
-  constructor() { }
-  router = inject(Router)
+  constructor() {}
+  router = inject(Router);
 
   getHeader() {
-
     const currentUser: any = localStorage.getItem('currentUser');
     const userObject: any = JSON.parse(currentUser);
 
-      headers = new HttpHeaders({
-        Authorization: `Bearer ${userObject.token}`,
-      });
-    }
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${userObject.token}`,
+    });
+
     return headers;
   }
 
   cheackForTokenExpiration() {
-    let token = localStorage.getItem('token');
-    if (token) {
+    if (typeof localStorage !== 'undefined') {
+      let token = localStorage.getItem('token');
+      if (token) {
+        let decodeToken = jwtDecode(token);
+        const isExpiredToken =
+          decodeToken && decodeToken.exp
+            ? decodeToken.exp < Date.now() / 1000
+            : false;
 
-      let decodeToken = jwtDecode(token)
-      const isExpiredToken = (decodeToken && decodeToken.exp )? decodeToken.exp < Date.now() / 1000 : false;
-  
-      if (isExpiredToken) {
-        localStorage.removeItem('token');
-        localStorage.removeItem('currentUser')
+        if (isExpiredToken) {
+          localStorage.removeItem('token');
+          localStorage.removeItem('currentUser');
+          this.router.navigate(['login']);
+        }
+      } else {
+        console.log('first navigate');
         this.router.navigate(['login']);
       }
-
-    } else {
-      console.log("first navigate")
-      this.router.navigate(['login']);
     }
-
   }
-
 
   storeToken(res: any) {
     if (typeof localStorage !== 'undefined') {
-
       localStorage.setItem(
         'currentUser',
         JSON.stringify({
@@ -55,7 +54,7 @@ export class TokenUtilsService {
           id: res.id,
         })
       );
-      localStorage.setItem('token', res.token)
+      localStorage.setItem('token', res.token);
     }
   }
   storeTokenUser(res: any) {

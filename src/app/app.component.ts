@@ -1,7 +1,6 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TokenUtilsService } from './services/token/token-utils.service';
-
 
 @Component({
   selector: 'app-root',
@@ -12,19 +11,18 @@ import { TokenUtilsService } from './services/token/token-utils.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent  {
+export class AppComponent {
   title = 'dashboard';
-  constructor(private tokenService:TokenUtilsService){}
+  constructor(private tokenService: TokenUtilsService) {}
 
   user!: any;
 
   ngOnInit() {
-     setTimeout(() => {
-       this.tokenService.cheackForTokenExpiration()
+    setTimeout(() => {
+      this.tokenService.cheackForTokenExpiration();
     }, 1);
   }
-  
-
+}
 //   constructor(private auth: AdminServices, private token: TokenUtilsService) {}
 
 //   ngOnInit() {
