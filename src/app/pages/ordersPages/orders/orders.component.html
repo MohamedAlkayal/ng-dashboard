@@ -1,8 +1,23 @@
 <div class="page d-flex gap-4">
   <div class="table-wrap">
+<<<<<<< HEAD
     <app-table-controls [items]="orders" [selectedItems]="selectedItems" [dangerBtn]="'Cancel'"
       [warningBtn]="'Open Ticket'"></app-table-controls>
     <app-table (selectedEmiiter)="getSelected($event)" [cols]="tableCols" [page]="'orders'" [data]="orders"></app-table>
+=======
+    <app-table-controls
+      [resualtsCount]="orders?.leangth"
+      [selectedItems]="selectedItems"
+      [dangerBtn]="'Cancel'"
+      [warningBtn]="'Open Ticket'"
+    ></app-table-controls>
+    <app-table
+      (selectedEmiiter)="getSelected($event)"
+      [cols]="tableCols"
+      [page]="'orders'"
+      [data]="orders"
+    ></app-table>
+>>>>>>> d1ca009401a3fcca4430f806474d27c24295f67d
   </div>
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-body">

@@ -1,0 +1,29 @@
+<div
+  class="d-flex align-content-center justify-content-between h-100 flex-column rounded-2 border border-2"
+>
+  <div
+    class="list-group list-group-flush bg-transparent overflow-y-scroll flex-grow-1"
+  >
+    @for (item of categories; track item.name) {
+    <button
+      type="button"
+      class="list-group-item list-group-item-action fs-6 py-3"
+      (click)="onClick(item._id)"
+    >
+      {{ item.name }}
+    </button>
+    } @empty {
+    <h1>Loading</h1>
+    }
+  </div>
+  <div class="px-2 mb-2">
+    <app-input
+      [(value)]="newCategoryName"
+      class=""
+      placeholder="Add A New Category"
+    ></app-input>
+    <button (click)="newCategoryClick()" class="btn btn-dark w-100">
+      Add Category
+    </button>
+  </div>
+</div>

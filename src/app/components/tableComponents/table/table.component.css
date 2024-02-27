@@ -13,8 +13,11 @@
 td,
 th {
   padding: 16px !important;
-  cursor: pointer;
   text-align: center;
+}
+
+td {
+  cursor: pointer;
 }
 
 th input,

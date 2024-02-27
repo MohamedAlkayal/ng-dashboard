@@ -1,0 +1,11 @@
+<app-nav-header
+  [user]="user"
+  style="z-index: 999"
+  class="position-fixed w-100"
+></app-nav-header>
+<main class="d-flex">
+  <app-nav-side [user]="user"></app-nav-side>
+  <div class="w-100">
+    <router-outlet />
+  </div>
+</main>

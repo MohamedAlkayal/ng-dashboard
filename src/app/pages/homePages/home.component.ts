@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { TableComponent } from '../../components/tableComponents/table/table.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [TableComponent,PromptDangerComponent,OpenTicketComponent,PromptConfirmComponent],
+  imports: [],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })

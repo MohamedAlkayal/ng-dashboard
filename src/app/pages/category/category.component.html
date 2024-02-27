@@ -1,0 +1,17 @@
+<div class="page">
+  <div class="row h-100">
+    <div class="col-3">
+      <app-list
+        (selectedComponent)="handleSelectedComponent($event)"
+        (newCategoryEvent)="handleNewCategory($event)"
+        [categories]="categoriesFromDb"
+        class="h-100 cols-2"
+      ></app-list>
+    </div>
+    <div class="col-7">
+      <app-one-category
+        [selectedCategory]="selectedCategory"
+      ></app-one-category>
+    </div>
+  </div>
+</div>

@@ -4,7 +4,11 @@
     {{ config.text }}
   </button>
   <span class="my-3 w-80 m-auto border border-1"></span>
-  <button class="btn btn-outline-secondary" [disabled]="isDisabled">
+  <button
+    class="btn btn-outline-secondary"
+    [disabled]="isDisabled"
+    (click)="clickedCancel($event)"
+  >
     Cancel
   </button>
 </div>

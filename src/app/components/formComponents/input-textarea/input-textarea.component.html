@@ -1,4 +1,4 @@
-<div class="input-container d-flex align-items-start mb-3">
+<div class="input-container d-flex flex-column align-items-start mb-3">
   <label [for]="lable" class="fw-bold w-auto me-3">{{ lable }}</label>
   <textarea
     style="min-width: 550px; resize: none; min-height: 160px"
@@ -6,5 +6,6 @@
     class="w-100 form-control"
     [(ngModel)]="value"
     (ngModelChange)="sendData()"
+    [placeholder]="placeholder"
   ></textarea>
 </div>

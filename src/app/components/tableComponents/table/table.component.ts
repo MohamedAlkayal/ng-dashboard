@@ -24,8 +24,7 @@ export class TableComponent {
   isAllSelected: boolean = false;
 
   navigateTo(row: any) {
-    console.log(row._id);
-    this.router.navigate([`/${this.page}/${row._id}`]);
+    this.router.navigate([`admin/${this.page}/${row._id}`]);
   }
 
   selectElement(row: any, event: Event) {
