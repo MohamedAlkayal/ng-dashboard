@@ -2,10 +2,6 @@
   --black: #121212;
   --dark: #333;
   --light: #ddd;
-  
-}
-html{
-  font-size: 10px !important;
 }
 
 * {
@@ -94,10 +90,6 @@ html{
   width: 90%;
 }
 
-.layer {
-  background-color: rgba(58, 57, 57, 0.2);
-display: none;
-}
 .hidden {
   display: none;
 }
@@ -149,6 +141,7 @@ body {
 }
 
 .page {
+  margin-top: 76px;
   padding: 16px;
   min-height: 650px;
   height: calc(100vh - 76px);
@@ -166,11 +159,21 @@ body {
   width: 100%;
 }
 @keyframes shake {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  50% { transform: translateX(5px); }
-  75% { transform: translateX(-5px); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .shake-animation {
