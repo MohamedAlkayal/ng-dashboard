@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [RouterModule, NgClass, CommonModule, MatIconModule],
   templateUrl: './nav-side.component.html',
-  styleUrl: './nav-side.component.css',
+  styles: '',
 })
 export class NavSideComponent {
   constructor(private route: Router) {}
