@@ -8,13 +8,16 @@
   <div>
     <div class="dropdown">
       <button
-        class="btn btn-light d-flex align-items-center gap-2 p-2 me-3"
+        class="btn d-flex align-items-center gap-1 p-2"
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        <mat-icon>expand_more</mat-icon>
-        <p class="m-0 fs-6 fw-medium">{{ user.username }}</p>
-        <mat-icon>account_circle</mat-icon>
+        <mat-icon style="transform: translateY(1px)">expand_more</mat-icon>
+        <p class="m-0 fs-6 pe-2 fw-medium">{{ user.username }}</p>
+        <mat-icon
+          class="fs-2 overflow-visible d-flex align-items-center justify-content-center"
+          >account_circle</mat-icon
+        >
       </button>
       <ul class="dropdown-menu px-2 py-3">
         <li><a class="dropdown-item py-3">Settings</a></li>

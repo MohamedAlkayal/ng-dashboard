@@ -153,6 +153,7 @@ body {
   min-height: 650px;
   height: calc(100vh - 76px);
   overflow: scroll;
+  background-color: rgb(248, 249, 250);
 }
 
 .page-filters {

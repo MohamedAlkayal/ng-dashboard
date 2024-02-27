@@ -16,6 +16,8 @@ export class AppComponent  {
   title = 'dashboard';
   constructor(private tokenService:TokenUtilsService){}
 
+  user!: any;
+
   ngOnInit() {
      setTimeout(() => {
        this.tokenService.cheackForTokenExpiration()

@@ -1,24 +1,27 @@
 <div
-  class="mb-3 border rounded-2 d-flex align-items-center justify-content-between p-2"
+  class="mb-3 border bg-white rounded-2 d-flex align-items-center justify-content-between p-2"
 >
-  <div class="d-flex align-items-center fw-medium fs-6 ps-2">
-    <span class="px-2 me-2 border-end"> {{ items.length }} Results </span>
+  <div class="d-flex align-items-center fs-6 ps-2">
+    <app-pagination
+      [currentPage]="currentPage"
+      [pagesCount]="pagesCount"
+      (pageEmitter)="getPage($event)"
+    ></app-pagination>
+    <!-- <span class="px-2 me-2 border-end">20 of {{ resualtsCount }} Results </span>
     <span
       class="fw-normal"
       [ngClass]="selectedItems.length ? 'text-primary' : 'text-muted'"
       >({{ selectedItems.length }}) selected</span
-    >
+    > -->
   </div>
   <div class="d-flex gap-3">
-    <button class="btn btn-warning btn-width fw-medium">
+    <!-- <button class="btn btn-warning btn-width fw-medium">
       {{ warningBtn }}
     </button>
     <button class="btn btn-danger btn-width fw-medium">
       {{ dangerBtn }}
-    </button>
-    <div
-      class="h-100 border ms-3 py-3 bg-dark-subtle text- d-block align-self-center"
-    ></div>
+    </button> -->
+
     <button
       type="button"
       data-bs-toggle="offcanvas"

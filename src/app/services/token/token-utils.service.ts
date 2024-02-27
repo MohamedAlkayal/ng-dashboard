@@ -11,12 +11,14 @@ export class TokenUtilsService {
   router = inject(Router)
 
   getHeader() {
+
     const currentUser: any = localStorage.getItem('currentUser');
     const userObject: any = JSON.parse(currentUser);
 
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${userObject.token}`,
-    });
+      headers = new HttpHeaders({
+        Authorization: `Bearer ${userObject.token}`,
+      });
+    }
     return headers;
   }
 
