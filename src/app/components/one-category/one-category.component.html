@@ -1,0 +1,30 @@
+<div class="h-100 flex-column rounded-2 border border-2 py-4 px-4">
+  @if(!currentFieldInfo){
+  <h1>Loading</h1>
+  }@else{
+  <app-input
+    lable="Category Name"
+    [(value)]="currentFieldInfo.name"
+    (valueChange)="onCategoryNameChange($event)"
+    placeholder="Category Name"
+  ></app-input>
+  <app-input-textarea
+    lable="Description"
+    [value]="currentFieldInfo.description"
+    placeholder="Category Description"
+    (messageSent)="onTextAreaChange($event)"
+  ></app-input-textarea>
+  <app-input-keywords
+    label="Subcategories"
+    [keywords]="currentFieldInfo.subCategories"
+    placeholder="New Subcategory"
+    class="w-100"
+    (modified)="onKeyWordChange($event)"
+  ></app-input-keywords>
+  <app-card-prompt
+    [config]="cardInfo"
+    [isDisabled]="isDisabled"
+    (cancel)="clickedCancel()"
+  ></app-card-prompt>
+  }
+</div>
