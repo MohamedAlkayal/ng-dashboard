@@ -6,13 +6,11 @@ import { ProductsComponent } from './pages/productsPages/products/products.compo
 import { OneProductComponent } from './pages/productsPages/one-product/one-product.component';
 import { UsersComponent } from './pages/usersPages/users/users.component';
 import { OneUserComponent } from './pages/usersPages/one-user/one-user.component';
-import { AddProductComponent } from './pages/productsPages/add-product/add-product.component';
 import { LoginComponent } from './pages/login/login.component';
 import { authGuard } from './guards/auth-guard.guard';
 import { AdminComponent } from './layouts/admin/admin.component';
 import { AuthComponent } from './layouts/auth/auth.component';
 import { ErrorComponent } from './layouts/error/error.component';
-
 
 export const routes: Routes = [
   {
@@ -23,16 +21,13 @@ export const routes: Routes = [
       {
         path: '',
         component: LoginComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'login',
         component: LoginComponent,
-
       },
-     
-
-    ]
+    ],
   },
 
   {
@@ -43,12 +38,12 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'home',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'home',
         canActivate: [authGuard],
-        component: HomeComponent
+        component: HomeComponent,
       },
       {
         path: 'orders',
@@ -65,7 +60,7 @@ export const routes: Routes = [
         children: [
           { path: '', component: ProductsComponent },
           { path: ':product_ID', component: OneProductComponent },
-          { path: 'add', component: AddProductComponent },
+          { path: 'add', component: OneProductComponent },
         ],
       },
       {
@@ -76,8 +71,7 @@ export const routes: Routes = [
           { path: ':user_ID', component: OneUserComponent },
         ],
       },
-      
-    ]
+    ],
   },
-  {path:'**', component: ErrorComponent}
+  { path: '**', component: ErrorComponent },
 ];
