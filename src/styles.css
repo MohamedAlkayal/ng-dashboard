@@ -2,6 +2,10 @@
   --black: #121212;
   --dark: #333;
   --light: #ddd;
+  
+}
+html{
+  font-size: 10px !important;
 }
 
 * {

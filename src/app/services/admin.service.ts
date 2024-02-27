@@ -9,7 +9,7 @@ export class AdminServices {
   private Url = 'http://localhost:8000/api/dashboard/admins';
   constructor(private http: HttpClient, private token: TokenUtilsService) {}
 
-  loginAdmin(username: string, password: string) {
+  loginAdmin(username: any, password: any) {
     const payload = {
       username: username,
       password: password,
