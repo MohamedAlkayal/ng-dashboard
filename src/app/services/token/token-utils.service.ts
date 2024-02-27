@@ -35,7 +35,7 @@ export class TokenUtilsService {
 
     } else {
       console.log("first navigate")
-      this.router.navigate(['']);
+      this.router.navigate(['login']);
     }
 
   }
