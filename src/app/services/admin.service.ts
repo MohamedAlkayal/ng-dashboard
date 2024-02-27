@@ -8,7 +8,7 @@ export class AdminServices {
   private usersUrl = 'http://localhost:8000';
   constructor(private http: HttpClient) {}
 
-  loginAdmin(username: string, password: string) {
+  loginAdmin(username: any, password: any) {
     const payload = {
       username: username,
       password: password,

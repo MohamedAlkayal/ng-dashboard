@@ -1,10 +1,15 @@
 import { HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
+import { StringDecoder } from 'string_decoder';
 @Injectable({
   providedIn: 'root',
 })
 export class TokenUtilsService {
-  constructor() {}
+  constructor() { }
+  router = inject(Router)
+
   getHeader() {
     const username: any = localStorage.getItem('currentUser');
     const userObject: any = JSON.parse(username);
@@ -14,6 +19,28 @@ export class TokenUtilsService {
     });
     return headers;
   }
+
+  cheackForTokenExpiration() {
+    let token = localStorage.getItem('token');
+    if (token) {
+
+      let decodeToken = jwtDecode(token)
+      const isExpiredToken = (decodeToken && decodeToken.exp )? decodeToken.exp < Date.now() / 1000 : false;
+  
+      if (isExpiredToken) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('currentUser')
+        this.router.navigate(['login']);
+      }
+
+    } else {
+      console.log("first navigate")
+      this.router.navigate(['']);
+    }
+
+  }
+
+
   storeToken(res: any) {
     if (typeof localStorage !== 'undefined') {
       localStorage.setItem(
@@ -25,6 +52,7 @@ export class TokenUtilsService {
           id: res.id,
         })
       );
+      localStorage.setItem('token', res.token)
     }
   }
 }
