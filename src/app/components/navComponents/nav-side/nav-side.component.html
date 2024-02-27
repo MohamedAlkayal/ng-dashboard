@@ -44,6 +44,16 @@
           <span>Users</span>
         </a>
       </li>
+      <li
+        class="p-3 ps-4"
+        *ngIf="user.authorities.categories"
+        routerLinkActive="bg-dark text-light"
+      >
+        <a routerLink="categories" class="d-flex align-items-center gap-3">
+          <mat-icon> dashboard </mat-icon>
+          <span>Categories</span>
+        </a>
+      </li>
     </ul>
   </div>
 </nav>

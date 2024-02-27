@@ -1,6 +1,11 @@
 <div class="p-4 border border-1 rounded-2 d-flex text-center flex-column">
   <p class="text-secondary" style="font-size: 14px">{{ config.data }}</p>
-  <button class="btn btn-{{ config.color }}" [disabled]="isDisabled">
+  <button
+    data-bs-toggle="modal"
+    data-bs-target="#Confirm"
+    class="btn btn-{{ config.color }}"
+    [disabled]="isDisabled"
+  >
     {{ config.text }}
   </button>
   <span class="my-3 w-80 m-auto border border-1"></span>

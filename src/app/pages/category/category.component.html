@@ -8,9 +8,11 @@
         class="h-100 cols-2"
       ></app-list>
     </div>
-    <div class="col-7">
+    <div class="col-8">
       <app-one-category
         [selectedCategory]="selectedCategory"
+        [newCategory]="newCat"
+        (changedCategory)="handleCategoryChange()"
       ></app-one-category>
     </div>
   </div>
