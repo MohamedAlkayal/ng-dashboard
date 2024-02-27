@@ -1,7 +1,7 @@
 <div class="page d-flex gap-4">
   <div class="table-wrap">
     <app-table-controls
-      [items]="orders"
+      [resualtsCount]="orders?.leangth"
       [selectedItems]="selectedItems"
       [dangerBtn]="'Cancel'"
       [warningBtn]="'Open Ticket'"

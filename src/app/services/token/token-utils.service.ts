@@ -7,12 +7,15 @@ import { Injectable } from '@angular/core';
 export class TokenUtilsService {
   constructor() {}
   getHeader() {
-    const username: any = localStorage.getItem('currentUser');
-    const userObject: any = JSON.parse(username);
+    let headers: any;
+    if (typeof localStorage !== 'undefined' && localStorage !== null) {
+      const username: any = localStorage.getItem('currentUser');
+      const userObject: any = JSON.parse(username);
 
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${userObject.token}`,
-    });
+      headers = new HttpHeaders({
+        Authorization: `Bearer ${userObject.token}`,
+      });
+    }
     return headers;
   }
   storeTokenAdmin(res: any) {

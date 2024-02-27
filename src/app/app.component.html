@@ -1,4 +1,4 @@
-<app-nav-header
+@if (user) {<app-nav-header
   [user]="user"
   style="z-index: 999"
   class="position-fixed w-100"
@@ -9,3 +9,4 @@
     <router-outlet />
   </div>
 </main>
+}
