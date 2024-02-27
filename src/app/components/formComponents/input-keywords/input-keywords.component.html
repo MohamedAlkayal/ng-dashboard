@@ -1,20 +1,20 @@
 <div class="input-group d-flex gap-3 align-items-start mb-3">
-  <label for="keywords" class="form-label fw-semibold m-0 pt-1">Keywords</label>
-  <div>
+  <label for="keywords" class="form-label fw-semibold m-0 pt-1">{{
+    label
+  }}</label>
+  <div class="flex-grow-1">
     <input
       id="keywords"
       [(ngModel)]="value"
       (keypress)="addKeyword($event)"
       type="text"
-      class="form-control form-control-sm rounded mb-3"
+      class="form-control form-control-sm rounded mb-3 w-100"
       style="width: 550px"
+      [placeholder]="placeholder"
     />
-    <div
-      style="width: 550px"
-      class="border border-color rounded-2 p-1 d-flex gap-2 flex-wrap"
-    >
+    <div class="border border-color rounded-2 p-1 d-flex gap-2 flex-wrap w-100">
       <div *ngIf="keywords.length == 0" class="text-secondary m-0 p-1">
-        Add keywords via the previous input
+        Add {{ label }} via the previous input
       </div>
       <div
         class="d-flex align-items-center gap-2 bg-light p-1"
