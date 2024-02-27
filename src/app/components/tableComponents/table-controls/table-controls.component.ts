@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-table-controls',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatIcon],
   templateUrl: './table-controls.component.html',
 })
 export class TableControlsComponent {

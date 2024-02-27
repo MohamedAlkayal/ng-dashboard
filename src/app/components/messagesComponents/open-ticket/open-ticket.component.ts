@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class OpenTicketComponent {
 
-  Ticket!:string
+  TicketValue!:string
   isDisplayed:boolean=true
   toggleDisplay(){
     this.isDisplayed = !this.isDisplayed
@@ -20,10 +20,13 @@ export class OpenTicketComponent {
   
   
   @Output() confirmDelete=new EventEmitter();
-  confirm(deleted: boolean): void {
-    console.log(this.Ticket);
+  ConfirmTicket(){
+ if(this.TicketValue)
+      {console.log(this.TicketValue); }   
+    
+   
 
-    this.confirmDelete.emit(deleted);
+    // this.confirmDelete.emit();
   }
  
 }

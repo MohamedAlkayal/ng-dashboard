@@ -5,23 +5,23 @@ import { TokenUtilsService } from './token/token-utils.service';
   providedIn: 'root',
 })
 export class AdminUserServices {
-  private usersUrl = 'http://localhost:8000';
+  private usersUrl = 'http://localhost:8000/api/dashboard/users/';
   constructor(private http: HttpClient, private token: TokenUtilsService) {}
 
   getAllUsers(
     page: number = 1,
     limit: number = 10,
+    sortBy?: string,
+    order?: string,
     search?: string,
     gender?: string,
     state?: string,
     city?: string,
     val1?: number,
-    val2?: number,
-    sortBy?: string,
-    order?: string
+    val2?: number
   ) {
     const headers = this.token.getHeader();
-    let url = `${this.usersUrl}/api/dashboard/users/?page=${page}&limit=${limit}`;
+    let url = `${this.usersUrl}?page=${page}&limit=${limit}`;
 
     // Construct query parameters based on provided options
     if (search) {
@@ -42,8 +42,8 @@ export class AdminUserServices {
     if (sortBy) {
       url += `&sortBy=${sortBy}`;
     }
-    if (sortBy) {
-      url += `&sortBy=${sortBy}`;
+    if (order) {
+      url += `&order=${order}`;
     }
 
     // Send HTTP GET request with constructed URL and headers
@@ -52,7 +52,7 @@ export class AdminUserServices {
 
   getUser(id: string) {
     const headers = this.token.getHeader();
-    return this.http.get(this.usersUrl + `/api/dashboard/users/${id}`, {
+    return this.http.get(this.usersUrl + `${id}`, {
       headers: headers,
     });
   }
@@ -60,45 +60,29 @@ export class AdminUserServices {
   updateUser(id: string, userObj: object) {
     const headers = this.token.getHeader();
     const payload = userObj;
-    return this.http.patch(
-      this.usersUrl + `/api/dashboard/users/update/${id}`,
-      payload,
-      {
-        headers: headers,
-      }
-    );
+    return this.http.patch(this.usersUrl + `update/${id}`, payload, {
+      headers: headers,
+    });
   }
   deleteUsers(ids: string[]) {
     const headers = this.token.getHeader();
     const payload = { userIds: ids };
-    return this.http.put(
-      this.usersUrl + `/api/dashboard/users/delete`,
-      payload,
-      {
-        headers: headers,
-      }
-    );
+    return this.http.put(this.usersUrl + `delete`, payload, {
+      headers: headers,
+    });
   }
   deactivateUsers(ids: string[]) {
     const headers = this.token.getHeader();
     const payload = { userIds: ids };
-    return this.http.patch(
-      this.usersUrl + `/api/dashboard/users/deactivate`,
-      payload,
-      {
-        headers: headers,
-      }
-    );
+    return this.http.patch(this.usersUrl + `deactivate`, payload, {
+      headers: headers,
+    });
   }
   activateUsers(ids: string[]) {
     const headers = this.token.getHeader();
     const payload = { userIds: ids };
-    return this.http.patch(
-      this.usersUrl + `/api/dashboard/users/activate`,
-      payload,
-      {
-        headers: headers,
-      }
-    );
+    return this.http.patch(this.usersUrl + `activate`, payload, {
+      headers: headers,
+    });
   }
 }

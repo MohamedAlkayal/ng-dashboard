@@ -11,8 +11,8 @@ export class TokenUtilsService {
   router = inject(Router)
 
   getHeader() {
-    const username: any = localStorage.getItem('currentUser');
-    const userObject: any = JSON.parse(username);
+    const currentUser: any = localStorage.getItem('currentUser');
+    const userObject: any = JSON.parse(currentUser);
 
     const headers = new HttpHeaders({
       Authorization: `Bearer ${userObject.token}`,
@@ -43,6 +43,7 @@ export class TokenUtilsService {
 
   storeToken(res: any) {
     if (typeof localStorage !== 'undefined') {
+
       localStorage.setItem(
         'currentUser',
         JSON.stringify({
@@ -53,6 +54,17 @@ export class TokenUtilsService {
         })
       );
       localStorage.setItem('token', res.token)
+    }
+  }
+  storeTokenUser(res: any) {
+    if (typeof localStorage !== 'undefined' && localStorage !== null) {
+      localStorage.setItem(
+        'currentUser',
+        JSON.stringify({
+          token: res.Token,
+          active: res.Active,
+        })
+      );
     }
   }
 }

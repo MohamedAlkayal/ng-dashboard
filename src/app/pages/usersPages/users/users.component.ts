@@ -553,9 +553,6 @@ export class UsersComponent {
 
   getSelectedGov(gov: any) {
     this.selectedGov = this.locations.find((l) => l.governorate == gov);
-    console.log(gov);
-    console.log(this.selectedGov);
     this.selectedCities = this.selectedGov.cities;
-    console.log(this.selectedCities);
   }
 }

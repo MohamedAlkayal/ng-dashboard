@@ -39,10 +39,10 @@ html{
   width: 40%;
 }
 
-.w-75{
+.w-75 {
   width: 75%;
 }
-.h-5{
+.h-5 {
   height: 5%;
 }
 
@@ -68,10 +68,10 @@ html{
   height: 90%;
 }
 
-.w-5{
+.w-5 {
   width: 5%;
 }
-.w-10{
+.w-10 {
   width: 10%;
 }
 .w-20 {
@@ -96,6 +96,7 @@ html{
 
 .layer {
   background-color: rgba(58, 57, 57, 0.2);
+display: none;
 }
 .hidden {
   display: none;
@@ -150,15 +151,27 @@ body {
 .page {
   padding: 16px;
   min-height: 650px;
-  height: 100vh;
+  height: calc(100vh - 76px);
+  overflow: scroll;
 }
 
 .page-filters {
-  width: 320px;
+  width: 280px;
   height: 100%;
 }
 
 .table-wrap {
   height: 100%;
   width: 100%;
+}
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.shake-animation {
+  animation: shake 0.5s ease-in-out; /* Adjust the duration and timing function as needed */
 }

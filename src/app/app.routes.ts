@@ -13,6 +13,7 @@ import { AdminComponent } from './layouts/admin/admin.component';
 import { AuthComponent } from './layouts/auth/auth.component';
 import { ErrorComponent } from './layouts/error/error.component';
 
+
 export const routes: Routes = [
   {
     path: '',

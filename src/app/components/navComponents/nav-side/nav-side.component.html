@@ -51,20 +51,44 @@
   </div>
   <!-- <ul>
     <li
-      class="d-flex align-items-center gap-3 p-3 ps-4"
+      class="p-3 ps-4"
       routerLinkActive="bg-dark text-light"
       [routerLinkActiveOptions]="{ exact: true }"
     >
-      <a routerLink="/adsad" class="d-flex align-items-center gap-3">
-        <mat-icon> settings </mat-icon>
-        <span>{{ user.username }}</span>
+      <a routerLink="/" class="d-flex align-items-center gap-3">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
       </a>
     </li>
-    <li class="d-flex align-items-center gap-3 p-3 ps-4">
-      <a routerLink="" class="d-flex align-items-center gap-3">
-        <mat-icon> logout </mat-icon>
-        <span>Logout</span>
+    <li
+      class="p-3 ps-4"
+      *ngIf="user.authorities.orders"
+      routerLinkActive="bg-dark text-light"
+    >
+      <a routerLink="/orders" class="d-flex align-items-center gap-3">
+        <mat-icon> local_shipping </mat-icon>
+        <span>Orders</span>
       </a>
     </li>
-  </ul> -->
+    <li
+      class="p-3 ps-4"
+      *ngIf="user.authorities.products"
+      routerLinkActive="bg-dark text-light"
+    >
+      <a routerLink="/products" class="d-flex align-items-center gap-3">
+        <mat-icon> shopping_cart </mat-icon>
+        <span>Products</span>
+      </a>
+    </li>
+    <li
+      class="p-3 ps-4"
+      *ngIf="user.authorities.users"
+      routerLinkActive="bg-dark text-light"
+    >
+      <a routerLink="/users" class="d-flex align-items-center gap-3">
+        <mat-icon> group </mat-icon>
+        <span>Users</span>
+      </a>
+    </li>
+  </ul>
 </nav>
