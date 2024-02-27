@@ -24,12 +24,12 @@ export class InputComponent {
   @Input() type: string = '';
   @Input() disabled: boolean = false;
   @Input() value: any;
+  @Input() placeholder: string = '';
   @Input() isDropdown = false;
   @Input() options: any = [];
   @Output() valueChange = new EventEmitter<string>();
 
   onValueChange(e: any) {
     this.valueChange.emit(this.value);
-    console.log(this.value);
   }
 }

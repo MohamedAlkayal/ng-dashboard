@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-card-prompt',
@@ -14,4 +14,8 @@ export class CardPromptComponent {
     color: string;
     text: string;
   };
+  @Output() cancel = new EventEmitter();
+  clickedCancel(event: any) {
+    this.cancel.emit(true);
+  }
 }
