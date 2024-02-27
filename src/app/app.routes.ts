@@ -56,7 +56,6 @@ export const routes: Routes = [
       {
         path: 'products',
         canActivate: [authGuard],
-        component: ProductsComponent,
         children: [
           { path: '', component: ProductsComponent },
           { path: ':product_ID', component: OneProductComponent },
@@ -73,5 +72,5 @@ export const routes: Routes = [
       },
     ],
   },
-  { path: '**', component: ErrorComponent },
+  // { path: '**', component: ErrorComponent },
 ];

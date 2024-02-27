@@ -249,6 +249,7 @@ export class OneUserComponent {
 
   ngOnInit() {
     this.userID = this.route.snapshot.params['user_ID'];
+
     this.user._phones = [
       {
         lable: '+20',
