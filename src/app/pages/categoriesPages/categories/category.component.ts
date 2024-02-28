@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ListComponent } from '../../components/list/list.component';
-import { AdminCategoriesService } from '../../services/admin-categories.service';
-import { OneCategoryComponent } from '../../components/one-category/one-category.component';
+import { ListComponent } from '../../../components/list/list.component';
+import { AdminCategoriesService } from '../../../services/admin-categories.service';
+import { OneCategoryComponent } from '../oneCategory/one-category.component';
 @Component({
   selector: 'app-category',
   standalone: true,
@@ -36,7 +36,7 @@ export class CategoryComponent implements OnInit {
   handleNewCategory(args: any) {
     this.newCat = true;
     this.selectedCategory = {
-      name: args.name,
+      name: args,
       subCategories: [],
       description: '',
     };
