@@ -18,6 +18,7 @@
         <select
           [(ngModel)]="value.data"
           (ngModelChange)="onOptionSelect($event)"
+          (input)="toched($event)"
           class="form-select form-select-sm"
           id="vlaue.data"
         >
@@ -25,6 +26,7 @@
           <option
             *ngFor="let opt of value.options"
             [selected]="value.data == opt"
+            
           >
             {{ opt }}
           </option>
@@ -46,6 +48,7 @@
           aria-label="Sizing example input"
           aria-describedby="inputGroup-sizing-sm"
           (ngModelChange)="onValueChange($event)"
+          (input)="toched($event)"
         />
       </ng-template>
     </div>
