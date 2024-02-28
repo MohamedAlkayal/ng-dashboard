@@ -1,7 +1,8 @@
 <div class="page d-flex gap-4">
   <div class="table-wrap">
     <app-table-controls
-      [resualtsCount]="orders?.leangth"
+      [resualtsCount]="ordersCount"
+      [itemsCount]="itemsCount"
       [selectedItems]="selectedItems"
       [dangerBtn]="'Cancel'"
       [warningBtn]="'Open Ticket'"
@@ -12,6 +13,12 @@
       [page]="'orders'"
       [data]="orders"
     ></app-table>
+    <app-pagination
+      [pagesCount]="pagesCount"
+      [pageName]="'orders'"
+      (pageEmitter)="getPage($event)"
+      class="mx-4"
+    ></app-pagination>
   </div>
   <div
     class="offcanvas offcanvas-end"
@@ -48,8 +55,8 @@
           ></app-filter-dropdown>
           <app-filter-dropdown
             [id]="'govField'"
-            [lable]="'government'"
-            [items]="governments"
+            [lable]="'governorates'"
+            [items]="governorates"
             (dropdownEmmiter)="getSelectedGov($event)"
           ></app-filter-dropdown>
           <app-filter-dropdown

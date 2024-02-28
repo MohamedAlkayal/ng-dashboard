@@ -142,11 +142,11 @@ body {
 
 .page {
   margin-top: 76px;
-  padding: 16px;
+  padding: 16px 16px 32px 16px;
   min-height: 650px;
   height: calc(100vh - 76px);
   overflow: scroll;
-  background-color: rgb(248, 249, 250);
+  background-color: rgb(237, 241, 245);
 }
 
 .page-filters {

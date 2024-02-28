@@ -22,6 +22,7 @@ export class FilterTextComponent {
   });
   @Input() lable: string = '';
   @Input() type: string = '';
+  // @Input() formControlName!: string;
   @Output() value = new EventEmitter<string>();
   inptValue: any;
 

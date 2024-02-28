@@ -2,11 +2,10 @@
   <div class="table-wrap">
     <app-table-controls
       [resualtsCount]="usersCount"
-      [currentPage]="currentPage"
-      [pagesCount]="pagesCount"
       [selectedItems]="selectedItems"
       [dangerBtn]="'Delete'"
       [warningBtn]="'Suspend'"
+      [itemsCount]="itemsCount"
       (pageEmitter)="getPage($event)"
     ></app-table-controls>
     <app-table
@@ -15,6 +14,12 @@
       [page]="'users'"
       [data]="users"
     ></app-table>
+    <app-pagination
+      [pagesCount]="pagesCount"
+      [pageName]="'users'"
+      (pageEmitter)="getPage($event)"
+      class="mx-4"
+    ></app-pagination>
   </div>
   <div
     class="offcanvas offcanvas-end"
@@ -26,7 +31,7 @@
       <div
         class="w-100 overflow-scroll p-4 d-flex flex-column justify-content-between"
       >
-        <div>
+        <form>
           <h1 class="mb-5">Filters</h1>
           <app-filter-text [lable]="'Search'" [type]="'text'"></app-filter-text>
           <app-filter-dropdown
@@ -57,8 +62,10 @@
             [myStep]="1"
           >
           </app-filter-range>
-        </div>
-        <button class="btn btn-dark w-100">Apply</button>
+        </form>
+        <button (click)="applyFilters()" class="btn btn-dark w-100">
+          Apply
+        </button>
       </div>
     </div>
   </div>

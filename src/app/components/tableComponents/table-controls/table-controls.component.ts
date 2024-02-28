@@ -14,12 +14,9 @@ export class TableControlsComponent {
   @Input() resualtsCount: number = 0;
   @Input() currentPage!: number;
   @Input() pagesCount!: number;
+  @Input() itemsCount!: number;
   @Input() selectedItems: string[] = [];
   @Input() dangerBtn!: string;
   @Input() warningBtn!: string;
   @Output() pageEmitter = new EventEmitter();
-
-  getPage(data: any) {
-    this.pageEmitter.emit(data);
-  }
 }
