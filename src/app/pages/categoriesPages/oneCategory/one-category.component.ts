@@ -47,7 +47,6 @@ export class OneCategoryComponent implements OnChanges {
   constructor(private category: AdminCategoriesService) {}
   ngOnChanges(changes: SimpleChanges): void {
     this.isDisabled = true;
-    console.log(this.selectedCategory);
     if (this.selectedCategory) {
       this.currentFieldInfo = {};
       for (const key in this.selectedCategory) {
@@ -70,7 +69,6 @@ export class OneCategoryComponent implements OnChanges {
       color: 'success',
       text: `${this.newCategory ? 'Create' : 'Update'}`,
     };
-    console.log(this.currentFieldInfo);
   }
   onCategoryNameChange(event: string) {
     this.isDisabled = false;
@@ -100,7 +98,6 @@ export class OneCategoryComponent implements OnChanges {
     }
   }
   handlePromptConfirm() {
-    console.log(this.currentFieldInfo);
     if (!this.newCategory) {
       this.category
         .edit(this.currentFieldInfo.name, {
