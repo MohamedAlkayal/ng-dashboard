@@ -1,15 +1,17 @@
-import { HttpParams } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterModule, Route, ActivatedRoute } from '@angular/router';
 import { InputComponent } from '../../../components/formComponents/input/input.component';
 import { InputInnerLableComponent } from '../../../components/formComponents/input-inner-lable/input-inner-lable.component';
 import { CardPromptComponent } from '../../../components/cardComponents/card-prompt/card-prompt.component';
 import { CardCtaComponent } from '../../../components/cardComponents/card-cta/card-cta.component';
+import { AdminUserServices } from '../../../services/admin-user.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-one-user',
   standalone: true,
-  imports: [
+  imports: [ReactiveFormsModule,
     RouterModule,
     InputComponent,
     InputInnerLableComponent,
@@ -20,7 +22,9 @@ import { CardCtaComponent } from '../../../components/cardComponents/card-cta/ca
   styleUrl: './one-user.component.css',
 })
 export class OneUserComponent {
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private userService: AdminUserServices) { }
+ 
+
 
   userID!: string;
 
@@ -246,9 +250,35 @@ export class OneUserComponent {
   selectedGov1!: any;
   selectedCities2: string[] = [];
   selectedGov2!: any;
+  isDisabeled: boolean = true
+  @Input() isInputTouched: boolean = false;
+  @Input() innerInputTouched: boolean = false;
+  @Output() userData = new EventEmitter()
+  @Input()productId:string = "";
+  sendUserData(e:any){
+  this.userData.emit(this.user)
+}
+
+  // to undisable buttons 
+  innerinputTouched(e: any) {
+    this.isDisabeled = e
+
+  }
+  InputTouched(e: any) {
+    this.isDisabeled = e
+  }
+  ////////////////
 
   ngOnInit() {
+    console.log(this.productId)
+
     this.userID = this.route.snapshot.params['user_ID'];
+
+    this.userService.getUser(this.userID)
+    this.userService.getUser(this.userID).subscribe((res) => {
+      console.log(res)
+
+    })
 
     this.user._phones = [
       {

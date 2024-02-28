@@ -5,35 +5,57 @@
       [type]="'text'"
       [disabled]="true"
       [value]="user._id"
+      (touched)="InputTouched($event)"
+      [(value)]="productId"
     ></app-input>
     <app-input
       lable="First Name"
       [type]="'text'"
       [value]="user.firstName"
+      (touched)="InputTouched($event)"
     ></app-input>
     <app-input
       lable="Last Name"
       [type]="'text'"
       [value]="user.lastName"
+      (touched)="InputTouched($event)"
+
     ></app-input>
-    <app-input lable="Email" [type]="'text'" [value]="user.email"></app-input>
+    <app-input 
+    lable="Email" 
+    [type]="'text'" 
+    [value]="user.email"
+    (touched)="InputTouched($event)"
+
+    ></app-input>
     <app-input
       lable="Date Of Birth"
       [type]="'date'"
       [value]="user.dateOfBirth"
+      (touched)="InputTouched($event)"
+   
     ></app-input>
-    <app-input-inner-lable lable="Phone Numbers" [values]="user._phones">
+    <app-input-inner-lable
+     lable="Phone Numbers"
+      [values]="user._phones"
+      (isInnerInputToched)="innerinputTouched($event)"
+ 
+      >
     </app-input-inner-lable>
     <app-input-inner-lable
       lable="Address 1"
       [values]="user._address1"
-      (dropdownEmmiter)="getSelectedGov1($event)"
+      (dropdownEmmiter)="getSelectedGov1"
+      (isInnerInputToched)="innerinputTouched($event)"
+   
     >
     </app-input-inner-lable>
     <app-input-inner-lable
       lable="Address 2"
       [values]="user._address2"
       (dropdownEmmiter)="getSelectedGov2($event)"
+      (isInnerInputToched)="innerinputTouched($event)"
+    
     >
     </app-input-inner-lable>
     <app-card-cta
@@ -65,7 +87,11 @@
         color: 'success',
         text: 'Apply Changes'
       }"
-      [isDisabled]="true"
+      (getUserData)="sendUserData($event)"
+      [isDisabled]="isDisabeled"
+      
+
     ></app-card-prompt>
   </div>
+  
 </div>
