@@ -1,10 +1,10 @@
 <div class="p-4 border border-1 rounded-2 d-flex text-center flex-column">
   <p class="text-secondary" style="font-size: 14px">{{ config.data }}</p>
-  <button 
-  class="btn btn-{{ config.color }}" 
-  [disabled]="isDisabled"
-  data-bs-toggle="modal" 
-  data-bs-target="#Confirm">
+  <button
+    data-bs-toggle="modal"
+    data-bs-target="#Confirm"
+    class="btn btn-{{ config.color }}"
+    [disabled]="isDisabled"
   >
     {{ config.text }}
     
