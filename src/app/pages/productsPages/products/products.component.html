@@ -1,8 +1,9 @@
 <div class="page d-flex gap-4">
   <div class="table-wrap">
     <app-table-controls
-      [resualtsCount]="products.length"
+      [resualtsCount]="productsCount"
       [selectedItems]="selectedItems"
+      [itemsCount]="itemsCount"
       [dangerBtn]="'Delete'"
       [warningBtn]="'Open Ticket'"
     ></app-table-controls>
@@ -12,6 +13,12 @@
       [page]="'products'"
       [data]="products"
     ></app-table>
+    <app-pagination
+      [pagesCount]="pagesCount"
+      [pageName]="'products'"
+      (pageEmitter)="getPage($event)"
+      class="mx-4"
+    ></app-pagination>
   </div>
   <div
     class="offcanvas offcanvas-end"
