@@ -10,18 +10,17 @@ import { InputComponent } from '../formComponents/input/input.component';
 })
 export class ListComponent implements OnInit {
   @Output() selectedComponent = new EventEmitter();
-  @Output() newCategoryEvent = new EventEmitter();
-  @Input() categories: any[] = [];
+  @Output() newListItem = new EventEmitter();
+  @Input() list: any[] = [];
+  @Input() newPlaceholderText: string = '';
+  @Input() addingButtonText: string = '';
+  @Input() shownAttr: string = 'name';
   ngOnInit(): void {}
   newCategoryName: string = '';
   onClick(id: string) {
     this.selectedComponent.emit(id);
   }
   newCategoryClick() {
-    this.newCategoryEvent.emit({
-      name: this.newCategoryName,
-      description: '',
-      subCategories: [],
-    });
+    this.newListItem.emit(this.newCategoryName);
   }
 }

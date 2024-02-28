@@ -35,6 +35,7 @@ export class AdminComponent {
       orders: true,
       products: true,
       categories: true,
+      vouchers: true,
     },
   };
 }
