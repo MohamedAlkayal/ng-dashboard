@@ -1,61 +1,24 @@
 <div class="page d-flex gap-4">
   <div class="table-wrap">
-    <app-table-controls
-      [resualtsCount]="usersCount"
-      [currentPage]="currentPage"
-      [pagesCount]="pagesCount"
-      [selectedItems]="selectedItems"
-      [dangerBtn]="'Delete'"
-      [warningBtn]="'Suspend'"
-      (pageEmitter)="getPage($event)"
-    ></app-table-controls>
-    <app-table
-      (selectedEmiiter)="getSelected($event)"
-      [cols]="tableCols"
-      [page]="'users'"
-      [data]="users"
-    ></app-table>
+    <app-table-controls [resualtsCount]="usersCount" [currentPage]="currentPage" [pagesCount]="pagesCount"
+      [selectedItems]="selectedItems" [dangerBtn]="'Delete'" [warningBtn]="'Suspend'"
+      (pageEmitter)="getPage($event)"></app-table-controls>
+    <app-table (selectedEmiiter)="getSelected($event)" [cols]="tableCols" [page]="'users'" [data]="users"></app-table>
   </div>
-  <div
-    class="offcanvas offcanvas-end"
-    tabindex="-1"
-    id="offcanvasRight"
-    aria-labelledby="offcanvasRightLabel"
-  >
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-body">
-      <div
-        class="w-100 overflow-scroll p-4 d-flex flex-column justify-content-between"
-      >
+      <div class="w-100 overflow-scroll p-4 d-flex flex-column justify-content-between">
         <div>
           <h1 class="mb-5">Filters</h1>
           <app-filter-text [lable]="'Search'" [type]="'text'"></app-filter-text>
-          <app-filter-dropdown
-            [id]="'genderField'"
-            [lable]="'Gender'"
-            [items]="['Male', 'Female']"
-          ></app-filter-dropdown>
-          <app-filter-dropdown
-            [id]="'govField'"
-            [lable]="'governorates'"
-            [items]="governorates"
-            (dropdownEmmiter)="getSelectedGov($event)"
-          ></app-filter-dropdown>
-          <app-filter-dropdown
-            [id]="'cityField'"
-            [lable]="'City'"
-            [items]="selectedCities"
-          ></app-filter-dropdown>
-          <app-filter-dropdown
-            [id]="'sortField'"
-            [lable]="'Sort By'"
-            [items]="['Name', 'Email', 'Phone', 'Orders']"
-          ></app-filter-dropdown>
-          <app-filter-range
-            [allMax]="80"
-            [allMin]="10"
-            [lable]="'Age'"
-            [myStep]="1"
-          >
+          <app-filter-dropdown [id]="'genderField'" [lable]="'Gender'"
+            [items]="['Male', 'Female']"></app-filter-dropdown>
+          <app-filter-dropdown [id]="'govField'" [lable]="'governorates'" [items]="governorates"
+            (dropdownEmmiter)="getSelectedGov($event)"></app-filter-dropdown>
+          <app-filter-dropdown [id]="'cityField'" [lable]="'City'" [items]="selectedCities"></app-filter-dropdown>
+          <app-filter-dropdown [id]="'sortField'" [lable]="'Sort By'"
+            [items]="['Name', 'Email', 'Phone', 'Orders']"></app-filter-dropdown>
+          <app-filter-range [allMax]="80" [allMin]="10" [lable]="'Age'" [myStep]="1">
           </app-filter-range>
         </div>
         <button class="btn btn-dark w-100">Apply</button>
