@@ -1,0 +1,58 @@
+<div style="width: 700px" class="d-flex align-items-end flex-column mt-3">
+  @if(!selectedVoucher){
+  <h1>Loading</h1>
+  } @else {
+  <app-input
+    lable="Voucher Code"
+    [disabled]="true"
+    [value]="currentFieldInfo.code"
+  ></app-input>
+  <app-input
+    [value]="currentFieldInfo.discount"
+    lable="Discount Value"
+    (valueChange)="onVoucherAttrChange($event, 'discount')"
+  ></app-input>
+  <app-input
+    lable="Discount Type"
+    [isDropdown]="true"
+    [options]="['flat', 'percentage']"
+    [value]="currentFieldInfo.type"
+    (valueChange)="onVoucherAttrChange($event, 'type')"
+  ></app-input>
+  <app-input
+    lable="Expiry Date"
+    [type]="'date'"
+    [value]="currentFieldInfo.expiryDate"
+    (valueChange)="onVoucherAttrChange($event, 'expiryDate')"
+  ></app-input>
+  <app-input
+    lable="Max Usage"
+    [type]="'number'"
+    [value]="currentFieldInfo.maxUsage"
+    (valueChange)="onVoucherAttrChange($event, 'maxUsage')"
+  ></app-input>
+  <app-input
+    lable="Current Usage"
+    [disabled]="true"
+    [type]="'number'"
+    [value]="currentFieldInfo.currentUsage"
+    (valueChange)="onVoucherAttrChange($event, 'currentUsage')"
+  ></app-input>
+  <app-input
+    lable="Status"
+    [isDropdown]="true"
+    [options]="['Active', 'Inactive']"
+    [value]="currentFieldInfo.active ? 'Active' : 'Inactive'"
+    (valueChange)="onVoucherAttrChange($event, 'active')"
+  ></app-input>
+  <app-card-prompt
+    [config]="cardInfo"
+    [isDisabled]="isDisabled"
+    (cancel)="clickedCancel()"
+  ></app-card-prompt>
+  }
+</div>
+<app-prompt-confirm
+  [promptText]="promptText"
+  (ConfirmUpdated)="handlePromptConfirm()"
+></app-prompt-confirm>
