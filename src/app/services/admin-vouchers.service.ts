@@ -29,12 +29,11 @@ export class AdminVouchersService {
     discount?: number,
     type?: 'percentage' | 'flat',
     expiryDate?: Date,
-    maxUsage?: number
+    maxUsage?: number,
+    active?: boolean
   ) {
     const headers = this.token.getHeader();
-    const payload = { voucherId, discount, type, expiryDate, maxUsage };
-    console.log(payload);
-
+    const payload = { voucherId, discount, type, expiryDate, maxUsage, active };
     return this.http.patch(this.vouchersUrl + `/${voucherId}`, payload, {
       headers: headers,
     });

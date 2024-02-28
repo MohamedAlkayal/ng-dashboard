@@ -17,7 +17,6 @@ export class InputKeywordsComponent {
   @Output() modified = new EventEmitter();
 
   value: string = '';
-
   addKeyword(e: any) {
     if (e.key === 'Enter') {
       this.keywords.push(this.value);

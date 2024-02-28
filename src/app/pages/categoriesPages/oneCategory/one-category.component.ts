@@ -3,18 +3,16 @@ import {
   EventEmitter,
   Input,
   OnChanges,
-  OnInit,
   Output,
   SimpleChanges,
   input,
 } from '@angular/core';
-import { InputComponent } from '../formComponents/input/input.component';
-import { InputKeywordsComponent } from '../formComponents/input-keywords/input-keywords.component';
-import { InputTextareaComponent } from '../formComponents/input-textarea/input-textarea.component';
-import { CardCtaComponent } from '../cardComponents/card-cta/card-cta.component';
-import { CardPromptComponent } from '../cardComponents/card-prompt/card-prompt.component';
-import { PromptConfirmComponent } from '../messagesComponents/prompt-confirm/prompt-confirm.component';
-import { AdminCategoriesService } from '../../services/admin-categories.service';
+import { InputComponent } from '../../../components/formComponents/input/input.component';
+import { InputKeywordsComponent } from '../../../components/formComponents/input-keywords/input-keywords.component';
+import { InputTextareaComponent } from '../../../components/formComponents/input-textarea/input-textarea.component';
+import { CardPromptComponent } from '../../../components/cardComponents/card-prompt/card-prompt.component';
+import { PromptConfirmComponent } from '../../../components/messagesComponents/prompt-confirm/prompt-confirm.component';
+import { AdminCategoriesService } from '../../../services/admin-categories.service';
 
 @Component({
   selector: 'app-one-category',
@@ -23,7 +21,6 @@ import { AdminCategoriesService } from '../../services/admin-categories.service'
     InputComponent,
     InputKeywordsComponent,
     InputTextareaComponent,
-    CardCtaComponent,
     CardPromptComponent,
     PromptConfirmComponent,
   ],
@@ -36,17 +33,17 @@ export class OneCategoryComponent implements OnChanges {
   @Input() newCategory: boolean = true;
   @Output() changedCategory = new EventEmitter();
   isDisabled: boolean = true;
-  currentFieldInfo: any;
+  currentFieldInfo: any = {};
+  promptText: string = '';
   cardInfo = {
     data: `${
       this.newCategory
-        ? ''
+        ? `You Are Creating A category Called ${this.currentFieldInfo.name} `
         : 'Are you sure you want to update the shown category with the edited data? This will affect all the corresponding products and some products will have its data changed as an after effect of this change. if you are sure please revise the from and click confirm'
     }`,
     color: 'success',
     text: `${this.newCategory ? 'Create' : 'Update'}`,
   };
-  promptText: string = '';
   constructor(private category: AdminCategoriesService) {}
   ngOnChanges(changes: SimpleChanges): void {
     this.isDisabled = true;
@@ -101,7 +98,6 @@ export class OneCategoryComponent implements OnChanges {
     }
   }
   handlePromptConfirm() {
-    console.log(this.currentFieldInfo);
     if (!this.newCategory) {
       this.category
         .edit(this.currentFieldInfo.name, {
@@ -109,8 +105,9 @@ export class OneCategoryComponent implements OnChanges {
           subCategories: this.currentFieldInfo.subCategories,
         })
         .subscribe({
-          next(x) {
+          next: (x) => {
             console.log(x);
+            this.changedCategory.emit();
           },
           error(x) {
             console.log(x);
@@ -124,8 +121,9 @@ export class OneCategoryComponent implements OnChanges {
           this.currentFieldInfo.subCategories
         )
         .subscribe({
-          next(x) {
+          next: (x) => {
             console.log(x);
+            this.changedCategory.emit();
           },
           error(x) {
             console.log(x);

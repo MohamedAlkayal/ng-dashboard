@@ -54,6 +54,16 @@
           <span>Categories</span>
         </a>
       </li>
+      <li
+        class="p-3 ps-4"
+        *ngIf="user.authorities.vouchers"
+        routerLinkActive="bg-dark text-light"
+      >
+        <a routerLink="vouchers" class="d-flex align-items-center gap-3">
+          <mat-icon> monetization_on </mat-icon>
+          <span>Vouchers</span>
+        </a>
+      </li>
     </ul>
   </div>
 </nav>

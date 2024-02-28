@@ -16,9 +16,14 @@ export class InputInnerLableComponent {
   @Input() disabled: boolean = false;
   @Output() inputValue = new EventEmitter<string>();
   @Output() dropdownEmmiter = new EventEmitter<string>();
+  @Output() isInnerInputToched = new EventEmitter();
 
+  inputToched:boolean=false;
   ngOnInit() {}
-
+  toched(e:any){
+    this.isInnerInputToched.emit(this.inputToched)
+    
+  }
   onOptionSelect(data: any) {
     this.dropdownEmmiter.emit(data);
   }

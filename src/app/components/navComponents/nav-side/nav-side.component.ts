@@ -22,6 +22,7 @@ export class NavSideComponent {
       orders: boolean;
       products: boolean;
       categories: boolean;
+      vouchers: boolean;
     };
   };
 }
