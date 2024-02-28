@@ -1,3 +1,4 @@
+
 <div class="input-group d-flex gap-3 align-items-center mb-3">
   <label [for]="lable" class="form-label fw-semibold m-0">{{ lable }}</label>
   <select
@@ -16,10 +17,12 @@
       [id]="lable"
       [(ngModel)]="value"
       [disabled]="disabled"
-      (input)="onValueChange($event)"
+      (keyup)="onValueChange($event)"
+      (input)="isInputTouched($event)"
       [type]="type"
       class="form-control form-control-sm rounded"
       style="width: 550px"
+      [placeholder]="placeholder"
     />
     <span class="position-absolute end-0 p-3 text-secondary">{{ unit }}</span>
   </ng-template>

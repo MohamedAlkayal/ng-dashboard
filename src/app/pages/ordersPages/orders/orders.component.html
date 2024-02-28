@@ -20,32 +20,14 @@
       class="mx-4"
     ></app-pagination>
   </div>
-  <div
-    class="offcanvas offcanvas-end"
-    tabindex="-1"
-    id="offcanvasRight"
-    aria-labelledby="offcanvasRightLabel"
-  >
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-body">
-      <div
-        class="w-100 overflow-scroll p-4 d-flex flex-column justify-content-between"
-      >
+      <div class="w-100 overflow-scroll p-4 d-flex flex-column justify-content-between">
         <div>
           <h1 class="mb-5">Filters</h1>
-          <app-filter-text
-            [id]="'trckingField'"
-            [lable]="'Tracking Number'"
-            [type]="'number'"
-          ></app-filter-text>
-          <app-filter-text
-            [id]="'userField'"
-            [lable]="'User ID'"
-            [type]="'number'"
-          ></app-filter-text>
-          <app-filter-dropdown
-            [id]="'deliveryField'"
-            [lable]="'Delivery Status'"
-            [items]="[
+          <app-filter-text [id]="'trckingField'" [lable]="'Tracking Number'" [type]="'number'"></app-filter-text>
+          <app-filter-text [id]="'userField'" [lable]="'User ID'" [type]="'number'"></app-filter-text>
+          <app-filter-dropdown [id]="'deliveryField'" [lable]="'Delivery Status'" [items]="[
               'pending',
               'packaging',
               'shipping',
@@ -76,12 +58,7 @@
             [myStep]="100"
           >
           </app-filter-range>
-          <app-filter-range
-            [allMax]="100"
-            [allMin]="1"
-            [lable]="'Items'"
-            [myStep]="1"
-          >
+          <app-filter-range [allMax]="100" [allMin]="1" [lable]="'Items'" [myStep]="1">
           </app-filter-range>
         </div>
         <button class="btn btn-dark w-100">Apply</button>

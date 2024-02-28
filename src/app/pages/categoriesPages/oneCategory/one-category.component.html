@@ -1,0 +1,34 @@
+<div style="width: 700px" class="d-flex align-items-end flex-column mt-5">
+  @if(!selectedCategory){
+  <h1>Loading</h1>
+  }@else{
+  <app-input
+    lable="Category Name"
+    [(value)]="currentFieldInfo.name"
+    (valueChange)="onCategoryNameChange($event)"
+    placeholder="Category Name"
+    [disabled]="true"
+  ></app-input>
+  <app-input-textarea
+    lable="Description"
+    [value]="currentFieldInfo.description"
+    placeholder="Category Description"
+    (messageSent)="onTextAreaChange($event)"
+  ></app-input-textarea>
+  <app-input-keywords
+    label="Subcategories"
+    [keywords]="currentFieldInfo.subCategories"
+    placeholder="New Subcategory"
+    (modified)="onKeyWordChange($event)"
+  ></app-input-keywords>
+  <app-card-prompt
+    [config]="cardInfo"
+    [isDisabled]="isDisabled"
+    (cancel)="clickedCancel()"
+  ></app-card-prompt>
+  }
+</div>
+<app-prompt-confirm
+  [promptText]="promptText"
+  (ConfirmUpdated)="handlePromptConfirm()"
+></app-prompt-confirm>

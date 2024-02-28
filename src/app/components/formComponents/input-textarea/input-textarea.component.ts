@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 export class InputTextareaComponent {
   @Input() value!: string;
   @Input() lable!: string;
+  @Input() placeholder: string = '';
   @Output() messageSent = new EventEmitter();
 
   sendData() {

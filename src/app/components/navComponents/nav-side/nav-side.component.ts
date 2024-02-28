@@ -9,7 +9,7 @@ import { myMatchOptions } from '../../../utilities/IsActiveMatchOptions';
   standalone: true,
   imports: [RouterModule, NgClass, CommonModule, MatIconModule],
   templateUrl: './nav-side.component.html',
-  styleUrl: './nav-side.component.css',
+  styles: '',
 })
 export class NavSideComponent {
   constructor(private route: Router) {}
@@ -23,6 +23,7 @@ export class NavSideComponent {
       orders: boolean;
       products: boolean;
       categories: boolean;
+      vouchers: boolean;
     };
   };
 

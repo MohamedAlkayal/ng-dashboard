@@ -11,6 +11,8 @@ import { authGuard } from './guards/auth-guard.guard';
 import { AdminComponent } from './layouts/admin/admin.component';
 import { AuthComponent } from './layouts/auth/auth.component';
 import { ErrorComponent } from './layouts/error/error.component';
+import { CategoryComponent } from './pages/categoriesPages/categories/category.component';
+import { VouchersComponent } from './pages/vouchers/vouchers/vouchers.component';
 
 export const routes: Routes = [
   {
@@ -69,6 +71,16 @@ export const routes: Routes = [
           { path: '', component: UsersComponent },
           { path: ':user_ID', component: OneUserComponent },
         ],
+      },
+      {
+        path: 'categories',
+        canActivate: [authGuard],
+        children: [{ path: '', component: CategoryComponent }],
+      },
+      {
+        path: 'vouchers',
+        canActivate: [authGuard],
+        children: [{ path: '', component: VouchersComponent }],
       },
     ],
   },

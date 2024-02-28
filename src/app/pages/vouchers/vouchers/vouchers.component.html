@@ -1,0 +1,23 @@
+<div class="page">
+  <div class="row h-100">
+    <div class="col-3">
+      <app-list
+        (selectedComponent)="handleSelectedComponent($event)"
+        (newListItem)="handleNewVoucher($event)"
+        [list]="vouchersFromDb"
+        class="h-100 cols-2"
+        newPlaceholderText="New Voucher Code"
+        addingButtonText="Add New Voucher"
+        shownAttr="code"
+      ></app-list>
+    </div>
+    <div class="col-8">
+      <app-one-voucher
+        [newVoucher]="newVoucher"
+        [selectedVoucher]="selectedVoucher"
+        (changedVoucher)="handleVoucherChange()"
+      >
+      </app-one-voucher>
+    </div>
+  </div>
+</div>
