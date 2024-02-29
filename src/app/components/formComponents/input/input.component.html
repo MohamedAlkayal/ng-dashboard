@@ -15,7 +15,6 @@
   <ng-template #normal class="position-relative">
     <input
       [id]="lable"
-      [(ngModel)]="value"
       [disabled]="disabled"
       (keyup)="onValueChange($event)"
       (input)="isInputTouched($event)"
@@ -23,6 +22,7 @@
       class="form-control form-control-sm rounded"
       style="width: 550px"
       [placeholder]="placeholder"
+      [formControl]="control"
     />
     <span class="position-absolute end-0 p-3 text-secondary">{{ unit }}</span>
   </ng-template>

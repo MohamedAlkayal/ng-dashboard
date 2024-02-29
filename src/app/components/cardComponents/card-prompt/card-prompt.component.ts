@@ -22,14 +22,9 @@ export class CardPromptComponent {
   @Output() ConfirmUpdated = new EventEmitter();
   @Input() userData: {} = {}
 
-
   getUserData(e: any) {
     console.log(e)
-    this.userData=e
-    
-  }
-  cancle() {
-
+    this.userData=e  
   }
 
   Confirm() {

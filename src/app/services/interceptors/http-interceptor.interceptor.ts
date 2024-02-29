@@ -5,5 +5,6 @@ import { TokenUtilsService } from '../token/token-utils.service';
 
 export const httpInterceptor: HttpInterceptorFn = (req, next) => {
   inject(TokenUtilsService).cheackForTokenExpiration();
+  console.log("first")
   return next(req);
 };
