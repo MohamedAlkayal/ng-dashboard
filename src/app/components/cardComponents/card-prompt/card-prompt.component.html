@@ -7,22 +7,21 @@
     [disabled]="isDisabled"
   >
     {{ config.text }}
-    
   </button>
   <span class="my-3 w-80 m-auto border border-1"></span>
   <button
     class="btn btn-outline-secondary"
     [disabled]="isDisabled"
     (click)="clickedCancel($event)"
-    data-bs-toggle="modal" 
-    data-bs-target="#Confirm">
+    data-bs-toggle="modal"
+    data-bs-target="#Confirm"
   >
-    Cancel
+    > Cancel
   </button>
 </div>
 
 <!-- Popup -->
-<div class="modal fade " id="Confirm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade " id="Confirm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
@@ -39,4 +38,4 @@
           </div>
       </div>
   </div>
-</div>
+</div> -->
