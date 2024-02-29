@@ -15,12 +15,13 @@ export class CategoryComponent implements OnInit {
   categoriesFromDb: any[] = [];
   selectedCategory: any;
   newCat = false;
-
+  isLoading = true;
   ngOnInit(): void {
     this.categories.getAll().subscribe({
       next: (response: any) => {
         this.categoriesFromDb = response.categories;
         this.selectedCategory = this.categoriesFromDb[0];
+        this.isLoading = false;
       },
       error(x) {
         console.log(x);
@@ -42,10 +43,12 @@ export class CategoryComponent implements OnInit {
     };
   }
   handleCategoryChange() {
+    this.isLoading = true;
     this.categories.getAll().subscribe({
       next: (response: any) => {
         this.categoriesFromDb = response.categories;
         this.selectedCategory = this.categoriesFromDb[0];
+        this.isLoading = false;
       },
       error(x) {
         console.log(x);
