@@ -6,6 +6,7 @@ import { InputTwoFieldsComponent } from '../../../components/formComponents/inpu
 import { InputKeywordsComponent } from '../../../components/formComponents/input-keywords/input-keywords.component';
 import { CardCtaComponent } from '../../../components/cardComponents/card-cta/card-cta.component';
 import { InputInnerLableComponent } from '../../../components/formComponents/input-inner-lable/input-inner-lable.component';
+import { AdminOrdersService } from '../../../services/admin-orders.service';
 @Component({
   selector: 'app-one-order',
   standalone: true,
@@ -18,25 +19,19 @@ import { InputInnerLableComponent } from '../../../components/formComponents/inp
     CardCtaComponent,
     InputInnerLableComponent,
   ],
+  providers: [AdminOrdersService],
   templateUrl: './one-order.component.html',
   styleUrl: './one-order.component.css',
 })
 export class OneOrderComponent {
-  address = [
-    {
-      lable: 'State',
-      data: '',
-      type: 'text',
-    },
-    {
-      lable: 'City',
-      data: '',
-      type: 'text',
-    },
-    {
-      lable: 'Street',
-      data: '',
-      type: 'text',
-    },
-  ];
+  constructor(private ordersService: AdminOrdersService) {}
+
+  order!: any;
+
+  ngOnInit() {
+    this.ordersService.getOne('65df823f0b373b309837b70a').subscribe({
+      next: (data) => {},
+      error: (err) => console.log(err),
+    });
+  }
 }

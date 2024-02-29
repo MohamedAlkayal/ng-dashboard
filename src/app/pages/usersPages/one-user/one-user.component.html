@@ -1,4 +1,4 @@
-<div class="d-flex gap-5 pt-4 my-5">
+<div *ngIf="user" class="d-flex gap-5 pt-4 my-5">
   <div style="width: 700px" class="d-flex align-items-end flex-column mt-5">
     <app-input
       lable="Product ID"
@@ -6,7 +6,6 @@
       [disabled]="true"
       [value]="user._id"
       (touched)="InputTouched($event)"
-      [(value)]="productId"
     ></app-input>
     <app-input
       lable="First Name"
@@ -19,45 +18,79 @@
       [type]="'text'"
       [value]="user.lastName"
       (touched)="InputTouched($event)"
-
     ></app-input>
-    <app-input 
-    lable="Email" 
-    [type]="'text'" 
-    [value]="user.email"
-    (touched)="InputTouched($event)"
-
+    <app-input
+      lable="Email"
+      [type]="'text'"
+      [value]="user.email"
+      (touched)="InputTouched($event)"
     ></app-input>
     <app-input
       lable="Date Of Birth"
       [type]="'date'"
       [value]="user.dateOfBirth"
       (touched)="InputTouched($event)"
-   
     ></app-input>
     <app-input-inner-lable
-     lable="Phone Numbers"
-      [values]="user._phones"
+      lable="Phones"
+      innerLable="+20"
+      type="number"
+      [value]="user.phones[0]"
       (isInnerInputToched)="innerinputTouched($event)"
- 
-      >
+    >
     </app-input-inner-lable>
     <app-input-inner-lable
+      lable=""
+      innerLable="+20"
+      type="number"
+      [value]="user.phones[1]"
+      (isInnerInputToched)="innerinputTouched($event)"
+    >
+    </app-input-inner-lable>
+    <!-- ###################### -->
+    <app-input-inner-dropdown
+      [options]="governorates"
       lable="Address 1"
-      [values]="user._address1"
-      (dropdownEmmiter)="getSelectedGov1"
-      (isInnerInputToched)="innerinputTouched($event)"
-   
-    >
-    </app-input-inner-lable>
+      innerLable="state"
+      [value]="user.address_1.state"
+      (selectedEmitter)="getSelectedGov_1($event)"
+    ></app-input-inner-dropdown>
+    <app-input-inner-dropdown
+      [options]="cities_1"
+      lable=""
+      innerLable="City"
+      [value]="user.address_1.city"
+    ></app-input-inner-dropdown>
     <app-input-inner-lable
-      lable="Address 2"
-      [values]="user._address2"
-      (dropdownEmmiter)="getSelectedGov2($event)"
+      lable=""
+      innerLable="street"
+      type="string"
+      [value]="user.address_1.street"
       (isInnerInputToched)="innerinputTouched($event)"
-    
     >
     </app-input-inner-lable>
+    <app-input-inner-dropdown
+      [options]="governorates"
+      lable="Address 2"
+      innerLable="state"
+      [value]="user.address_2?.state"
+      (selectedEmitter)="getSelectedGov_2($event)"
+    ></app-input-inner-dropdown>
+    <app-input-inner-dropdown
+      [options]="cities_2"
+      lable=""
+      innerLable="City"
+      [value]="user.address_2?.city"
+    ></app-input-inner-dropdown>
+    <app-input-inner-lable
+      lable=""
+      innerLable="street"
+      type="string"
+      [value]="user.address_2?.street"
+      (isInnerInputToched)="innerinputTouched($event)"
+    >
+    </app-input-inner-lable>
+
     <app-card-cta
       [config]="{
         data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
@@ -89,9 +122,6 @@
       }"
       (getUserData)="sendUserData($event)"
       [isDisabled]="isDisabeled"
-      
-
     ></app-card-prompt>
   </div>
-  
 </div>

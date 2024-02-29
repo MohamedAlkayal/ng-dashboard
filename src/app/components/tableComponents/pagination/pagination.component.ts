@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-pagination',
@@ -10,57 +11,104 @@ import { EventEmitter } from '@angular/core';
   styleUrl: './pagination.component.css',
 })
 export class PaginationComponent {
-  @Input() currentPage!: number;
   @Input() pagesCount!: number;
+  @Input() pageName!: string;
   @Output() pageEmitter = new EventEmitter();
+
+  constructor(private route: ActivatedRoute, private router: Router) {}
+
+  currentPage!: number;
+
+  ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      this.currentPage = params['page'] ? +params['page'] : 1;
+    });
+  }
 
   get visiblePageNumbers(): number[] {
     const first = 1;
-    const current = this.currentPage;
     const last = this.pagesCount;
     let visiblePages: any[] = [];
 
     switch (true) {
-      case last < 6:
-        for (let i = 1; i <= last; i++) {
+      case this.pagesCount < 6:
+        for (let i = 1; i <= this.pagesCount; i++) {
           visiblePages.push(i);
         }
         break;
 
-      case first === current:
-        visiblePages = [current, current + 1, current + 2, '...', last];
-        break;
-
-      case first + 1 === current:
-        visiblePages = [current - 1, current, current + 1, '...', last];
-        break;
-
-      case first + 2 === current:
-        visiblePages = [first, current - 1, current, current + 1, '...', last];
-        break;
-
-      case first + 2 < current && current < last - 2:
+      case first === this.currentPage:
         visiblePages = [
-          first,
+          this.currentPage,
+          this.currentPage + 1,
+          this.currentPage + 2,
           '...',
-          current - 1,
-          current,
-          current + 1,
-          '...',
-          last,
+          this.pagesCount,
         ];
         break;
 
-      case current === last - 2:
-        visiblePages = [first, '...', current, current + 1, last];
+      case first + 1 === this.currentPage:
+        visiblePages = [
+          this.currentPage - 1,
+          this.currentPage,
+          this.currentPage + 1,
+          '...',
+          this.pagesCount,
+        ];
         break;
 
-      case current === last - 1:
-        visiblePages = [first, '...', current - 1, current, last];
+      case first + 2 === this.currentPage:
+        visiblePages = [
+          first,
+          this.currentPage - 1,
+          this.currentPage,
+          this.currentPage + 1,
+          '...',
+          this.pagesCount,
+        ];
+        break;
+
+      case first + 2 < this.currentPage &&
+        this.currentPage < this.pagesCount - 2:
+        visiblePages = [
+          first,
+          '...',
+          this.currentPage - 1,
+          this.currentPage,
+          this.currentPage + 1,
+          '...',
+          this.pagesCount,
+        ];
+        break;
+
+      case this.currentPage === this.pagesCount - 2:
+        visiblePages = [
+          first,
+          '...',
+          this.currentPage,
+          this.currentPage + 1,
+          this.pagesCount,
+        ];
+        break;
+
+      case this.currentPage === this.pagesCount - 1:
+        visiblePages = [
+          first,
+          '...',
+          this.currentPage - 1,
+          this.currentPage,
+          this.pagesCount,
+        ];
         break;
 
       default:
-        visiblePages = [first, '...', current - 2, current - 1, last];
+        visiblePages = [
+          first,
+          '...',
+          this.currentPage - 2,
+          this.currentPage - 1,
+          this.pagesCount,
+        ];
         break;
     }
     return visiblePages;
@@ -68,16 +116,29 @@ export class PaginationComponent {
 
   prevPage() {
     if (this.currentPage > 1) {
-      this.pageEmitter.emit(`${this.currentPage - 1}`);
+      this.currentPage -= 1;
+      this.router.navigate([`/admin/${this.pageName}`], {
+        queryParams: { page: this.currentPage },
+      });
+      this.pageEmitter.emit(this.currentPage);
     }
   }
   goToPage(n: any) {
-    this.pageEmitter.emit(`${n}`);
-    console.log(n);
+    if (isFinite(n)) {
+      this.currentPage = n;
+      this.router.navigate([`/admin/${this.pageName}`], {
+        queryParams: { page: this.currentPage },
+      });
+      this.pageEmitter.emit(this.currentPage);
+    }
   }
   nextPage() {
     if (this.currentPage < this.pagesCount) {
-      this.pageEmitter.emit(`${this.currentPage + 1}`);
+      this.currentPage += 1;
+      this.router.navigate([`/admin/${this.pageName}`], {
+        queryParams: { page: this.currentPage },
+      });
+      this.pageEmitter.emit(this.currentPage);
     }
   }
 }

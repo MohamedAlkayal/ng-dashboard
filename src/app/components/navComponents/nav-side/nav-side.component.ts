@@ -2,6 +2,7 @@ import { CommonModule, NgClass } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { myMatchOptions } from '../../../utilities/IsActiveMatchOptions';
 
 @Component({
   selector: 'app-nav-side',
@@ -26,4 +27,6 @@ export class NavSideComponent {
       logs:boolean
     };
   };
+
+  myMatchOptions = myMatchOptions;
 }
