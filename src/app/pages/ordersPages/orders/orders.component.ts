@@ -85,7 +85,7 @@ export class OrdersComponent {
   getOrders(n: number, l: number) {
     this.ordersService.getAll(n, l).subscribe({
       next: (data: any) => {
-        this.ordersCount = 4;
+        this.ordersCount = data.totalCount;
         this.orders = data.orders;
         this.orders.map((o: any) => {
           o.selected = false;
@@ -94,7 +94,7 @@ export class OrdersComponent {
           o.fullName = o.user.firstName + ' ' + o.user.lastName;
         });
         this.itemsCount = this.orders.length;
-        this.pagesCount = Math.ceil(this.itemsCount / this.pageLimit);
+        this.pagesCount = Math.ceil(this.ordersCount / this.pageLimit);
       },
       error: (err) => console.log(err),
     });
