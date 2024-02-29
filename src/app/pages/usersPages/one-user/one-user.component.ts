@@ -6,7 +6,8 @@ import { InputInnerLableComponent } from '../../../components/formComponents/inp
 import { CardPromptComponent } from '../../../components/cardComponents/card-prompt/card-prompt.component';
 import { CardCtaComponent } from '../../../components/cardComponents/card-cta/card-cta.component';
 import { AdminUserServices } from '../../../services/admin-user.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, Validators, FormControl } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-one-user',
@@ -17,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     InputInnerLableComponent,
     CardPromptComponent,
     CardCtaComponent,
+    CommonModule
   ],
   templateUrl: './one-user.component.html',
   styleUrl: './one-user.component.css',
@@ -24,39 +26,57 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class OneUserComponent {
   constructor(private route: ActivatedRoute, private userService: AdminUserServices) { }
  
+formGroup=new FormGroup({
+  _id:new FormControl("",[Validators.required]),
+  firstName:new FormControl("",[Validators.required]),
+  lastName:new FormControl("",[Validators.required]),
+  email:new FormControl("",[Validators.required]),
+  dateOfBirth:new FormControl("",[Validators.required]),
+  phones:new FormControl("",[Validators.required]),
+  street:new FormControl("",[Validators.required]),
+  city:new FormControl("",[Validators.required]),
+  state:new FormControl("",[Validators.required]),
 
+})
+
+
+onSubmit(e:any){
+  e.preventDefault()
+  console.log(this.formGroup.value)
+  
+}
 
   userID!: string;
 
   user: any = {
-    _id: '65d28902e66358a2bbe92202',
-    firstName: 'Mu',
-    lastName: 'Young',
-    email: 'MuYoung@g.com',
-    active: true,
-    phones: [1090562346],
-    wishlist: [],
-    orders: [
-      '65d2989c8b1b375206b1b1e6',
-      '65d299858b1b375206b1b1fe',
-      '65d32d58c1cc42297fe4f6c3',
-      '65d32dcc8c54c9254fa34844',
-    ],
-    dateOfBirth: '1997-06-27',
-    address1: {
-      street: '5th',
-      city: 'Fayed',
-      state: 'Ismailia',
-    },
-    address2: {
-      street: '',
-      city: '',
-      state: '',
-    },
-    cart: [],
-    createdAt: '2024-02-18T22:47:30.534Z',
-    updatedAt: '2024-02-19T10:30:36.120Z',
-    __v: 0,
+    // _id: '65d28902e66358a2bbe92202',
+    // firstName: 'Mu',
+    // lastName: 'Young',
+    // email: 'MuYoung@g.com',
+    // active: true,
+    // phones: [1090562346],
+    // wishlist: [],
+    // orders: [
+    //   '65d2989c8b1b375206b1b1e6',
+    //   '65d299858b1b375206b1b1fe',
+    //   '65d32d58c1cc42297fe4f6c3',
+    //   '65d32dcc8c54c9254fa34844',
+    // ],
+    // dateOfBirth: '1997-06-27',
+    // address1: {
+    //   street: '5th',
+    //   city: 'Fayed',
+    //   state: 'Ismailia',
+    // },
+    // address2: {
+    //   street: '',
+    //   city: '',
+    //   state: '',
+    // },
+    // cart: [],
+    // createdAt: '2024-02-18T22:47:30.534Z',
+    // updatedAt: '2024-02-19T10:30:36.120Z',
+    // __v: 0,
   };
 
   locations: any[] = [
@@ -270,13 +290,13 @@ export class OneUserComponent {
   ////////////////
 
   ngOnInit() {
-    console.log(this.productId)
 
     this.userID = this.route.snapshot.params['user_ID'];
 
     this.userService.getUser(this.userID)
     this.userService.getUser(this.userID).subscribe((res) => {
       console.log(res)
+      this.user =res 
 
     })
 

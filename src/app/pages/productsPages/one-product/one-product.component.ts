@@ -5,6 +5,7 @@ import { InputTextareaComponent } from '../../../components/formComponents/input
 import { InputTwoFieldsComponent } from '../../../components/formComponents/input-two-fields/input-two-fields.component';
 import { InputKeywordsComponent } from '../../../components/formComponents/input-keywords/input-keywords.component';
 import { CardCtaComponent } from '../../../components/cardComponents/card-cta/card-cta.component';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-one-product',
@@ -21,6 +22,10 @@ import { CardCtaComponent } from '../../../components/cardComponents/card-cta/ca
   styleUrl: './one-product.component.css',
 })
 export class OneProductComponent {
+
+
+
+
   product: any = {
     _id: '65d631485f85f345043df151',
     name: 'Premium Android Smartphone',

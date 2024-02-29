@@ -20,13 +20,12 @@
           (ngModelChange)="onOptionSelect($event)"
           (input)="toched($event)"
           class="form-select form-select-sm"
-          id="vlaue.data"
+          id="vlaue.data"  
         >
           <option>Select option</option>
           <option
             *ngFor="let opt of value.options"
-            [selected]="value.data == opt"
-            
+            [selected]="value.data == opt"  
           >
             {{ opt }}
           </option>
@@ -43,12 +42,12 @@
         <input
           [disabled]="disabled"
           [type]="value.type"
-          class="form-control"
-          [(ngModel)]="value.data"
+          class="form-control" 
           aria-label="Sizing example input"
           aria-describedby="inputGroup-sizing-sm"
           (ngModelChange)="onValueChange($event)"
           (input)="toched($event)"
+          [formControl]="control"
         />
       </ng-template>
     </div>
