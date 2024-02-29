@@ -11,24 +11,11 @@ import { MatIcon } from '@angular/material/icon';
   styles: ``,
 })
 export class InputInnerLableComponent {
-  @Input() values!: any;
-  @Input() lable: any;
+  @Input() value!: any;
+  @Input() lable!: string;
+  @Input() innerLable!: string;
+  @Input() type!: string;
   @Input() disabled: boolean = false;
-  @Output() inputValue = new EventEmitter<string>();
-  @Output() dropdownEmmiter = new EventEmitter<string>();
-  @Output() isInnerInputToched = new EventEmitter();
 
-  inputToched:boolean=false;
   ngOnInit() {}
-  toched(e:any){
-    this.isInnerInputToched.emit(this.inputToched)
-    
-  }
-  onOptionSelect(data: any) {
-    this.dropdownEmmiter.emit(data);
-  }
-
-  onValueChange(data: any) {
-    this.inputValue.emit(this.values);
-  }
 }

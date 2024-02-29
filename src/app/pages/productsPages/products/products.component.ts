@@ -66,7 +66,6 @@ export class ProductsComponent {
   getProducts(n: number, l: number) {
     this.productService.getAllProducts(n, l).subscribe({
       next: (data: any) => {
-        console.log(data);
         this.products = data.products;
         this.products.map((p: any) => {
           p.name = p.name.split(' ');
