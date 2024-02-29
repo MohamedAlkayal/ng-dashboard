@@ -1,66 +1,97 @@
-<form [formGroup]="formGroup">
-<div class="d-flex gap-5 pt-4 my-5">
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit($event)">
+<div *ngIf="user" class="d-flex gap-5 pt-4 my-5">
   <div style="width: 700px" class="d-flex align-items-end flex-column mt-5">
     <app-input
       lable="Product ID"
       [type]="'text'"
       [disabled]="true"
-      [value]="user._id"
       (touched)="InputTouched($event)"
       [control]="formGroup.controls._id"
     ></app-input>
     <app-input
       lable="First Name"
       [type]="'text'"
-      [value]="user.firstName"
       (touched)="InputTouched($event)"
       [control]="formGroup.controls.firstName"
     ></app-input>
     <app-input
       lable="Last Name"
       [type]="'text'"
-      [value]="user.lastName"
       (touched)="InputTouched($event)"
       [control]="formGroup.controls.lastName"
     ></app-input>
-    <app-input 
-    lable="Email" 
-    [type]="'text'" 
-    [value]="user.email"
-    (touched)="InputTouched($event)"
-    [control]="formGroup.controls.email"
+    <app-input
+      lable="Email"
+      [type]="'text'"
+      (touched)="InputTouched($event)"
+      [control]="formGroup.controls.email"
     ></app-input>
     <app-input
       lable="Date Of Birth"
       [type]="'date'"
-      [value]="user.dateOfBirth"
       (touched)="InputTouched($event)"
-      [control]="formGroup.controls.dateOfBirth"  
+      [control]="formGroup.controls.dateOfBirth"
     ></app-input>
     <app-input-inner-lable
-     lable="Phone Numbers"
-      [values]="user._phones"
+      lable="Phones"
+      innerLable="+20"
+      type="number"
       (isInnerInputToched)="innerinputTouched($event)"
-      [control]="formGroup.controls.phones"
-      >
+      [control]="formGroup.controls.phone_1"
+    >
     </app-input-inner-lable>
     <app-input-inner-lable
+      lable=""
+      innerLable="+20"
+      type="number"
+      (isInnerInputToched)="innerinputTouched($event)"
+      [control]="formGroup.controls.phone_2"
+    >
+    </app-input-inner-lable>
+    <!-- ###################### -->
+    <app-input-inner-dropdown
+      [options]="governorates"
       lable="Address 1"
-      [values]="user._address1"
-      (dropdownEmmiter)="getSelectedGov1"
-      (isInnerInputToched)="innerinputTouched($event)"
-      [control]="formGroup.controls.street"  
-    >
-    </app-input-inner-lable>
+      innerLable="state"
+      (selectedEmitter)="getSelectedGov_1($event)"
+      [control]="formGroup.controls.state_1"
+    ></app-input-inner-dropdown>
+    <app-input-inner-dropdown
+      [options]="cities_1"
+      lable=""
+      innerLable="City"
+      [control]="formGroup.controls.city_1"
+    ></app-input-inner-dropdown>
     <app-input-inner-lable
-      lable="Address 2"
-      [values]="user._address2"
-      (dropdownEmmiter)="getSelectedGov2($event)"
+      lable=""
+      innerLable="street"
+      type="string"
       (isInnerInputToched)="innerinputTouched($event)"
-      [control]="formGroup.controls.city"    
+      [control]="formGroup.controls.street_1"
     >
     </app-input-inner-lable>
-    <div></div>
+    <app-input-inner-dropdown
+      [options]="governorates"
+      lable="Address 2"
+      innerLable="state"
+      (selectedEmitter)="getSelectedGov_2($event)"
+      [control]="formGroup.controls.state_2"
+    ></app-input-inner-dropdown>
+    <app-input-inner-dropdown
+      [options]="cities_2"
+      lable=""
+      innerLable="City"
+      [control]="formGroup.controls.city_2"
+    ></app-input-inner-dropdown>
+    <app-input-inner-lable
+      lable=""
+      innerLable="street"
+      type="string"
+      (isInnerInputToched)="innerinputTouched($event)"
+      [control]="formGroup.controls.street_2"
+    >
+    </app-input-inner-lable>
+
     <app-card-cta
       [config]="{
         data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
@@ -11,25 +11,12 @@ import { MatIcon } from '@angular/material/icon';
   styles: ``,
 })
 export class InputInnerLableComponent {
-
-  @Input() control!:FormControl;
-  @Input() values!: any;
-  @Input() lable: any;
+  @Input()control!:FormControl
+  @Input() value!: any;
+  @Input() lable!: string;
+  @Input() innerLable!: string;
+  @Input() type!: string;
   @Input() disabled: boolean = false;
-  @Output() inputValue = new EventEmitter<string>();
-  @Output() dropdownEmmiter = new EventEmitter<string>();
-  @Output() isInnerInputToched = new EventEmitter();
 
-  inputToched:boolean=false;
   ngOnInit() {}
-  toched(e:any){
-    this.isInnerInputToched.emit(this.inputToched)
-  }
-  onOptionSelect(data: any) {
-    this.dropdownEmmiter.emit(data);
-  }
-
-  onValueChange(data: any) {
-    this.inputValue.emit(this.values);
-  }
 }

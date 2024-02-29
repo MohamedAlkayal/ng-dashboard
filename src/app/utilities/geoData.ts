@@ -150,3 +150,6 @@ export const locations: any[] = [
     cities: ['Suez', 'Ismailia', 'Fayed', 'Arbaeen', 'Ataqah'],
   },
 ];
+
+export const governorates: string[] = [];
+locations.map((l) => governorates.push(l.governorate));
