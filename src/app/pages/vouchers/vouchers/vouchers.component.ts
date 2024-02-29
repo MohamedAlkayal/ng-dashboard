@@ -2,10 +2,7 @@ import { Component } from '@angular/core';
 import { ListComponent } from '../../../components/list/list.component';
 import { AdminVouchersService } from '../../../services/admin-vouchers.service';
 import { OneVoucherComponent } from '../one-voucher/one-voucher.component';
-import { AdminLogsService } from '../../../services/admin-logs.service';
 import { PromptConfirmComponent } from '../../../components/messagesComponents/prompt-confirm/prompt-confirm.component';
-import { AdminProductService } from '../../../services/admin-product.service';
-import { flatMap } from 'rxjs';
 
 @Component({
   selector: 'app-vouchers',
@@ -20,12 +17,13 @@ export class VouchersComponent {
   vouchersFromDb: any[] = [];
   selectedVoucher: any;
   newVoucher = false;
-
+  isLoading = true;
   ngOnInit(): void {
     this.vouchers.getAll().subscribe({
       next: (response: any) => {
         this.vouchersFromDb = response;
         this.selectedVoucher = this.vouchersFromDb[0];
+        this.isLoading = false;
       },
       error(x) {
         console.log(x);
@@ -40,14 +38,18 @@ export class VouchersComponent {
     this.newVoucher = true;
     this.selectedVoucher = {
       code: args,
+      discount: 0,
+      expiryDate: new Date(),
       type: 'flat',
     };
   }
   handleVoucherChange() {
+    this.isLoading = true;
     this.vouchers.getAll().subscribe({
       next: (response: any) => {
         this.vouchersFromDb = response;
         this.selectedVoucher = this.vouchersFromDb[0];
+        this.isLoading = false;
       },
       error(x) {
         console.log(x);
