@@ -24,6 +24,7 @@ export class NavSideComponent {
       products: boolean;
       categories: boolean;
       vouchers: boolean;
+      logs:boolean
     };
   };
 

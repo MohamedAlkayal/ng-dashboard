@@ -7,6 +7,7 @@ import { CardPromptComponent } from '../../../components/cardComponents/card-pro
 import { CardCtaComponent } from '../../../components/cardComponents/card-cta/card-cta.component';
 import { AdminUserServices } from '../../../services/admin-user.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+
 import { governorates, locations } from '../../../utilities/geoData';
 import { InputInnerDropdownComponent } from '../../../components/formComponents/input-inner-dropdown/input-inner-dropdown.component';
 import { CommonModule } from '@angular/common';
@@ -43,6 +44,8 @@ export class OneUserComponent {
   governorates: string[] = governorates;
   cities_1: any;
   cities_2: any;
+
+  isDisabeled: boolean = true;
 
 
   ngOnInit() {
@@ -129,6 +132,3 @@ export class OneUserComponent {
     console.log(this.formGroup.get('state_2'))
     this.locations.map((l) =>
       l.governorate === this.formGroup.get('state_2')?.value ? (this.cities_2 = l.cities) : null
-    );
-  }
-}

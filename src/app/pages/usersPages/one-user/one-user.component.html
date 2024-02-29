@@ -1,4 +1,5 @@
 <form [formGroup]="formGroup" (ngSubmit)="onSubmit($event)">
+
 <div *ngIf="user" class="d-flex gap-5 pt-4 my-5">
   <div style="width: 700px" class="d-flex align-items-end flex-column mt-5">
     <app-input
@@ -55,12 +56,14 @@
       innerLable="state"
       (selectedEmitter)="getSelectedGov_1($event)"
       [control]="formGroup.controls.state_1"
+
     ></app-input-inner-dropdown>
     <app-input-inner-dropdown
       [options]="cities_1"
       lable=""
       innerLable="City"
       [control]="formGroup.controls.city_1"
+
     ></app-input-inner-dropdown>
     <app-input-inner-lable
       lable=""
@@ -68,6 +71,7 @@
       type="string"
       (isInnerInputToched)="innerinputTouched($event)"
       [control]="formGroup.controls.street_1"
+
     >
     </app-input-inner-lable>
     <app-input-inner-dropdown
@@ -76,12 +80,14 @@
       innerLable="state"
       (selectedEmitter)="getSelectedGov_2($event)"
       [control]="formGroup.controls.state_2"
+
     ></app-input-inner-dropdown>
     <app-input-inner-dropdown
       [options]="cities_2"
       lable=""
       innerLable="City"
       [control]="formGroup.controls.city_2"
+
     ></app-input-inner-dropdown>
     <app-input-inner-lable
       lable=""

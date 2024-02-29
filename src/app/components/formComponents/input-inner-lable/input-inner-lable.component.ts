@@ -12,6 +12,7 @@ import { MatIcon } from '@angular/material/icon';
 })
 export class InputInnerLableComponent {
   @Input()control!:FormControl
+
   @Input() value!: any;
   @Input() lable!: string;
   @Input() innerLable!: string;
