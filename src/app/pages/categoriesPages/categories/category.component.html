@@ -1,3 +1,12 @@
+@if(isLoading){
+<div
+  class="spinner-border text-dark"
+  style="width: 5rem; height: 5rem; position: absolute; top: 50%; left: 50%"
+  role="status"
+>
+  <span class="sr-only"></span>
+</div>
+}@else{
 <div class="page">
   <div class="row h-100">
     <div class="col-3">
@@ -19,3 +28,4 @@
     </div>
   </div>
 </div>
+}
