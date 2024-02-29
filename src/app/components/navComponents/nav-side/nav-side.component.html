@@ -1,67 +1,47 @@
-<nav
-  style="min-height: 600px; width: 200px"
-  class="d-flex bg-white flex-column justify-content-between border-end border-color h-100"
->
+<nav style="min-height: 600px; width: 200px"
+  class="d-flex bg-white flex-column justify-content-between border-end border-color h-100">
   <div>
     <ul style="transform: translateY(150px)">
-      <li
-        class="p-3 ps-4"
-        routerLinkActive="bg-dark text-light"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
+      <li class="p-3 ps-4" routerLinkActive="bg-dark text-light" [routerLinkActiveOptions]="{ exact: true }">
         <a routerLink="home" class="d-flex align-items-center gap-3">
           <mat-icon>home</mat-icon>
           <span>Home</span>
         </a>
       </li>
-      <li
-        class="p-3 ps-4"
-        *ngIf="user.authorities.orders"
-        routerLinkActive="bg-dark text-light"
-      >
+      <li class="p-3 ps-4" *ngIf="user.authorities.orders" routerLinkActive="bg-dark text-light">
         <a routerLink="orders" class="d-flex align-items-center gap-3">
           <mat-icon> local_shipping </mat-icon>
           <span>Orders</span>
         </a>
       </li>
-      <li
-        class="p-3 ps-4"
-        *ngIf="user.authorities.products"
-        routerLinkActive="bg-dark text-light"
-      >
+      <li class="p-3 ps-4" *ngIf="user.authorities.products" routerLinkActive="bg-dark text-light">
         <a routerLink="products" class="d-flex align-items-center gap-3">
           <mat-icon> shopping_cart </mat-icon>
           <span>Products</span>
         </a>
       </li>
-      <li
-        class="p-3 ps-4"
-        *ngIf="user.authorities.users"
-        routerLinkActive="bg-dark text-light"
-      >
+      <li class="p-3 ps-4" *ngIf="user.authorities.users" routerLinkActive="bg-dark text-light">
         <a routerLink="users" class="d-flex align-items-center gap-3">
           <mat-icon> group </mat-icon>
           <span>Users</span>
         </a>
       </li>
-      <li
-        class="p-3 ps-4"
-        *ngIf="user.authorities.categories"
-        routerLinkActive="bg-dark text-light"
-      >
+      <li class="p-3 ps-4" *ngIf="user.authorities.categories" routerLinkActive="bg-dark text-light">
         <a routerLink="categories" class="d-flex align-items-center gap-3">
           <mat-icon> dashboard </mat-icon>
           <span>Categories</span>
         </a>
       </li>
-      <li
-        class="p-3 ps-4"
-        *ngIf="user.authorities.vouchers"
-        routerLinkActive="bg-dark text-light"
-      >
+      <li class="p-3 ps-4" *ngIf="user.authorities.vouchers" routerLinkActive="bg-dark text-light">
         <a routerLink="vouchers" class="d-flex align-items-center gap-3">
           <mat-icon> monetization_on </mat-icon>
           <span>Vouchers</span>
+        </a>
+      </li>
+      <li class="p-3 ps-4" *ngIf="user.authorities.logs" routerLinkActive="bg-dark text-light">
+        <a routerLink="logs" class="d-flex align-items-center gap-3">
+          <mat-icon>track_changes</mat-icon>
+          <span>Logs</span>
         </a>
       </li>
     </ul>

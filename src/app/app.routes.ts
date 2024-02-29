@@ -13,6 +13,7 @@ import { AuthComponent } from './layouts/auth/auth.component';
 import { ErrorComponent } from './layouts/error/error.component';
 import { CategoryComponent } from './pages/categoriesPages/categories/category.component';
 import { VouchersComponent } from './pages/vouchers/vouchers/vouchers.component';
+import { LogsComponent } from './pages/logs/logs.component';
 
 export const routes: Routes = [
   {
@@ -81,6 +82,11 @@ export const routes: Routes = [
         path: 'vouchers',
         canActivate: [authGuard],
         children: [{ path: '', component: VouchersComponent }],
+      },
+      {
+        path: 'logs',
+        canActivate: [authGuard],
+        children: [{ path: '', component: LogsComponent }],
       },
     ],
   },
