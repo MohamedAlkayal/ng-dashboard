@@ -123,7 +123,6 @@ export class OneProductComponent {
     console.log('hi');
     const file = event.target.files[0];
     this.product._images[key].file = file;
-    console.log(this.product._images[key].file);
     const reader = new FileReader();
     reader.onload = (e: any) => {
       this.product._images[key].url = `url(${e.target.result})`;
