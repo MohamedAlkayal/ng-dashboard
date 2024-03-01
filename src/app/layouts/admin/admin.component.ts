@@ -36,8 +36,7 @@ export class AdminComponent {
       products: true,
       categories: true,
       vouchers: true,
-      logs: true,
-
+      admin: true,
     },
   };
 }
