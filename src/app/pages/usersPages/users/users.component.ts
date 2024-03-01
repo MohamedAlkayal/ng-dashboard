@@ -101,7 +101,6 @@ export class UsersComponent {
           u.mainPhone = u.phones[0];
           u.isActive = u.active ? 'Active' : 'Suspended';
           u.city = u.address_1.city;
-          
         });
         this.itemsCount = this.users.length;
         this.pagesCount = Math.ceil(this.usersCount / this.pageLimit);
