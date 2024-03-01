@@ -117,28 +117,33 @@ export class PaginationComponent {
   prevPage() {
     if (this.currentPage > 1) {
       this.currentPage -= 1;
-      this.router.navigate([`/admin/${this.pageName}`], {
-        queryParams: { page: this.currentPage },
-      });
+      this.navigateWithQueryParam();
+
       this.pageEmitter.emit(this.currentPage);
     }
   }
   goToPage(n: any) {
     if (isFinite(n)) {
       this.currentPage = n;
-      this.router.navigate([`/admin/${this.pageName}`], {
-        queryParams: { page: this.currentPage },
-      });
+      this.navigateWithQueryParam();
+
       this.pageEmitter.emit(this.currentPage);
     }
   }
   nextPage() {
     if (this.currentPage < this.pagesCount) {
       this.currentPage += 1;
-      this.router.navigate([`/admin/${this.pageName}`], {
-        queryParams: { page: this.currentPage },
-      });
+      this.navigateWithQueryParam();
       this.pageEmitter.emit(this.currentPage);
     }
+  }
+
+  private navigateWithQueryParam() {
+    const queryParams = {
+      ...this.route.snapshot.queryParams,
+      page: this.currentPage,
+    };
+    this.router.navigate([`/admin/${this.pageName}`], { queryParams });
+    this.pageEmitter.emit(this.currentPage);
   }
 }
