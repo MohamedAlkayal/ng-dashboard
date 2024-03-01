@@ -8,19 +8,22 @@
 </div>
 }@else{
 <div class="page">
-  <div class="row h-100">
-    <div class="col-3">
+  <div class="d-flex gap-3 h-100">
+    <div
+      style="width: 320px"
+      class="border border-color rounded-2 overflow-hidden"
+    >
       <app-list
         (selectedComponent)="handleSelectedComponent($event)"
         (newListItem)="handleNewVoucher($event)"
         [list]="vouchersFromDb"
-        class="h-100 cols-2"
-        newPlaceholderText="New Voucher Code"
         addingButtonText="Add New Voucher"
         shownAttr="code"
       ></app-list>
     </div>
-    <div class="col-8">
+    <div
+      class="w-100 p-4 bg-white border border-color rounded-2 overflow-y-scroll"
+    >
       <app-one-voucher
         [newVoucher]="newVoucher"
         [selectedVoucher]="selectedVoucher"

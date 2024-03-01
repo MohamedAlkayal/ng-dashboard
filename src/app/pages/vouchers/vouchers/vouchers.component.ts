@@ -18,6 +18,7 @@ export class VouchersComponent {
   selectedVoucher: any;
   newVoucher = false;
   isLoading = true;
+
   ngOnInit(): void {
     this.vouchers.getAll().subscribe({
       next: (response: any) => {
@@ -30,6 +31,7 @@ export class VouchersComponent {
       },
     });
   }
+
   handleSelectedComponent(args: any) {
     this.newVoucher = false;
     this.selectedVoucher = this.vouchersFromDb.filter((e) => e._id === args)[0];

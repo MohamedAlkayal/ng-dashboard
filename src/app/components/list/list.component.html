@@ -1,29 +1,18 @@
 <div
-  class="d-flex align-content-center justify-content-between h-100 flex-column rounded-2 border border-2"
+  style="min-height: 600px; height: 100%"
+  class="d-flex flex-column justify-content-between bg-white"
 >
-  <div
-    class="list-group list-group-flush bg-transparent overflow-y-scroll flex-grow-1"
-  >
-    @for (item of list; track item.name) {
+  <div class="list-group list-group-flush overflow-y-scroll">
     <button
+      *ngFor="let item of list"
       type="button"
-      class="list-group-item list-group-item-action fs-6 py-3"
-      (click)="onClick(item._id)"
+      class="list-group-item list-group-item-action py-3"
+      (click)="handelSelect(item._id)"
     >
       {{ item[shownAttr] }}
     </button>
-    } @empty {
-    <h1>Loading</h1>
-    }
   </div>
-  <div class="px-2 mb-2">
-    <app-input
-      [(value)]="newCategoryName"
-      class=""
-      [placeholder]="newPlaceholderText"
-    ></app-input>
-    <button (click)="newCategoryClick()" class="btn btn-dark w-100">
-      {{ addingButtonText }}
-    </button>
-  </div>
+  <button (click)="newCategoryClick()" class="btn btn-dark btn-sm m-3">
+    {{ addingButtonText }}
+  </button>
 </div>
