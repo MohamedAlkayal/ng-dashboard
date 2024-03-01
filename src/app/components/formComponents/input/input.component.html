@@ -13,7 +13,6 @@
   <ng-template #normal class="position-relative">
     <input
       [id]="lable"
-      [disabled]="disabled"
       (keyup)="onValueChange($event)"
       (input)="isInputTouched($event)"
       [type]="type"

@@ -5,7 +5,16 @@ import { InputTextareaComponent } from '../../../components/formComponents/input
 import { InputTwoFieldsComponent } from '../../../components/formComponents/input-two-fields/input-two-fields.component';
 import { InputKeywordsComponent } from '../../../components/formComponents/input-keywords/input-keywords.component';
 import { CardCtaComponent } from '../../../components/cardComponents/card-cta/card-cta.component';
+<<<<<<< HEAD
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+=======
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+>>>>>>> 66c46e0072e4538d0ef8ae5222a70529bf8c1b45
 import { MatIcon } from '@angular/material/icon';
 import { AdminProductService } from '../../../services/admin-product.service';
 import { ActivatedRoute } from '@angular/router';
@@ -36,29 +45,29 @@ export class OneProductComponent {
     private route: ActivatedRoute
   ) {}
 
-  formGroup=new FormGroup({
-    _id:new FormControl("",[Validators.required]),
-    name:new FormControl("",[Validators.required]),
-    images:new FormControl("",[Validators.required]),
-    description:new FormControl("",[Validators.required]),
-    modelNumber:new FormControl("",[Validators.required]),
-    manufacturer:new FormControl("",[Validators.required]),
-    countryOfOrigin:new FormControl("",[Validators.required]),
-    brandName:new FormControl("",[Validators.required]),
-    price:new FormControl("",[Validators.required]),
-    discountPercentage:new FormControl("",[Validators.required]),
-    ratings:new FormControl("",[Validators.required]),
-    category:new FormControl("",[Validators.required]),
-    subcategory:new FormControl("",[Validators.required]),
-    keywords:new FormControl("",[Validators.required]),
-    stock:new FormControl("",[Validators.required]),
-    specValue:new FormControl("",[Validators.required]),
-    specKey:new FormControl("",[Validators.required]),
-    color_l_controlKey:new FormControl ("",[Validators.required]),
-    color_l_controlValue:new FormControl ("",[Validators.required]),
-  })
+  formGroup = new FormGroup({
+    _id: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required]),
+    images: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
+    modelNumber: new FormControl('', [Validators.required]),
+    manufacturer: new FormControl('', [Validators.required]),
+    countryOfOrigin: new FormControl('', [Validators.required]),
+    brandName: new FormControl('', [Validators.required]),
+    price: new FormControl('', [Validators.required]),
+    discountPercentage: new FormControl('', [Validators.required]),
+    ratings: new FormControl('', [Validators.required]),
+    category: new FormControl('', [Validators.required]),
+    subcategory: new FormControl('', [Validators.required]),
+    keywords: new FormControl('', [Validators.required]),
+    stock: new FormControl('', [Validators.required]),
+    specValue: new FormControl('', [Validators.required]),
+    specKey: new FormControl('', [Validators.required]),
+    color_l_controlKey: new FormControl('', [Validators.required]),
+    color_l_controlValue: new FormControl('', [Validators.required]),
+  });
 
-productID!: string;
+  productID!: string;
   product!: any;
 
   ngOnInit() {
@@ -66,6 +75,7 @@ productID!: string;
     this.productsService.getOneProduct(this.productID).subscribe({
       next: (data) => {
         this.product = data;
+        this.product.keywords = [];
         this.product._images = {
           img1: {
             file: null,
@@ -74,8 +84,6 @@ productID!: string;
                 ? null
                 : `url(${this.product.images[0]?.url})`,
           },
-
-
           img2: {
             file: null,
             url:
@@ -83,7 +91,6 @@ productID!: string;
                 ? null
                 : `url(${this.product.images[1]?.url})`,
           },
-
           img3: {
             file: null,
             url:
@@ -91,8 +98,6 @@ productID!: string;
                 ? null
                 : `url(${this.product.images[2]?.url})`,
           },
-
-
           img4: {
             file: null,
             url:
@@ -100,7 +105,6 @@ productID!: string;
                 ? null
                 : `url(${this.product.images[3]?.url})`,
           },
-
           img5: {
             file: null,
             url:
@@ -108,7 +112,6 @@ productID!: string;
                 ? null
                 : `url(${this.product.images[4]?.url})`,
           },
-
           img6: {
             file: null,
             url:
