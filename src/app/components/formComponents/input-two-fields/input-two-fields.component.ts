@@ -13,7 +13,7 @@ import { MatIcon } from '@angular/material/icon';
 export class InputTwoFieldsComponent {
   @Input() control_value!: FormControl
   @Input() control_key!: FormControl
-  @Input() options: any = [];
+  @Input() options: any = ["1","2"];
   @Input() label: string = '';
   @Input() mainPlaceholder: string = '';
   @Input() subPlaceholder: string = '';
@@ -22,18 +22,14 @@ export class InputTwoFieldsComponent {
   emmitData() {
     this.valuesEmmiter.emit('test');
   }
+
   ngOnInit() {
-    if (this.options.length === 0) {
-      this.options.push({ 
-        control_value: new FormControl(''),
-        control_key: new FormControl(''),});
+    if (this.options?.lenghts === 0) {
+      this.options?.push({ value: '', subValue: '' });
     }
   }
 
   addField() {
-    this.options.push({ 
-      control_value: new FormControl(''),
-      control_key: new FormControl(''),});
-  };
+    this.options.push({ value: '', subValue: '' });
   }
-
+}

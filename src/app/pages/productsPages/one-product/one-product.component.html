@@ -1,3 +1,4 @@
+
 <form *ngIf="product" [formGroup]="formGroup">
   <div class="d-flex gap-5 pt-4 my-5">
     <div style="width: 700px" class="d-flex align-items-end flex-column mt-5">
@@ -11,6 +12,110 @@
         type="text"
         [control]="formGroup.controls.name"
       ></app-input>
+      <div style="width: 550px" class="d-flex flex-wrap gap-3 mb-3">
+        <div
+          [style.background-image]="product._images.img1.url"
+          [style.background-size]="'cover'"
+          class="img-input d-flex border border-color flex-wrap align-items-center justify-content-center gap-3"
+        >
+          <label
+            [style.opacity]="product._images.img1.url ? '0' : '1'"
+            class="text-secondary"
+            for="img1"
+            ><mat-icon>add_photo_alternate</mat-icon>
+          </label>
+          <input
+            type="file"
+            id="img1"
+            (change)="onFileSelected($event, 'img1')"
+          />
+        </div>
+        <div
+          [style.background-image]="product._images.img2.url"
+          [style.background-size]="'cover'"
+          class="img-input d-flex border border-color flex-wrap align-items-center justify-content-center gap-3"
+        >
+          <label
+            [style.opacity]="product._images.img2.url ? '0' : '1'"
+            class="text-secondary"
+            for="img2"
+            ><mat-icon>add_photo_alternate</mat-icon>
+          </label>
+          <input
+            type="file"
+            id="img2"
+            (change)="onFileSelected($event, 'img2')"
+          />
+        </div>
+        <div
+          [style.background-image]="product._images.img3.url"
+          [style.background-size]="'cover'"
+          class="img-input d-flex border border-color flex-wrap align-items-center justify-content-center gap-3"
+        >
+          <label
+            [style.opacity]="product._images.img3.url ? '0' : '1'"
+            class="text-secondary"
+            for="img3"
+            ><mat-icon>add_photo_alternate</mat-icon>
+          </label>
+          <input
+            type="file"
+            id="img3"
+            (change)="onFileSelected($event, 'img3')"
+          />
+        </div>
+        <div
+          [style.background-image]="product._images.img4.url"
+          [style.background-size]="'cover'"
+          class="img-input d-flex border border-color flex-wrap align-items-center justify-content-center gap-3"
+        >
+          <label
+            [style.opacity]="product._images.img4.url ? '0' : '1'"
+            class="text-secondary"
+            for="img4"
+            ><mat-icon>add_photo_alternate</mat-icon>
+          </label>
+          <input
+            type="file"
+            id="img4"
+            (change)="onFileSelected($event, 'img4')"
+          />
+        </div>
+        <div
+          [style.background-image]="product._images.img5.url"
+          [style.background-size]="'cover'"
+          class="img-input d-flex border border-color flex-wrap align-items-center justify-content-center gap-3"
+        >
+          <label
+            [style.opacity]="product._images.img5.url ? '0' : '1'"
+            class="text-secondary"
+            for="img5"
+            ><mat-icon>add_photo_alternate</mat-icon>
+          </label>
+          <input
+            type="file"
+            id="img5"
+            (change)="onFileSelected($event, 'img5')"
+          />
+        </div>
+        <div
+          [style.background-image]="product._images.img6.url"
+          [style.background-size]="'cover'"
+          class="img-input d-flex border border-color flex-wrap align-items-center justify-content-center gap-3"
+        >
+          <label
+            [style.opacity]="product._images.img6.url ? '0' : '1'"
+            class="text-secondary"
+            for="img6"
+            ><mat-icon>add_photo_alternate</mat-icon>
+          </label>
+          <input
+            type="file"
+            id="img6"
+            (change)="onFileSelected($event, 'img6')"
+          />
+        </div>
+      </div>
       <app-input
         lable="Brand Name"
         type="text"
