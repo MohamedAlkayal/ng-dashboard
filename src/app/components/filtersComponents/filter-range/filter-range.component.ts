@@ -7,7 +7,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-filter-range',
@@ -17,11 +17,13 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './filter-range.component.css',
 })
 export class FilterRangeComponent implements OnInit {
+  @Input() control_minAge!:FormControl
+  @Input() control_maxAge!:FormControl
   @Input() allMax!: number;
   @Input() allMin!: number;
   @Input() lable!: string;
   @Input() myStep!: number;
-  @Output() values = new EventEmitter();
+  @Output() valuesEmiter = new EventEmitter();
 
   step!: number;
   slider1!: number;
@@ -54,6 +56,9 @@ export class FilterRangeComponent implements OnInit {
           ((this.slider1 - this.allMin) / (this.allMax - this.allMin)) * 100 +
           '%';
 
-    this.values.emit({ value1: this.slider1, value2: this.slider2 });
+    this.valuesEmiter.emit({ 
+      min:Math.min(this.slider1,this.slider2), 
+      max:Math.max(this.slider1,this.slider2) 
+    });
   }
 }

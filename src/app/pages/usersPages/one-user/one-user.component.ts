@@ -58,14 +58,6 @@ export class OneUserComponent {
       next: (data) => {
         this.user = data;
         this.user.email = this.user.email.toLowerCase();
-        // this.cities_1 = this.locations.find(
-        //   (l) => l.governorate === this.user.address_1?.state
-        // )?.cities;
-        // this.cities_2 = this.locations.find(
-        //   (l) => l.governorate === this.user.address_2?.state
-        // )?.cities;
-        console.log(this.user);
-        // this.formGroup.patchValue({_id: this.user._id,firstName:this.user.firstName,lastName:this.user.lastName})
         this.formGroup.get('_id')?.patchValue(this.user._id);
         this.formGroup.get('firstName')?.patchValue(this.user.firstName);
         this.formGroup.get('lastName')?.patchValue(this.user.lastName);
@@ -76,6 +68,8 @@ export class OneUserComponent {
         this.formGroup.get('city_1')?.patchValue(this.user.address_1.city);
         this.formGroup.get('city_2')?.patchValue(this.user.address_2.city);
         this.formGroup.get('state_1')?.patchValue(this.user.address_1['state']);
+
+        
         this.formGroup.get('state_2')?.patchValue(this.user.address_2.state);
         this.formGroup.get('street_1')?.patchValue(this.user.address_1.street);
         this.formGroup.get('street_2')?.patchValue(this.user.address_2.street);

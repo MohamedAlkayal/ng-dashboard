@@ -57,10 +57,17 @@ export class OneProductComponent {
     color_l_controlValue:new FormControl ("",[Validators.required]),
   })
 
+
+  onSubmit(productData:any){
+    console.log(productData)
+  }
 productID!: string;
   product!: any;
 
   ngOnInit() {
+
+
+
     this.productID = this.route.snapshot.params['product_ID'];
     this.productsService.getOneProduct(this.productID).subscribe({
       next: (data) => {
