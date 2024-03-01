@@ -21,7 +21,7 @@ export class FilterRangeComponent implements OnInit {
   @Input() allMin!: number;
   @Input() lable!: string;
   @Input() myStep!: number;
-  @Output() values = new EventEmitter();
+  @Output() valuesEmitter = new EventEmitter();
 
   step!: number;
   slider1!: number;
@@ -54,6 +54,9 @@ export class FilterRangeComponent implements OnInit {
           ((this.slider1 - this.allMin) / (this.allMax - this.allMin)) * 100 +
           '%';
 
-    this.values.emit({ value1: this.slider1, value2: this.slider2 });
+    this.valuesEmitter.emit({
+      min: Math.min(this.slider1, this.slider2),
+      max: Math.max(this.slider1, this.slider2),
+    });
   }
 }

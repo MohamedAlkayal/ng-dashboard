@@ -58,6 +58,10 @@ export class OneUserComponent {
   isDisabeled: boolean = true;
   action: string = '';
   promptText: string = '';
+  suspensionObject: any = {
+    data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+    color: 'warning',
+  };
   ngOnInit() {
     this.userID = this.route.snapshot.params['user_ID'];
     this.userService.getUser(this.userID).subscribe({
@@ -98,8 +102,17 @@ export class OneUserComponent {
           : null;
         this.promptText =
           'You are trying to modify user ' + this.user.firstName;
+        if (this.user.active) {
+          this.suspensionObject.text = 'Suspend';
+          this.action = 'suspend';
+        } else {
+          console.log(this.user.active);
+          this.suspensionObject.text = 'Unsuspend';
+          this.action = 'unsuspend';
+        }
       },
     });
+    console.log(this.suspensionObject);
   }
 
   formGroup = new FormGroup({
@@ -135,7 +148,13 @@ export class OneUserComponent {
     this.isDisabeled = e;
   }
   handleSuspending(x: any) {
-    this.action = 'suspend';
+    if (this.user.active) {
+      this.suspensionObject.text = 'Suspend';
+      this.action = 'suspend';
+    } else {
+      this.suspensionObject.text = 'Unsuspend';
+      this.action = 'unsuspend';
+    }
   }
   handleDeleting(x: any) {
     this.action = 'delete';
@@ -167,8 +186,42 @@ export class OneUserComponent {
         : null;
     });
   }
-  handleConfirming(x: any) {
-    console.log(x);
+  handleConfirming(action: any) {
+    switch (action) {
+      case 'suspend':
+        this.userService.deactivateUsers([this.userID]).subscribe({
+          next(x) {
+            console.log(x);
+          },
+          error(x) {
+            console.log(x);
+          },
+        });
+        break;
+      case 'unsuspend':
+        this.userService.activateUsers([this.userID]).subscribe({
+          next(x) {
+            console.log(x);
+          },
+          error(x) {
+            console.log(x);
+          },
+        });
+        break;
+      case 'delete':
+        this.userService.deleteUsers([this.userID]).subscribe({
+          next(x) {
+            console.log(x);
+          },
+          error(x) {
+            console.log(x);
+          },
+        });
+        break;
+
+      default:
+        break;
+    }
   }
 }
 function getBirthDateFromAge(age: number): string {
