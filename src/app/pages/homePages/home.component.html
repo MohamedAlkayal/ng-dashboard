@@ -1,16 +1,15 @@
 <main class="page">
     <div class="row" style="height: 70vh;">
-        <div class="col-md-4 ">
-            <app-table [cols]="tableCols" [page]="'topUsers'" [data]="topUsers"></app-table>
+        <div style="height: 100%;" class="col-md-6 ">
+            <app-table [cols]="tableCols" style="height: 100%; width: 100%;" [page]="'topUsers'"
+                [data]="topUsers"></app-table>
         </div>
-        <div class="col-md-4 ">
-            <p-chart class="chart" style=" width: 100%;" type="bar" [data]="dataBar" [options]="options"></p-chart>
-        </div>
-        <div class="col-md-4">
-            <p-chart class="chart" style=" width: 100%;" type="pie" [data]="dataPie" [options]="options"></p-chart>
+        <div class="col-md-6" style="height: 100%;">
+            <p-chart class="chart" style="height: 100%; width: 100%;" type="pie" [data]="dataPie"
+                [options]="options"></p-chart>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-4">
         <div class="col-md-12">
             <p-chart class="chart" style="width: 100%;" type="line" [data]="dataLine" [options]="options"></p-chart>
         </div>
