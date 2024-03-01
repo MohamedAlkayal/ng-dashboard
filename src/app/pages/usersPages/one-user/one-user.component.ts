@@ -155,7 +155,7 @@ export class OneUserComponent {
     this.isDisabeled = e;
   }
   InputTouched(e: any) {
-    console.log(this.formGroup.status);
+    // console.log(this.formGroup.status);
     
     this.isDisabeled = e;
   }
