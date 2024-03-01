@@ -49,7 +49,6 @@ export class CategoryComponent {
   }
 
   handleSelectedComponent(args: any) {
-    console.log(this.categoriesFromDb.find((e) => e._id === args));
     this.selectedCategory = this.categoriesFromDb.find((e) => e._id === args);
   }
 
@@ -69,8 +68,8 @@ export class CategoryComponent {
         this.selectedCategory = this.categoriesFromDb[0];
         this.isLoading = false;
       },
-      error(x) {
-        console.log(x);
+      error(err) {
+        console.log(err);
       },
     });
   }

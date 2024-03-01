@@ -1,4 +1,4 @@
-<!-- @if(isLoading){
+@if(isLoading){
 <div
   class="spinner-border text-dark"
   style="width: 5rem; height: 5rem; position: absolute; top: 50%; left: 50%"
@@ -8,8 +8,11 @@
 </div>
 }@else{
 <div class="page">
-  <div class="row h-100">
-    <div class="col-3">
+  <div class="d-flex gap-3 h-100">
+    <div
+      style="width: 320px"
+      class="border border-color rounded-2 overflow-hidden"
+    >
       <app-list
         (selectedComponent)="handleSelectedComponent($event)"
         (newListItem)="handlenewAdmin($event)"
@@ -20,7 +23,9 @@
         shownAttr="username"
       ></app-list>
     </div>
-    <div class="col-8">
+    <div
+      class="w-100 p-4 bg-white border border-color rounded-2 overflow-y-scroll"
+    >
       <app-one-admin
         [selectedAdmin]="selectedAdmin"
         [newAdmin]="newAdmin"
@@ -29,4 +34,4 @@
     </div>
   </div>
 </div>
-} -->
+}
