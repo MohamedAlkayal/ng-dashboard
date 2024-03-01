@@ -1,7 +1,4 @@
-<!-- <div style="width: 700px" class="d-flex align-items-end flex-column mt-3">
-  @if(!selectedAdmin){
-  <h1>Loading</h1>
-  } @else {
+<div style="width: 700px" class="d-flex align-items-end flex-column h-100">
   <app-input
     lable="Admin Username"
     [disabled]="true"
@@ -12,46 +9,57 @@
     [value]="currentFieldInfo.createdBy"
     [disabled]="true"
   ></app-input>
-  <div class="input-group d-flex gap-3 align-items-center mb-3">
-    <label class="form-label fw-semibold m-0">Authorities</label>
-    <div class="d-flex" style="width: 550px">
-      <div>
-        <input type="checkbox" id="myCheckbox" />
-        <label for="myCheckbox">Users Authority</label>
+  <div
+    class="input-group d-flex gap-3 align-items-start mb-3"
+    style="width: fit-content"
+  >
+    <label class="form-label fw-semibold m-0 pt-1">Authorities</label>
+    <div class="d-flex flex-column gap-2" style="width: 550px">
+      <div
+        class="d-flex align-items-center gap-2 p-2 border border-color rounded"
+      >
+        <input type="checkbox" id="admin" class="form-check-input m-0" />
+        <label for="admin">Admin Authorities</label>
       </div>
-      <div>
-        <input type="checkbox" id="myCheckbox" />
-        <label for="myCheckbox">Users Authority</label>
+      <div
+        class="d-flex align-items-center gap-2 p-2 border border-color rounded"
+      >
+        <input type="checkbox" id="orders" class="form-check-input m-0" />
+        <label for="orders">Orders Controls</label>
       </div>
-      <div>
-        <input type="checkbox" id="myCheckbox" />
-        <label for="myCheckbox">Users Authority</label>
+      <div
+        class="d-flex align-items-center gap-2 p-2 border border-color rounded"
+      >
+        <input type="checkbox" id="products" class="form-check-input m-0" />
+        <label for="products">Products Controls</label>
       </div>
-    </div>
-    <div class="d-flex" style="width: 550px">
-      <div>
-        <input type="checkbox" id="myCheckbox" />
-        <label for="myCheckbox">Users Authority</label>
+      <div
+        class="d-flex align-items-center gap-2 p-2 border border-color rounded"
+      >
+        <input type="checkbox" id="users" class="form-check-input m-0" />
+        <label for="users">Users Controls</label>
       </div>
-      <div>
-        <input type="checkbox" id="myCheckbox" />
-        <label for="myCheckbox">Users Authority</label>
+      <div
+        class="d-flex align-items-center gap-2 p-2 border border-color rounded"
+      >
+        <input type="checkbox" id="categories" class="form-check-input m-0" />
+        <label for="categories">Categories Controls</label>
       </div>
-      <div>
-        <input type="checkbox" id="myCheckbox" />
-        <label for="myCheckbox">Users Authority</label>
+      <div
+        class="d-flex align-items-center gap-2 p-2 border border-color rounded"
+      >
+        <input type="checkbox" id="vouchers" class="form-check-input m-0" />
+        <label for="vouchers">Vouchers Controls</label>
       </div>
     </div>
   </div>
-
   <app-card-prompt
     [config]="cardInfo"
     [isDisabled]="isDisabled"
     (cancel)="clickedCancel()"
   ></app-card-prompt>
-  }
 </div>
 <app-prompt-confirm
   [promptText]="promptText"
   (ConfirmUpdated)="handlePromptConfirm()"
-></app-prompt-confirm> -->
+></app-prompt-confirm>
