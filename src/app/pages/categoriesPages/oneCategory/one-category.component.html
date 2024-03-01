@@ -1,10 +1,18 @@
-<div style="width: 700px" class="d-flex align-items-end flex-column h-100">
-  <!-- <app-input lable="Category Name" placeholder="Category Name"></app-input> -->
-  <!-- <app-input-textarea
+<form
+  [formGroup]="formGroup"
+  style="width: 700px"
+  class="d-flex align-items-end flex-column h-100"
+>
+  <app-input
+    lable="Category Name"
+    placeholder="Category Name"
+    [control]="formGroup.controls.catName"
+  ></app-input>
+  <app-input-textarea
     lable="Description"
     placeholder="Category Description"
-    (messageSent)="onTextAreaChange($event)"
-  ></app-input-textarea> -->
+    [control]="formGroup.controls.description"
+  ></app-input-textarea>
   <app-input-keywords
     label="Subcategories"
     [keywords]="currentFieldInfo.subCategories"
@@ -20,4 +28,4 @@
     [promptText]="promptText"
     (ConfirmUpdated)="handlePromptConfirm()"
   ></app-prompt-confirm>
-</div>
+</form>

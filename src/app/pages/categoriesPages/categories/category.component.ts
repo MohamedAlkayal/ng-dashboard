@@ -49,17 +49,16 @@ export class CategoryComponent {
   }
 
   handleSelectedComponent(args: any) {
-    this.selectedCategory = this.categoriesFromDb.find(
-      (e) => e._id === args
-    )[0];
+    console.log(this.categoriesFromDb.find((e) => e._id === args));
+    this.selectedCategory = this.categoriesFromDb.find((e) => e._id === args);
   }
 
   handleNewCategory(args: any) {
     this.newCat = true;
     this.selectedCategory = {
-      name: args,
-      subCategories: [],
-      description: '',
+      name: 'New Category',
+      description: 'New Description',
+      subCategories: ['New Subcategory'],
     };
   }
   handleCategoryChange() {
