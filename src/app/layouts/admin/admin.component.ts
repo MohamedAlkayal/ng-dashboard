@@ -26,6 +26,7 @@ export class AdminComponent {
   title = 'dashboard';
   user!: any;
 
+
   ngOnInit() {
     this.user = localStorage.getItem('currentUser');
     this.user = JSON.parse(this.user);
