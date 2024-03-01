@@ -1,0 +1,30 @@
+.img-input {
+  display: inline-block;
+  cursor: pointer;
+  background-color: #eee;
+  color: #222;
+  border-radius: 5px;
+  height: 150px;
+  width: 172px;
+}
+
+.img-input:hover label {
+  color: rgb(0, 123, 255) !important;
+  background-color: #22222221;
+  opacity: 1 !important;
+}
+
+.img-input input[type="file"] {
+  display: none;
+}
+
+.img-input label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  width: 172px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 300ms;
+}

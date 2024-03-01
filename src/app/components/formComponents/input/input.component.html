@@ -1,4 +1,3 @@
-
 <div class="input-group d-flex gap-3 align-items-center mb-3">
   <label [for]="lable" class="form-label fw-semibold m-0">{{ lable }}</label>
   <select
@@ -7,7 +6,6 @@
     class="form-select form-select-sm rounded"
     aria-label="Small select example"
   >
-    <!-- <option selected>Open this select menu</option> -->
     <option *ngFor="let opt of options" value="opt" [selected]="opt === value">
       {{ opt }}
     </option>

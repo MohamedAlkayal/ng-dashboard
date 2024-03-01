@@ -1,31 +1,84 @@
-<div class="d-flex gap-5 pt-4 my-5">
+<div *ngIf="order" class="d-flex gap-5 pt-4 my-5">
   <div style="width: 700px" class="d-flex align-items-end flex-column mt-5">
     <app-input
+      [value]="order.trackingNumber"
       lable="Tracking Number"
       [disabled]="true"
       [type]="'text'"
     ></app-input>
-    <app-input lable="Full Name" [disabled]="true" [type]="'text'"></app-input>
-    <app-input lable="Email" [disabled]="true" [type]="'text'"></app-input>
-    <app-input lable="Phone" [disabled]="true" [type]="'number'"></app-input>
-    <!-- <app-input-inner-lable
-      lable="Address"
-      [values]="address"
-      [disabled]="true"
-    ></app-input-inner-lable> -->
     <app-input
+      [value]="order.fullName"
+      lable="Full Name"
+      [disabled]="true"
+      [type]="'text'"
+    ></app-input>
+    <app-input
+      [value]="order.user.email"
+      lable="Email"
+      [disabled]="true"
+      [type]="'text'"
+    ></app-input>
+    <app-input-inner-lable
+      innerLable="+20"
+      [value]="order.user.phones[0]"
+      lable="Phone"
+      [disabled]="true"
+      [type]="'number'"
+    ></app-input-inner-lable>
+
+    <app-input-inner-lable
+      lable="Address"
+      innerLable="state"
+      [value]="order.address.state"
+      [disabled]="true"
+    >
+    </app-input-inner-lable>
+    <app-input-inner-lable
+      lable=""
+      innerLable="City"
+      [value]="order.address.city"
+      [disabled]="true"
+    >
+    </app-input-inner-lable>
+    <app-input-inner-lable
+      lable=""
+      innerLable="Street"
+      [value]="order.address.street"
+      [disabled]="true"
+    >
+    </app-input-inner-lable>
+    <app-input-inner-lable
+      lable="Voucher"
+      innerLable="Code"
+      [value]="'test1'"
+      [disabled]="true"
+    >
+    </app-input-inner-lable>
+    <app-input-inner-lable
+      lable=""
+      innerLable="Type"
+      [value]="'Flat'"
+      [disabled]="true"
+    >
+    </app-input-inner-lable>
+    <app-input-inner-lable
+      lable=""
+      innerLable="Amount"
+      [value]="'10'"
+      [disabled]="true"
+    >
+    </app-input-inner-lable>
+    <app-input
+      [value]="order.paymentMethod"
       lable="Payment Method"
       [disabled]="true"
       [type]="'text'"
     ></app-input>
-
-    <app-card-cta
-      [config]="{
-        data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-        color: 'secondary',
-        text: 'Freeze'
-      }"
-    ></app-card-cta>
+    <app-invoice
+      lable="Invoice"
+      [_invoice]="order.products"
+      [order]="order"
+    ></app-invoice>
     <app-card-cta
       [config]="{
         data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
@@ -37,23 +90,8 @@
       [config]="{
         data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
         color: 'danger',
-        text: 'Delete'
+        text: 'Cancel'
       }"
     ></app-card-cta>
-  </div>
-
-  <!-- ####################################### -->
-  <!-- ####################################### -->
-  <!-- ####################################### -->
-
-  <div class="mt-5" style="width: 400px">
-    <app-card-prompt
-      [config]="{
-        data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-        color: 'success',
-        text: 'Apply Changes'
-      }"
-      [isDisabled]="true"
-    ></app-card-prompt>
   </div>
 </div>
