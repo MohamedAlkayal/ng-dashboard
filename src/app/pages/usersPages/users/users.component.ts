@@ -8,7 +8,7 @@ import { FilterRangeComponent } from '../../../components/filtersComponents/filt
 import { TableControlsComponent } from '../../../components/tableComponents/table-controls/table-controls.component';
 import { AdminUserServices } from '../../../services/admin-user.service';
 import { locations } from '../../../utilities/geoData';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PaginationComponent } from '../../../components/tableComponents/pagination/pagination.component';
 import {
   FormControl,
@@ -38,7 +38,8 @@ import {
 export class UsersComponent {
   constructor(
     private usersService: AdminUserServices,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   search: any;
@@ -57,16 +58,20 @@ export class UsersComponent {
   });
   filtrationData: {} = {};
   data: {} = {};
+
   ageValues(data: any) {
     console.log(data);
     this.data = data;
   }
+
   handelSubmit(data: any) {
-    this.filtrationData = { ...this.formGroup.value, ...this.data };
-    console.log(this.filtrationData);
-    console.log(this.formGroup.value);
+    this.search = this.formGroup.get('search')?.value;
+    this.gender = this.formGroup.get('gender')?.value;
+    this.governorate = this.formGroup.get('governorate')?.value;
+    this.city = this.formGroup.get('city')?.value;
+    this.sortBy = this.formGroup.get('sortBy')?.value;
     this.getUsers(
-      this.currentPage,
+      1,
       this.pageLimit,
       this.search,
       this.gender,
@@ -75,6 +80,17 @@ export class UsersComponent {
       this.sortBy,
       ''
     );
+    this.router.navigate([`/admin/users`], {
+      queryParams: {
+        page: 1,
+        search: this.search,
+        gender: this.gender,
+        governorate: this.governorate,
+        city: this.city,
+        sortBy: this.sortBy,
+        age: '',
+      },
+    });
   }
   usersForm = 'test';
   tableCols = [
