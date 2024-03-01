@@ -127,9 +127,7 @@ export class OneUserComponent {
   getSelectedGov_2(gov_2: any) {
     console.log(this.formGroup.get('state_2'));
     this.locations.map((l) =>
-      l.governorate === this.formGroup.get('state_2')?.value
-        ? (this.cities_2 = l.cities)
-        : null
-    );
-  }
+      l.governorate === this.formGroup.get('state_2')?.value ? (this.cities_2 = l.cities) : null
+  )}
 }
+

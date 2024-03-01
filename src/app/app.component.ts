@@ -14,6 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AppComponent {
   title = 'dashboard';
+
   constructor(private tokenService: TokenUtilsService,private toaster:ToastrService) {}
 
   user!: any;
@@ -30,3 +31,4 @@ export class AppComponent {
     }, 1);
   }
 }
+
