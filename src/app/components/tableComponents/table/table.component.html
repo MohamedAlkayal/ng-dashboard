@@ -10,6 +10,7 @@
             [(ngModel)]="isAllSelected"
           />
         </th>
+        <th *ngIf="page === 'products'"></th>
         <th *ngFor="let col of cols">{{ col.lable }}</th>
       </tr>
     </thead>
@@ -26,7 +27,17 @@
             type="checkbox"
           />
         </td>
-        <td *ngFor="let col of cols">
+        <td *ngIf="page === 'products'">
+          <div
+            [ngStyle]="{
+              'background-image': 'url(' + row.images[0].url + ')',
+              'background-size': 'cover',
+              width: '64px',
+              height: '64px'
+            }"
+          ></div>
+        </td>
+        <td style="vertical-align: middle" *ngFor="let col of cols">
           <span
             class="text-center"
             style="padding: 2px 5px; border-radius: 4px"

@@ -11,6 +11,10 @@ import { authGuard } from './guards/auth-guard.guard';
 import { AdminComponent } from './layouts/admin/admin.component';
 import { AuthComponent } from './layouts/auth/auth.component';
 import { ErrorComponent } from './layouts/error/error.component';
+import { CategoryComponent } from './pages/categoriesPages/categories/category.component';
+import { VouchersComponent } from './pages/vouchers/vouchers/vouchers.component';
+import { LogsComponent } from './pages/logs/logs.component';
+import { AdminsComponent } from './pages/adminPages/admins/admins.component';
 
 export const routes: Routes = [
   {
@@ -64,7 +68,6 @@ export const routes: Routes = [
       {
         path: 'products',
         canActivate: [authGuard],
-        component: ProductsComponent,
         children: [
           { path: '', component: ProductsComponent },
           { path: ':product_ID', component: OneProductComponent },
@@ -82,6 +85,26 @@ export const routes: Routes = [
         ],
        title: "Users" ,
 
+      },
+      {
+        path: 'categories',
+        canActivate: [authGuard],
+        children: [{ path: '', component: CategoryComponent }],
+      },
+      {
+        path: 'vouchers',
+        canActivate: [authGuard],
+        children: [{ path: '', component: VouchersComponent }],
+      },
+      {
+        path: 'authorization',
+        canActivate: [authGuard],
+        children: [{ path: '', component: AdminsComponent }],
+      },
+      {
+        path: 'logs',
+        canActivate: [authGuard],
+        children: [{ path: '', component: LogsComponent }],
       },
     ],
   },

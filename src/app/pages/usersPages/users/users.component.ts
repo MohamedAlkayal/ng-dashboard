@@ -8,8 +8,13 @@ import { FilterRangeComponent } from '../../../components/filtersComponents/filt
 import { TableControlsComponent } from '../../../components/tableComponents/table-controls/table-controls.component';
 import { AdminUserServices } from '../../../services/admin-user.service';
 import { locations } from '../../../utilities/geoData';
-import { ActivatedRoute, Router } from '@angular/router';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { PaginationComponent } from '../../../components/tableComponents/pagination/pagination.component';
+import {
+  FormGroup,
+  FormGroupDirective,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-users',
@@ -22,6 +27,8 @@ import { RouterModule } from '@angular/router';
     FilterDropdownComponent,
     FilterRangeComponent,
     TableControlsComponent,
+    PaginationComponent,
+    ReactiveFormsModule,
   ],
   providers: [AdminUserServices],
   templateUrl: './users.component.html',
@@ -30,10 +37,10 @@ import { RouterModule } from '@angular/router';
 export class UsersComponent {
   constructor(
     private usersService: AdminUserServices,
-    private route: ActivatedRoute,
-    private router: Router
+    private route: ActivatedRoute
   ) {}
 
+  usersForm = 'test';
   tableCols = [
     { lable: 'Name', colData: 'fullName' },
     { lable: 'Email', colData: 'email' },
@@ -42,45 +49,35 @@ export class UsersComponent {
     { lable: 'Orders', colData: 'orders' },
     { lable: 'Status', colData: 'isActive' },
   ];
-  // #######
+  // ####### page initiation
   users: any;
   usersCount!: number;
-  pageLimit: number = 20;
-  currentPage: number = 0;
+  pageLimit: number = 15;
+  itemsCount!: number;
+  currentPage!: number;
   pagesCount!: number;
 
   // #######
   selectedItems: string[] = [];
+  // ####### filters
   governorates: string[] = [];
+  selectedGov: any = '';
   selectedCities: string[] = [];
-  selectedGov!: any;
-  // #######
+  // search: any = '';
+  // gender: string = '';
+
+  applyFilters() {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.currentPage = params['page'] ? +params['page'] : 1;
     });
     locations.map((l) => this.governorates.push(l.governorate));
-    this.usersService.getAllUsers(1, 20, 'createdAt').subscribe({
-      next: (data: any) => {
-        this.users = data.users;
-        this.usersCount = data.totalCount;
-        this.users.map((u: any) => {
-          u.email = u.email.toLowerCase();
-          u.selected = false;
-          u.fullName = u.firstName + ' ' + u.lastName;
-          u.mainPhone = u.phones[0];
-          u.isActive = u.active ? 'Active' : 'Suspended';
-          u.city = u.address_1.city;
-        });
-        this.pagesCount = Math.ceil(this.usersCount / this.pageLimit);
-      },
-      error: (err) => console.log(err),
-    });
+    this.getUsers(this.currentPage, this.pageLimit);
   }
 
-  getSelected(data: any) {
-    this.selectedItems = data;
+  getSelected(selectedIDs: any) {
+    this.selectedItems = selectedIDs;
   }
 
   getSelectedGov(gov: any) {
@@ -88,12 +85,12 @@ export class UsersComponent {
     this.selectedCities = this.selectedGov.cities;
   }
 
-  getPage(data: any) {
-    console.log(data);
+  getPage(pageNumber: any) {
+    this.getUsers(pageNumber, this.pageLimit);
   }
 
-  getUsers() {
-    this.usersService.getAllUsers(this.currentPage, 20, 'createdAt').subscribe({
+  getUsers(p: number, l: number) {
+    this.usersService.getAllUsers(p, l, 'createdAt').subscribe({
       next: (data: any) => {
         this.users = data.users;
         this.usersCount = data.totalCount;
@@ -104,7 +101,9 @@ export class UsersComponent {
           u.mainPhone = u.phones[0];
           u.isActive = u.active ? 'Active' : 'Suspended';
           u.city = u.address_1.city;
+          
         });
+        this.itemsCount = this.users.length;
         this.pagesCount = Math.ceil(this.usersCount / this.pageLimit);
       },
       error: (err) => console.log(err),

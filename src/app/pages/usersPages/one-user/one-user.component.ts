@@ -1,322 +1,247 @@
-import { HttpParams } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { RouterModule, Route, ActivatedRoute } from '@angular/router';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { RouterModule, Route, ActivatedRoute, Router } from '@angular/router';
 import { InputComponent } from '../../../components/formComponents/input/input.component';
 import { InputInnerLableComponent } from '../../../components/formComponents/input-inner-lable/input-inner-lable.component';
 import { CardPromptComponent } from '../../../components/cardComponents/card-prompt/card-prompt.component';
 import { CardCtaComponent } from '../../../components/cardComponents/card-cta/card-cta.component';
+import { AdminUserServices } from '../../../services/admin-user.service';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+
+import { governorates, locations } from '../../../utilities/geoData';
+import { InputInnerDropdownComponent } from '../../../components/formComponents/input-inner-dropdown/input-inner-dropdown.component';
+import { CommonModule } from '@angular/common';
+import { PromptConfirmComponent } from '../../../components/messagesComponents/prompt-confirm/prompt-confirm.component';
+import { PromptDangerComponent } from '../../../components/messagesComponents/prompt-danger/prompt-danger.component';
 
 @Component({
   selector: 'app-one-user',
   standalone: true,
+  providers: [AdminUserServices],
   imports: [
+    ReactiveFormsModule,
     RouterModule,
     InputComponent,
     InputInnerLableComponent,
     CardPromptComponent,
     CardCtaComponent,
+    InputInnerDropdownComponent,
+    CommonModule,
+    PromptConfirmComponent,
+    PromptDangerComponent,
   ],
   templateUrl: './one-user.component.html',
   styleUrl: './one-user.component.css',
 })
 export class OneUserComponent {
-  constructor(private route: ActivatedRoute) {}
+  @Input() isInputTouched: boolean = false;
+  @Input() innerInputTouched: boolean = false;
+  @Output() userData = new EventEmitter();
 
+  constructor(
+    private route: ActivatedRoute,
+    private userService: AdminUserServices,
+    private myrouter: Router
+  ) {}
+
+  user: any;
   userID!: string;
-
-  user: any = {
-    _id: '65d28902e66358a2bbe92202',
-    firstName: 'Mu',
-    lastName: 'Young',
-    email: 'MuYoung@g.com',
-    active: true,
-    phones: [1090562346],
-    wishlist: [],
-    orders: [
-      '65d2989c8b1b375206b1b1e6',
-      '65d299858b1b375206b1b1fe',
-      '65d32d58c1cc42297fe4f6c3',
-      '65d32dcc8c54c9254fa34844',
-    ],
-    dateOfBirth: '1997-06-27',
-    address1: {
-      street: '5th',
-      city: 'Fayed',
-      state: 'Ismailia',
-    },
-    address2: {
-      street: '',
-      city: '',
-      state: '',
-    },
-    cart: [],
-    createdAt: '2024-02-18T22:47:30.534Z',
-    updatedAt: '2024-02-19T10:30:36.120Z',
-    __v: 0,
+  locations: any[] = locations;
+  governorates: string[] = governorates;
+  cities_1: any;
+  cities_2: any;
+  isDisabeled: boolean = true;
+  action: string = '';
+  promptText: string = '';
+  suspensionObject: any = {
+    data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+    color: 'warning',
   };
-
-  locations: any[] = [
-    {
-      governorate: 'Alexandria',
-      cities: [
-        'Alexandria',
-        'Borg El Arab',
-        'Kafr El Dawwar',
-        'Damanhur',
-        'Rosetta',
-      ],
-    },
-    {
-      governorate: 'Aswan',
-      cities: ['Aswan', 'Kom Ombo', 'Edfu', 'Abu Simbel', 'Nasr al-Nuba'],
-    },
-    {
-      governorate: 'Asyut',
-      cities: ['Asyut', 'Sohag', 'Dairut', 'Abnub', 'Al Badari'],
-    },
-    {
-      governorate: 'Beheira',
-      cities: [
-        'Damanhur',
-        'Rashid',
-        'Kafr El Dawwar',
-        'Abu Hummus',
-        'Kom Hamada',
-      ],
-    },
-    {
-      governorate: 'Beni Suef',
-      cities: ['Beni Suef', 'El Wasta', 'Bibah', 'Naser', 'Al Fashn'],
-    },
-    {
-      governorate: 'Cairo',
-      cities: [
-        'Cairo',
-        'Giza',
-        'Shubra El-Kheima',
-        'Helwan',
-        '6th of October City',
-      ],
-    },
-    {
-      governorate: 'Dakahlia',
-      cities: ['Mansoura', 'Mit Ghamr', 'Talkha', 'Agami', 'Sherbin'],
-    },
-    {
-      governorate: 'Damietta',
-      cities: [
-        'Damietta',
-        'Kafr El Shaykh Saad',
-        'Ras El Bar',
-        'Faraskur',
-        'Zarqa',
-      ],
-    },
-    {
-      governorate: 'Faiyum',
-      cities: ['Faiyum', 'Sinnuris', 'Tamiya', 'Ihnasia', 'Abu al-Matamir'],
-    },
-    {
-      governorate: 'Gharbia',
-      cities: ['Tanta', 'Kafr El Zayat', 'Zefta', 'Basyoun', 'Mehallet Qasr'],
-    },
-    {
-      governorate: 'Giza',
-      cities: [
-        'Giza',
-        '6th of October City',
-        'Sheikh Zayed City',
-        'Al Haram',
-        'Imbaba',
-      ],
-    },
-    {
-      governorate: 'Ismailia',
-      cities: ['Ismailia', 'Fayed', 'Arbaeen', 'Ataqah', 'El Qantara'],
-    },
-    {
-      governorate: 'Kafr El Sheikh',
-      cities: ['Kafr El Sheikh', 'Desouk', 'Metoubes', 'Biyala', 'Fouh'],
-    },
-    {
-      governorate: 'Luxor',
-      cities: ['Luxor', 'Karnak', 'New Karnak', 'Armant', 'Esna'],
-    },
-    {
-      governorate: 'Matrouh',
-      cities: ['Marsa Matrouh', 'Siwa', 'El Hamam', 'El Alamein', 'Siwah'],
-    },
-    {
-      governorate: 'Minya',
-      cities: ['Minya', 'Beni Mazar', 'Mallawi', 'Deir Mawas', 'Maghagha'],
-    },
-    {
-      governorate: 'Monufia',
-      cities: ['Shebin El Kom', 'Ashmoun', 'Menouf', 'Sadat City', 'Quesna'],
-    },
-    {
-      governorate: 'New Valley',
-      cities: ['Kharga', 'Dakhla', 'Farafra', 'Baris', 'Mut'],
-    },
-    {
-      governorate: 'North Sinai',
-      cities: ['El Arish', 'Rafah', 'Bir al-Abed', 'Nakhl', 'Sheikh Zuweid'],
-    },
-    {
-      governorate: 'Port Said',
-      cities: ['Port Said', 'Port Fuad', 'El-Manakh', 'El-Zohour', 'El-Salam'],
-    },
-    {
-      governorate: 'Qena',
-      cities: ['Qena', 'Luxor', 'Nag Hammadi', 'Dendera', 'Farshout'],
-    },
-    {
-      governorate: 'Qalyubia',
-      cities: ['Benha', 'Qalyub', 'Shubra El-Kheima', 'Banha', 'Khanka'],
-    },
-    {
-      governorate: 'Red Sea',
-      cities: [
-        'Hurghada',
-        'Sharm El Sheikh',
-        'El Gouna',
-        'Safaga',
-        'Marsa Alam',
-      ],
-    },
-    {
-      governorate: 'Sharqia',
-      cities: [
-        'Zagazig',
-        'Al-Ibrahimiyah',
-        'Abu Hammad',
-        'Al-Qanayat',
-        'Al-Husayniyah',
-      ],
-    },
-    {
-      governorate: 'Sohag',
-      cities: ['Sohag', 'Gerga', 'Gohina', 'Dar El Salam', 'Al Maragha'],
-    },
-    {
-      governorate: 'South Sinai',
-      cities: [
-        'Sharm El Sheikh',
-        'Dahab',
-        'Nuweiba',
-        'Saint Catherine',
-        'Ras Sidr',
-      ],
-    },
-    {
-      governorate: 'Suez',
-      cities: ['Suez', 'Ismailia', 'Fayed', 'Arbaeen', 'Ataqah'],
-    },
-  ];
-  governments: string[] = [
-    'Alexandria',
-    'Aswan',
-    'Asyut',
-    'Beheira',
-    'Beni Suef',
-    'Cairo',
-    'Dakahlia',
-    'Damietta',
-    'Faiyum',
-    'Gharbia',
-    'Giza',
-    'Ismailia',
-    'Kafr El Sheikh',
-    'Luxor',
-    'Matrouh',
-    'Minya',
-    'Monufia',
-    'New Valley',
-    'North Sinai',
-    'Port Said',
-    'Qena',
-    'Qalyubia',
-    'Red Sea',
-    'Sharqia',
-    'Sohag',
-    'South Sinai',
-    'Suez',
-  ];
-  selectedCities1: string[] = [];
-  selectedGov1!: any;
-  selectedCities2: string[] = [];
-  selectedGov2!: any;
-
   ngOnInit() {
     this.userID = this.route.snapshot.params['user_ID'];
-    this.user._phones = [
-      {
-        lable: '+20',
-        data: this.user.phones[0],
-        type: 'number',
+    this.userService.getUser(this.userID).subscribe({
+      next: (data) => {
+        this.user = data;
+        this.user.email = this.user.email.toLowerCase();
+        // this.cities_1 = this.locations.find(
+        //   (l) => l.governorate === this.user.address_1?.state
+        // )?.cities;
+        // this.cities_2 = this.locations.find(
+        //   (l) => l.governorate === this.user.address_2?.state
+        // )?.cities;
+        // this.formGroup.patchValue({_id: this.user._id,firstName:this.user.firstName,lastName:this.user.lastName})
+        const birthDate = getBirthDateFromAge(this.user.age);
+        this.formGroup.get('_id')?.patchValue(this.user._id);
+        this.formGroup.get('firstName')?.patchValue(this.user.firstName);
+        this.formGroup.get('lastName')?.patchValue(this.user.lastName);
+        this.formGroup.get('email')?.patchValue(this.user.email);
+        this.formGroup.get('age')?.patchValue(birthDate);
+        this.formGroup.get('gender')?.patchValue(this.user.gender);
+        this.formGroup.get('phone_1')?.patchValue(this.user.phones[0]);
+        this.formGroup.get('phone_2')?.patchValue(this.user.phones[1]);
+        this.formGroup.get('state_1')?.patchValue(this.user.address_1.state);
+        this.user.address_2
+          ? this.formGroup.get('state_2')?.patchValue(this.user.address_2.state)
+          : null;
+
+        this.formGroup.get('street_1')?.patchValue(this.user.address_1.street);
+        this.user.address_2
+          ? this.formGroup
+              .get('street_2')
+              ?.patchValue(this.user.address_2.street)
+          : null;
+        this.getSelectedGov_1(this.user.address_1.state);
+        this.formGroup.get('city_1')?.patchValue(this.user.address_1.city);
+        this.user.address_2
+          ? this.formGroup.get('city_2')?.patchValue(this.user.address_2.city)
+          : null;
+        this.promptText =
+          'You are trying to modify user ' + this.user.firstName;
+        if (this.user.active) {
+          this.suspensionObject.text = 'Suspend';
+          this.action = 'suspend';
+        } else {
+          console.log(this.user.active);
+          this.suspensionObject.text = 'Unsuspend';
+          this.action = 'unsuspend';
+        }
       },
-      {
-        lable: '+20',
-        data: this.user.phones[1] || null,
-        type: 'number',
-      },
-    ];
-    this.user._address1 = [
-      {
-        lable: 'State',
-        data: this.user.address1.state,
-        type: 'text',
-        isDropdown: true,
-        options: this.governments,
-      },
-      {
-        lable: 'City',
-        data: this.user.address1.city,
-        type: 'text',
-        isDropdown: true,
-        options:
-          this.locations.find((l) => l.governorate == this.user.address1.state)
-            .cities || [],
-      },
-      {
-        lable: 'Street',
-        data: this.user.address1.street,
-        type: 'text',
-        isDropdown: false,
-      },
-    ];
-    this.user._address2 = [
-      {
-        lable: 'State',
-        data: this.user.address2.state,
-        type: 'text',
-        isDropdown: true,
-        options: this.governments,
-      },
-      {
-        lable: 'City',
-        data: this.user.address2.city,
-        type: 'text',
-        isDropdown: true,
-        options:
-          this.locations.find((l) => l.governorate == this.user.address1.state)
-            .cities || [],
-      },
-      {
-        lable: 'Street',
-        data: this.user.address2.street,
-        type: 'text',
-        isDropdown: false,
-      },
-    ];
+    });
+    console.log(this.suspensionObject);
   }
 
-  getSelectedGov1(gov: any) {
-    this.selectedGov1 = this.locations.find((l) => l.governorate == gov);
-    this.user._address1[1].options = this.selectedGov1.cities;
+  formGroup = new FormGroup({
+    _id: new FormControl('', [Validators.required]),
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required]),
+    age: new FormControl('', [Validators.required]),
+    gender: new FormControl('', [Validators.required]),
+    phone_1: new FormControl('', [Validators.required]),
+    phone_2: new FormControl('', [Validators.required]),
+    street_1: new FormControl('', [Validators.required]),
+    city_1: new FormControl('', [Validators.required]),
+    state_1: new FormControl('', [Validators.required]),
+    street_2: new FormControl('', [Validators.required]),
+    city_2: new FormControl('', [Validators.required]),
+    state_2: new FormControl('', [Validators.required]),
+  });
+
+  onSubmit(e: any) {
+    e.preventDefault();
+    console.log(this.formGroup.value);
   }
-  getSelectedGov2(gov: any) {
-    this.selectedGov2 = this.locations.find((l) => l.governorate == gov);
-    this.user._address2[1].options = this.selectedGov2.cities;
+
+  sendUserData(e: any) {
+    this.userData.emit(this.user);
   }
+  // to undisable buttons
+  innerinputTouched(e: any) {
+    this.isDisabeled = e;
+  }
+  InputTouched(e: any) {
+    this.isDisabeled = e;
+  }
+  handleSuspending(x: any) {
+    if (this.user.active) {
+      this.suspensionObject.text = 'Suspend';
+      this.action = 'suspend';
+    } else {
+      this.suspensionObject.text = 'Unsuspend';
+      this.action = 'unsuspend';
+    }
+  }
+  handleDeleting(x: any) {
+    this.action = 'delete';
+  }
+
+  handleUpdate(x: any) {
+    this.userService.updateUser(this.userID, this.formGroup.value).subscribe({
+      next(x) {
+        console.log(x);
+      },
+      error(x) {
+        console.log(x);
+      },
+    });
+  }
+
+  getSelectedGov_1(gov_1: any) {
+    this.locations.map((l) =>
+      l.governorate === this.formGroup.get('state_1')?.value
+        ? (this.cities_1 = l.cities)
+        : null
+    );
+  }
+
+  getSelectedGov_2(gov_2: any) {
+    this.locations.map((l) => {
+      return l.governorate === this.formGroup.get('state_2')?.value
+        ? (this.cities_2 = l.cities)
+        : null;
+    });
+  }
+  handleConfirming(action: any) {
+    switch (action) {
+      case 'suspend':
+        this.userService.deactivateUsers([this.userID]).subscribe({
+          next(x) {
+            console.log(x);
+          },
+          error(x) {
+            console.log(x);
+          },
+        });
+        break;
+      case 'unsuspend':
+        this.userService.activateUsers([this.userID]).subscribe({
+          next(x) {
+            console.log(x);
+          },
+          error(x) {
+            console.log(x);
+          },
+        });
+        break;
+      case 'delete':
+        this.userService.deleteUsers([this.userID]).subscribe({
+          next(x) {
+            console.log(x);
+          },
+          error(x) {
+            console.log(x);
+          },
+        });
+        break;
+
+      default:
+        break;
+    }
+  }
+}
+function getBirthDateFromAge(age: number): string {
+  // Get the current date
+  const currentDate: Date = new Date();
+
+  // Calculate the birth date by subtracting the age from the current date
+  const birthDate: Date = new Date(
+    currentDate.getTime() - age * 365 * 24 * 60 * 60 * 1000
+  ); // Assuming a year has 365 days
+
+  // Extract day, month, and year from the birth date
+  const day: number = birthDate.getDate();
+  const month: number = Math.floor(Math.random() * 12);
+  const year: number = birthDate.getFullYear();
+
+  // Format the birth date as a string in 'dd mm yyyy' format
+  const birthDateStr: string = `${year}-${month
+    .toString()
+    .padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+
+  return birthDateStr;
 }

@@ -1,17 +1,20 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-prompt-confirm',
   standalone: true,
   imports: [],
   templateUrl: './prompt-confirm.component.html',
-  styles: ``
+  styles: ``,
 })
 export class PromptConfirmComponent {
-@Output() ConfirmUpdated = new EventEmitter();
-Confirm(){
-  // this.ConfirmUpdated.emit()
-  console.log("yeeeessss");
+  @Output() ConfirmUpdated = new EventEmitter();
+  @Input() promptText: string = '';
   
-}
+  Confirm() {
+    this.ConfirmUpdated.emit();
+  }
+  onSubmit(e:any){
+    console.log(e)
+  }
 }

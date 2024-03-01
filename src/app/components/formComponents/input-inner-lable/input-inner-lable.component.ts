@@ -1,29 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-input-inner-lable',
   standalone: true,
-  imports: [FormsModule, CommonModule, MatIcon],
+  imports: [FormsModule, CommonModule, MatIcon,ReactiveFormsModule],
   templateUrl: './input-inner-lable.component.html',
   styles: ``,
 })
 export class InputInnerLableComponent {
-  @Input() values!: any;
-  @Input() lable: any;
+  @Input()control!:FormControl
+
+  @Input() value!: any;
+  @Input() lable!: string;
+  @Input() innerLable!: string;
+  @Input() type!: string;
   @Input() disabled: boolean = false;
-  @Output() inputValue = new EventEmitter<string>();
-  @Output() dropdownEmmiter = new EventEmitter<string>();
 
   ngOnInit() {}
-
-  onOptionSelect(data: any) {
-    this.dropdownEmmiter.emit(data);
-  }
-
-  onValueChange(data: any) {
-    this.inputValue.emit(this.values);
-  }
 }

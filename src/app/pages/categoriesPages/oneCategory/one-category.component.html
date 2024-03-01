@@ -1,0 +1,23 @@
+<div style="width: 700px" class="d-flex align-items-end flex-column h-100">
+  <!-- <app-input lable="Category Name" placeholder="Category Name"></app-input> -->
+  <!-- <app-input-textarea
+    lable="Description"
+    placeholder="Category Description"
+    (messageSent)="onTextAreaChange($event)"
+  ></app-input-textarea> -->
+  <app-input-keywords
+    label="Subcategories"
+    [keywords]="currentFieldInfo.subCategories"
+    placeholder="New Subcategory"
+    (modified)="onKeyWordChange($event)"
+  ></app-input-keywords>
+  <app-card-prompt
+    [config]="cardInfo"
+    [isDisabled]="isDisabled"
+    (cancel)="clickedCancel()"
+  ></app-card-prompt>
+  <app-prompt-confirm
+    [promptText]="promptText"
+    (ConfirmUpdated)="handlePromptConfirm()"
+  ></app-prompt-confirm>
+</div>

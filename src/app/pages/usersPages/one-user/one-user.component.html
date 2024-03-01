@@ -1,71 +1,142 @@
-<div class="d-flex gap-5 p-3">
-  <div style="width: 700px" class="d-flex align-items-end flex-column mt-5">
-    <app-input
-      lable="Product ID"
-      [type]="'text'"
-      [disabled]="true"
-      [value]="user._id"
-    ></app-input>
-    <app-input
-      lable="First Name"
-      [type]="'text'"
-      [value]="user.firstName"
-    ></app-input>
-    <app-input
-      lable="Last Name"
-      [type]="'text'"
-      [value]="user.lastName"
-    ></app-input>
-    <app-input lable="Email" [type]="'text'" [value]="user.email"></app-input>
-    <app-input
-      lable="Date Of Birth"
-      [type]="'date'"
-      [value]="user.dateOfBirth"
-    ></app-input>
-    <app-input-inner-lable lable="Phone Numbers" [values]="user._phones">
-    </app-input-inner-lable>
-    <app-input-inner-lable
-      lable="Address 1"
-      [values]="user._address1"
-      (dropdownEmmiter)="getSelectedGov1($event)"
-    >
-    </app-input-inner-lable>
-    <app-input-inner-lable
-      lable="Address 2"
-      [values]="user._address2"
-      (dropdownEmmiter)="getSelectedGov2($event)"
-    >
-    </app-input-inner-lable>
-    <app-card-cta
-      [config]="{
-        data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-        color: 'light',
-        text: 'View Orders'
-      }"
-    ></app-card-cta>
-    <app-card-cta
-      [config]="{
-        data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-        color: 'warning',
-        text: 'Suspend'
-      }"
-    ></app-card-cta>
-    <app-card-cta
-      [config]="{
-        data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-        color: 'danger',
-        text: 'Delete'
-      }"
-    ></app-card-cta>
+<form [formGroup]="formGroup">
+  <div *ngIf="user" class="d-flex gap-5 pt-4 my-5">
+    <div style="width: 700px" class="d-flex align-items-end flex-column mt-5">
+      <app-input
+        lable="Product ID"
+        [type]="'text'"
+        [disabled]="true"
+        (touched)="InputTouched($event)"
+        [control]="formGroup.controls._id"
+      ></app-input>
+      <app-input
+        lable="First Name"
+        [type]="'text'"
+        (touched)="InputTouched($event)"
+        [control]="formGroup.controls.firstName"
+      ></app-input>
+      <app-input
+        lable="Last Name"
+        [type]="'text'"
+        (touched)="InputTouched($event)"
+        [control]="formGroup.controls.lastName"
+      ></app-input>
+      <app-input
+        lable="Email"
+        [type]="'text'"
+        (touched)="InputTouched($event)"
+        [control]="formGroup.controls.email"
+      ></app-input>
+      <app-input
+        lable="Date Of Birth"
+        [type]="'date'"
+        (touched)="InputTouched($event)"
+        [control]="formGroup.controls.age"
+      ></app-input>
+      <app-input
+        lable="Gender"
+        [type]="'text'"
+        (touched)="InputTouched($event)"
+        [control]="formGroup.controls.gender"
+      ></app-input>
+      <app-input-inner-lable
+        lable="Phones"
+        innerLable="+20"
+        type="number"
+        (isInnerInputToched)="innerinputTouched($event)"
+        [control]="formGroup.controls.phone_1"
+      >
+      </app-input-inner-lable>
+      <app-input-inner-lable
+        lable=""
+        innerLable="+20"
+        type="number"
+        (isInnerInputToched)="innerinputTouched($event)"
+        [control]="formGroup.controls.phone_2"
+        [disabled]="true"
+      >
+      </app-input-inner-lable>
+      <app-input-inner-dropdown
+        [options]="governorates"
+        lable="Address 1"
+        innerLable="State"
+        (selectedEmitter)="getSelectedGov_1($event)"
+        [control]="formGroup.controls.state_1"
+      ></app-input-inner-dropdown>
+      <app-input-inner-dropdown
+        [options]="cities_1"
+        lable=""
+        innerLable="City"
+        [control]="formGroup.controls.city_1"
+      ></app-input-inner-dropdown>
+      <app-input-inner-lable
+        lable=""
+        innerLable="Street"
+        type="string"
+        (isInnerInputToched)="innerinputTouched($event)"
+        [control]="formGroup.controls.street_1"
+      >
+      </app-input-inner-lable>
+      <app-input-inner-dropdown
+        [options]="governorates"
+        lable="Address 2"
+        innerLable="State"
+        (selectedEmitter)="getSelectedGov_2($event)"
+        [control]="formGroup.controls.state_2"
+      ></app-input-inner-dropdown>
+      <app-input-inner-dropdown
+        [options]="cities_2"
+        lable=""
+        innerLable="City"
+        [control]="formGroup.controls.city_2"
+      ></app-input-inner-dropdown>
+      <app-input-inner-lable
+        lable=""
+        innerLable="Street"
+        type="string"
+        (isInnerInputToched)="innerinputTouched($event)"
+        [control]="formGroup.controls.street_2"
+      >
+      </app-input-inner-lable>
+
+      <app-card-cta
+        [config]="{
+          data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+          color: 'light',
+          text: 'View Orders'
+        }"
+      ></app-card-cta>
+      <app-card-cta
+        [config]="suspensionObject"
+        (clicked)="handleSuspending($event)"
+      ></app-card-cta>
+      <app-card-cta
+        [config]="{
+          data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+          color: 'danger',
+          text: 'Delete'
+        }"
+        (clicked)="handleDeleting($event)"
+      ></app-card-cta>
+    </div>
+    <div class="mt-5" style="width: 400px">
+      <app-card-prompt
+        [config]="{
+          data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+          color: 'success',
+          text: 'Apply Changes'
+        }"
+        (getUserData)="sendUserData($event)"
+        [isDisabled]="isDisabeled"
+      ></app-card-prompt>
+    </div>
+    <app-prompt-confirm
+      [promptText]="promptText"
+      (ConfirmUpdated)="handleUpdate($event)"
+    ></app-prompt-confirm>
+    <app-prompt-danger
+      [Deleted]="this.user.firstName"
+      [action]="action"
+      (clickedConfirm)="handleConfirming($event)"
+    ></app-prompt-danger>
   </div>
-  <div class="mt-5" style="width: 400px">
-    <app-card-prompt
-      [config]="{
-        data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-        color: 'success',
-        text: 'Apply Changes'
-      }"
-      [isDisabled]="true"
-    ></app-card-prompt>
-  </div>
-</div>
+</form>

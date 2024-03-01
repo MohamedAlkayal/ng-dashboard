@@ -6,6 +6,10 @@ import { InputTwoFieldsComponent } from '../../../components/formComponents/inpu
 import { InputKeywordsComponent } from '../../../components/formComponents/input-keywords/input-keywords.component';
 import { CardCtaComponent } from '../../../components/cardComponents/card-cta/card-cta.component';
 import { InputInnerLableComponent } from '../../../components/formComponents/input-inner-lable/input-inner-lable.component';
+import { AdminOrdersService } from '../../../services/admin-orders.service';
+import { CommonModule } from '@angular/common';
+import { InvoiceComponent } from '../../../components/invoice/invoice.component';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-one-order',
   standalone: true,
@@ -17,26 +21,33 @@ import { InputInnerLableComponent } from '../../../components/formComponents/inp
     InputKeywordsComponent,
     CardCtaComponent,
     InputInnerLableComponent,
+    CommonModule,
+    InvoiceComponent,
   ],
+  providers: [AdminOrdersService],
   templateUrl: './one-order.component.html',
   styleUrl: './one-order.component.css',
 })
 export class OneOrderComponent {
-  address = [
-    {
-      lable: 'State',
-      data: '',
-      type: 'text',
-    },
-    {
-      lable: 'City',
-      data: '',
-      type: 'text',
-    },
-    {
-      lable: 'Street',
-      data: '',
-      type: 'text',
-    },
-  ];
+  constructor(
+    private ordersService: AdminOrdersService,
+    private route: ActivatedRoute
+  ) {}
+
+  orderID!: string;
+  order!: any;
+
+  ngOnInit() {
+    this.orderID = this.route.snapshot.params['order_ID'];
+    this.ordersService.getOne(this.orderID).subscribe({
+      next: (data: any) => {
+        console.log(data);
+        this.order = data.order;
+        this.order.fullName =
+          data.order.user.firstName + ' ' + data.order.user.lastName;
+        this.order.user.email = this.order.user.email.toLowerCase();
+      },
+      error: (err) => console.log(err),
+    });
+  }
 }

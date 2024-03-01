@@ -1,5 +1,5 @@
 .table-wrap {
-  height: calc(100% - 80px);
+  height: calc(100% - 140px);
   overflow-y: scroll;
 }
 
@@ -13,7 +13,7 @@
 td,
 th {
   padding: 16px !important;
-  text-align: center;
+  text-align: start;
 }
 
 td {

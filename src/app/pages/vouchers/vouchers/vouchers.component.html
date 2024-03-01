@@ -1,0 +1,36 @@
+@if(isLoading){
+<div
+  class="spinner-border text-dark"
+  style="width: 5rem; height: 5rem; position: absolute; top: 50%; left: 50%"
+  role="status"
+>
+  <span class="sr-only"></span>
+</div>
+}@else{
+<div class="page">
+  <div class="d-flex gap-3 h-100">
+    <div
+      style="width: 320px"
+      class="border border-color rounded-2 overflow-hidden"
+    >
+      <app-list
+        (selectedComponent)="handleSelectedComponent($event)"
+        (newListItem)="handleNewVoucher($event)"
+        [list]="vouchersFromDb"
+        addingButtonText="Add New Voucher"
+        shownAttr="code"
+      ></app-list>
+    </div>
+    <div
+      class="w-100 p-4 bg-white border border-color rounded-2 overflow-y-scroll"
+    >
+      <app-one-voucher
+        [newVoucher]="newVoucher"
+        [selectedVoucher]="selectedVoucher"
+        (changedVoucher)="handleVoucherChange()"
+      >
+      </app-one-voucher>
+    </div>
+  </div>
+</div>
+` }

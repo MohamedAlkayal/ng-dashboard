@@ -1,0 +1,19 @@
+<main class="page">
+    <div class="row" style="height: 70vh;">
+        <div class="col-md-4 ">
+            <app-table [cols]="tableCols" [page]="'topUsers'" [data]="topUsers"></app-table>
+        </div>
+        <div class="col-md-4 ">
+            <p-chart class="chart" style=" width: 100%;" type="bar" [data]="dataBar" [options]="options"></p-chart>
+        </div>
+        <div class="col-md-4">
+            <p-chart class="chart" style=" width: 100%;" type="pie" [data]="dataPie" [options]="options"></p-chart>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p-chart class="chart" style="width: 100%;" type="line" [data]="dataLine" [options]="options"></p-chart>
+        </div>
+    </div>
+
+</main>

@@ -1,53 +1,24 @@
 <div class="d-flex align-items-start gap-3">
-  <label [for]="lable" class="form-label fw-semibold m-0 pt-1">{{
-    lable
-  }}</label>
-  <div>
-    <div
-      *ngFor="let value of values"
-      class="input-group input-group-sm mb-3 d-flex align-items-center"
-      style="width: 550px"
+  <label [for]="lable" class="form-label fw-semibold m-0 pt-1">
+    {{ lable }}
+  </label>
+  <div
+    class="input-group input-group-sm mb-3 d-flex align-items-center"
+    style="width: 550px"
+  >
+    <span
+      style="width: 65px"
+      class="input-group-text"
+      id="inputGroup-sizing-sm"
+      >{{ innerLable }}</span
     >
-      <div
-        *ngIf="value.isDropdown; else normal"
-        class="input-group input-group-sm d-flex align-items-center"
-      >
-        <label style="width: 65px" class="input-group-text" for="vlaue.data">{{
-          value.lable
-        }}</label>
-        <select
-          [(ngModel)]="value.data"
-          (ngModelChange)="onOptionSelect($event)"
-          class="form-select form-select-sm"
-          id="vlaue.data"
-        >
-          <option>Select option</option>
-          <option
-            *ngFor="let opt of value.options"
-            [selected]="value.data == opt"
-          >
-            {{ opt }}
-          </option>
-        </select>
-      </div>
-
-      <ng-template #normal>
-        <span
-          style="width: 65px"
-          class="input-group-text"
-          id="inputGroup-sizing-sm"
-          >{{ value.lable }}</span
-        >
-        <input
-          [disabled]="disabled"
-          [type]="value.type"
-          class="form-control"
-          [(ngModel)]="value.data"
-          aria-label="Sizing example input"
-          aria-describedby="inputGroup-sizing-sm"
-          (ngModelChange)="onValueChange($event)"
-        />
-      </ng-template>
-    </div>
+    <input
+      [value]="value"
+      [type]="type"
+      class="form-control"
+      aria-label="Sizing example input"
+      aria-describedby="inputGroup-sizing-sm"
+      [formControl]="control"
+    />
   </div>
 </div>

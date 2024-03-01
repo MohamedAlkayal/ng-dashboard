@@ -1,0 +1,18 @@
+<div
+  style="min-height: 600px; height: 100%"
+  class="d-flex flex-column justify-content-between bg-white"
+>
+  <div class="list-group list-group-flush overflow-y-scroll">
+    <button
+      *ngFor="let item of list"
+      type="button"
+      class="list-group-item list-group-item-action py-3"
+      (click)="handelSelect(item._id)"
+    >
+      {{ item[shownAttr] }}
+    </button>
+  </div>
+  <button (click)="newCategoryClick()" class="btn btn-dark btn-sm m-3">
+    {{ addingButtonText }}
+  </button>
+</div>

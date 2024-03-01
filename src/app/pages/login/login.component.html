@@ -1,9 +1,10 @@
 <div class="container h-80 d-flex align-items-center justify-content-center">
-  <div class="w-30 m-auto">
+  <div style="width: 600px" class="m-auto">
     <form
       [formGroup]="loginForm"
       (ngSubmit)="onSubmit()"
-      class="border border-1 border-dark-subtle px-5 pt-5 rounded-4">
+      class="border border-1 border-dark-subtle px-5 pt-5 rounded-4"
+    >
       <div>
         <label for="name" class="form-label">User Name</label>
         <input
@@ -14,15 +15,17 @@
           placeholder="User Name"
           required
         />
-        <div class="alert text-center mt-1 p-2 m-0  rounded-1"
-        [ngClass]="(loginForm.get('username')?.getError('required') &&
-        loginForm.get('username')?.touched)? ' border-danger-subtle bg-danger-subtle':''"
-        >
-        @if(loginForm.get('username')?.getError('required') && loginForm.get('username')?.touched){
-
-        <div class="m-auto">User Name is required</div>
-        }
-      </div>
+        <div style="height: 30px" class="my-2 ps-2">
+          <div
+            *ngIf="
+              loginForm.get('username')?.getError('required') &&
+              loginForm.get('username')?.touched
+            "
+            class="text-danger"
+          >
+            User Name is required
+          </div>
+        </div>
       </div>
       <div>
         <label for="age" class="form-label">Password</label>
@@ -34,41 +37,43 @@
           placeholder="Password"
           required
         />
-        <div class="alert text-center mt-2 p-2 m-0 mb-2 rounded-1"
-        [ngClass]="(loginForm.get('password')?.getError('required') &&
-        loginForm.get('password')?.touched)? ' border-danger-subtle bg-danger-subtle':''"
-        >
-        @if(loginForm.get('password')?.getError('required') &&
-        loginForm.get('password')?.touched){
-        <div class="mx-auto p-0">Password is required</div>
-        }
+        <div style="height: 30px" class="my-2 ps-2">
+          <div
+            *ngIf="
+              loginForm.get('password')?.getError('required') &&
+              loginForm.get('password')?.touched
+            "
+            class="text-danger"
+          >
+            Password is required
+          </div>
+        </div>
       </div>
-       </div>
-      <button 
-      type="submit" 
-      class="btn btn-dark w-100"
-      [ngClass]="(isLoading)? ' disabled':''"
+      <button
+        type="submit"
+        class="btn btn-dark w-100"
+        [ngClass]="isLoading ? ' disabled' : ''"
+        [disabled]="isLoading"
       >
-      @if(isLoading){
-        <span
-        class="spinner-grow spinner-grow-sm"
-        role="status"
-        aria-hidden="true"
+        @if(isLoading){
+        <div
+          style="width: 12px; height: 12px"
+          class="spinner-border"
+          role="status"
         >
-      </span>
-    } 
-    Login
-  </button>
-  <div
-    class="alert mt-2 p-2 rounded-1 text-center "
-    [ngClass]="(!isValid)? 'border-danger-subtle bg-danger-subtle ':''"
-    >
-  @if (!isValid ) {
-    <span class="m-auto ">
-      In valid Credential "Only admin can access"
-    </span>
-  }
-  </div>
-</form>
+          <span class="sr-only"></span>
+        </div>
+        }@else { Login }
+      </button>
+      <div style="height: 38px" class="mt-3 ps-2 text-center">
+        <span *ngIf="!isValid" class="text-danger">
+          Invalid Credential Only admin can access
+        </span>
+      </div>
+    </form>
+    <p class="p-3 text-center">
+      This page is for authorized admins only, if you think you should not be
+      here please inform us on example&#64;mail.com
+    </p>
   </div>
 </div>

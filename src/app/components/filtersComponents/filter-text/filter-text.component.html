@@ -1,12 +1,4 @@
 <div class="reg mb-4">
-  <label for="inpt" class="form-label">{{ lable }}</label>
-  <input
-    id="inpt"
-    [(ngModel)]="inptValue"
-    (ngModelChange)="onValueChange($event)"
-    [type]="type"
-    class="form-control"
-  />
+  <label [for]="lable" class="form-label">{{ lable }}</label>
+  <input [id]="lable" [type]="type" class="form-control" />
 </div>
-
-

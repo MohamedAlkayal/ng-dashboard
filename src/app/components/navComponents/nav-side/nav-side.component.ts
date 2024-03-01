@@ -2,13 +2,14 @@ import { CommonModule, NgClass } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { myMatchOptions } from '../../../utilities/IsActiveMatchOptions';
 
 @Component({
   selector: 'app-nav-side',
   standalone: true,
   imports: [RouterModule, NgClass, CommonModule, MatIconModule],
   templateUrl: './nav-side.component.html',
-  styleUrl: './nav-side.component.css',
+  styles: '',
 })
 export class NavSideComponent {
   constructor(private route: Router) {}
@@ -22,6 +23,10 @@ export class NavSideComponent {
       orders: boolean;
       products: boolean;
       categories: boolean;
+      vouchers: boolean;
+      admin: boolean;
     };
   };
+
+  myMatchOptions = myMatchOptions;
 }
