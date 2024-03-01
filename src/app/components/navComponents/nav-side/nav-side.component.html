@@ -18,8 +18,13 @@
         class="p-3 ps-4"
         *ngIf="user.authorities.orders"
         routerLinkActive="bg-dark text-light"
+        [routerLinkActiveOptions]="myMatchOptions"
       >
-        <a routerLink="orders" class="d-flex align-items-center gap-3">
+        <a
+          routerLink="orders"
+          [queryParams]="{ page: '1' }"
+          class="d-flex align-items-center gap-3"
+        >
           <mat-icon> local_shipping </mat-icon>
           <span>Orders</span>
         </a>

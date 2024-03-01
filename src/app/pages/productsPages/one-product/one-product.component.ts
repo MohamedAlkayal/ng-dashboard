@@ -5,7 +5,16 @@ import { InputTextareaComponent } from '../../../components/formComponents/input
 import { InputTwoFieldsComponent } from '../../../components/formComponents/input-two-fields/input-two-fields.component';
 import { InputKeywordsComponent } from '../../../components/formComponents/input-keywords/input-keywords.component';
 import { CardCtaComponent } from '../../../components/cardComponents/card-cta/card-cta.component';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { MatIcon } from '@angular/material/icon';
+import { AdminProductService } from '../../../services/admin-product.service';
+import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-one-product',
@@ -17,84 +26,108 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
     InputTwoFieldsComponent,
     InputKeywordsComponent,
     CardCtaComponent,
+    ReactiveFormsModule,
+    MatIcon,
+    CommonModule,
   ],
+  providers: [AdminProductService],
   templateUrl: './one-product.component.html',
   styleUrl: './one-product.component.css',
 })
 export class OneProductComponent {
+  constructor(
+    private productsService: AdminProductService,
+    private route: ActivatedRoute
+  ) {}
 
+  formGroup = new FormGroup({
+    _id: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required]),
+    images: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
+    modelNumber: new FormControl('', [Validators.required]),
+    manufacturer: new FormControl('', [Validators.required]),
+    countryOfOrigin: new FormControl('', [Validators.required]),
+    brandName: new FormControl('', [Validators.required]),
+    price: new FormControl('', [Validators.required]),
+    discountPercentage: new FormControl('', [Validators.required]),
+    ratings: new FormControl('', [Validators.required]),
+    category: new FormControl('', [Validators.required]),
+    subcategory: new FormControl('', [Validators.required]),
+    keywords: new FormControl('', [Validators.required]),
+    stock: new FormControl('', [Validators.required]),
+    specValue: new FormControl('', [Validators.required]),
+    specKey: new FormControl('', [Validators.required]),
+    color_l_controlKey: new FormControl('', [Validators.required]),
+    color_l_controlValue: new FormControl('', [Validators.required]),
+  });
 
-
-
-  product: any = {
-    _id: '65d631485f85f345043df151',
-    name: 'Premium Android Smartphone',
-    images: [
-      {
-        name: 'main',
-        url: 'https://i.ibb.co/8gtgbn0/57d5b9126319.jpg',
-        _id: {
-          $oid: '65d631485f85f345043df152',
-        },
-      },
-    ],
-    description:
-      "Experience the latest in smartphone technology with our Premium Android Smartphone. With its sleek design, powerful performance, and cutting-edge features, it's the perfect choice for tech enthusiasts.",
-    modelNumber: 'PA2024',
-    manufacturer: 'Tech Innovations Inc.',
-    countryOfOrigin: 'United States',
-    brandName: 'Tech Innovations',
-    colors: [
-      {
-        colorName: 'Midnight Black',
-        quantity: 25,
-        _id: {
-          $oid: '65d631485f85f345043df153',
-        },
-      },
-      {
-        colorName: 'Glacier White',
-        quantity: 15,
-        _id: {
-          $oid: '65d631485f85f345043df154',
-        },
-      },
-      {
-        colorName: 'Ocean Blue',
-        quantity: 10,
-        _id: {
-          $oid: '65d631485f85f345043df155',
-        },
-      },
-    ],
-    price: 899.99,
-    discountPercentage: 5,
-    ratings: {
-      count: 15,
-      average: 4.8,
-    },
-    reviews: [],
-    category: 'Smart Phones',
-    subCategory: 'Gaming Phones',
-    keywords: ['premium', 'android', 'smartphone', 'flagship', 'tech'],
-    frozen: false,
-    tickets: [],
-    createdAt: {
-      $date: '2024-02-21T17:22:16.837Z',
-    },
-    updatedAt: {
-      $date: '2024-02-21T17:22:16.837Z',
-    },
-    __v: 0,
-  };
+  productID!: string;
+  product!: any;
 
   ngOnInit() {
-    this.product._colors = [];
-    this.product._stock = 0;
-    this.product._specs = [];
-    this.product.colors.map((c: any) => {
-      this.product._colors.push({ value: c.colorName, subValue: c.quantity });
-      this.product._stock += c.quantity;
+    this.productID = this.route.snapshot.params['product_ID'];
+    this.productsService.getOneProduct(this.productID).subscribe({
+      next: (data) => {
+        this.product = data;
+        this.product.keywords = [];
+        this.product._images = {
+          img1: {
+            file: null,
+            url:
+              this.product.images[0]?.url === undefined
+                ? null
+                : `url(${this.product.images[0]?.url})`,
+          },
+          img2: {
+            file: null,
+            url:
+              this.product.images[1]?.url === undefined
+                ? null
+                : `url(${this.product.images[1]?.url})`,
+          },
+          img3: {
+            file: null,
+            url:
+              this.product.images[2]?.url === undefined
+                ? null
+                : `url(${this.product.images[2]?.url})`,
+          },
+          img4: {
+            file: null,
+            url:
+              this.product.images[3]?.url === undefined
+                ? null
+                : `url(${this.product.images[3]?.url})`,
+          },
+          img5: {
+            file: null,
+            url:
+              this.product.images[4]?.url === undefined
+                ? null
+                : `url(${this.product.images[4]?.url})`,
+          },
+          img6: {
+            file: null,
+            url:
+              this.product.images[5]?.url === undefined
+                ? null
+                : `url(${this.product.images[5]?.url})`,
+          },
+        };
+      },
     });
+  }
+
+  onFileSelected(event: any, key: string) {
+    console.log('hi');
+    const file = event.target.files[0];
+    this.product._images[key].file = file;
+    console.log(this.product._images[key].file);
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.product._images[key].url = `url(${e.target.result})`;
+    };
+    reader.readAsDataURL(file);
   }
 }

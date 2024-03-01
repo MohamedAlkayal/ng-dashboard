@@ -9,7 +9,7 @@
       <input
         type="text"
         [id]="label"
-        [(ngModel)]="opt.value"
+        [formControl]="control_key"
         class="form-control form-control-sm"
         (ngModelChange)="emmitData()"
         [placeholder]="mainPlaceholder"
@@ -17,7 +17,7 @@
       <input
         type="text"
         class="form-control form-control-sm"
-        [(ngModel)]="opt.subValue"
+        [formControl]="control_value"
         (ngModelChange)="emmitData()"
         [placeholder]="subPlaceholder"
       />

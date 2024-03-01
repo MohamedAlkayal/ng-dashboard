@@ -91,8 +91,9 @@ export class OrdersComponent {
           o.selected = false;
           o.itemsCount = o.products.length;
           o.addressStr = o.address.city + ' ' + o.address.street;
-          o.fullName = o.user.firstName + ' ' + o.user.lastName;
+          o.fullName = o.user?.firstName + ' ' + o.user?.lastName;
         });
+        this.orders = this.orders.filter((o: any) => o.user);
         this.itemsCount = this.orders.length;
         this.pagesCount = Math.ceil(this.ordersCount / this.pageLimit);
       },

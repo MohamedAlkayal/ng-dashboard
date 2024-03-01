@@ -110,7 +110,6 @@ export class OneUserComponent {
     street_2: new FormControl('', [Validators.required]),
     city_2: new FormControl('', [Validators.required]),
     state_2: new FormControl('', [Validators.required]),
-    genericDropDown: new FormControl('', [Validators.required]),
   });
 
   onSubmit(e: any) {

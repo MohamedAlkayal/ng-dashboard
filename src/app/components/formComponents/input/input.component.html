@@ -6,7 +6,6 @@
     class="form-select form-select-sm rounded"
     aria-label="Small select example"
   >
-    <!-- <option selected>Open this select menu</option> -->
     <option *ngFor="let opt of options" value="opt" [selected]="opt === value">
       {{ opt }}
     </option>
