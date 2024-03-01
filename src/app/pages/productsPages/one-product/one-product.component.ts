@@ -5,12 +5,14 @@ import { InputTextareaComponent } from '../../../components/formComponents/input
 import { InputTwoFieldsComponent } from '../../../components/formComponents/input-two-fields/input-two-fields.component';
 import { InputKeywordsComponent } from '../../../components/formComponents/input-keywords/input-keywords.component';
 import { CardCtaComponent } from '../../../components/cardComponents/card-cta/card-cta.component';
+
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+
 import { MatIcon } from '@angular/material/icon';
 import { AdminProductService } from '../../../services/admin-product.service';
 import { ActivatedRoute } from '@angular/router';
@@ -29,6 +31,7 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     MatIcon,
     CommonModule,
+     
   ],
   providers: [AdminProductService],
   templateUrl: './one-product.component.html',

@@ -1,236 +1,51 @@
-
 <form *ngIf="product" [formGroup]="formGroup">
   <div class="d-flex gap-5 pt-4 my-5">
+
     <div style="width: 700px" class="d-flex align-items-end flex-column mt-5">
-      <app-input
-        lable="Product ID"
-        type="text"
-        [control]="formGroup.controls._id"
-      ></app-input>
-      <app-input
-        lable="Product Name"
-        type="text"
-        [control]="formGroup.controls.name"
-      ></app-input>
-      <div style="width: 550px" class="d-flex flex-wrap gap-3 mb-3">
-        <div
-          [style.background-image]="product._images.img1.url"
-          [style.background-size]="'cover'"
-          class="img-input d-flex border border-color flex-wrap align-items-center justify-content-center gap-3"
-        >
-          <label
-            [style.opacity]="product._images.img1.url ? '0' : '1'"
-            class="text-secondary"
-            for="img1"
-            ><mat-icon>add_photo_alternate</mat-icon>
-          </label>
-          <input
-            type="file"
-            id="img1"
-            (change)="onFileSelected($event, 'img1')"
-          />
-        </div>
-        <div
-          [style.background-image]="product._images.img2.url"
-          [style.background-size]="'cover'"
-          class="img-input d-flex border border-color flex-wrap align-items-center justify-content-center gap-3"
-        >
-          <label
-            [style.opacity]="product._images.img2.url ? '0' : '1'"
-            class="text-secondary"
-            for="img2"
-            ><mat-icon>add_photo_alternate</mat-icon>
-          </label>
-          <input
-            type="file"
-            id="img2"
-            (change)="onFileSelected($event, 'img2')"
-          />
-        </div>
-        <div
-          [style.background-image]="product._images.img3.url"
-          [style.background-size]="'cover'"
-          class="img-input d-flex border border-color flex-wrap align-items-center justify-content-center gap-3"
-        >
-          <label
-            [style.opacity]="product._images.img3.url ? '0' : '1'"
-            class="text-secondary"
-            for="img3"
-            ><mat-icon>add_photo_alternate</mat-icon>
-          </label>
-          <input
-            type="file"
-            id="img3"
-            (change)="onFileSelected($event, 'img3')"
-          />
-        </div>
-        <div
-          [style.background-image]="product._images.img4.url"
-          [style.background-size]="'cover'"
-          class="img-input d-flex border border-color flex-wrap align-items-center justify-content-center gap-3"
-        >
-          <label
-            [style.opacity]="product._images.img4.url ? '0' : '1'"
-            class="text-secondary"
-            for="img4"
-            ><mat-icon>add_photo_alternate</mat-icon>
-          </label>
-          <input
-            type="file"
-            id="img4"
-            (change)="onFileSelected($event, 'img4')"
-          />
-        </div>
-        <div
-          [style.background-image]="product._images.img5.url"
-          [style.background-size]="'cover'"
-          class="img-input d-flex border border-color flex-wrap align-items-center justify-content-center gap-3"
-        >
-          <label
-            [style.opacity]="product._images.img5.url ? '0' : '1'"
-            class="text-secondary"
-            for="img5"
-            ><mat-icon>add_photo_alternate</mat-icon>
-          </label>
-          <input
-            type="file"
-            id="img5"
-            (change)="onFileSelected($event, 'img5')"
-          />
-        </div>
-        <div
-          [style.background-image]="product._images.img6.url"
-          [style.background-size]="'cover'"
-          class="img-input d-flex border border-color flex-wrap align-items-center justify-content-center gap-3"
-        >
-          <label
-            [style.opacity]="product._images.img6.url ? '0' : '1'"
-            class="text-secondary"
-            for="img6"
-            ><mat-icon>add_photo_alternate</mat-icon>
-          </label>
-          <input
-            type="file"
-            id="img6"
-            (change)="onFileSelected($event, 'img6')"
-          />
-        </div>
-      </div>
-      <app-input
-        lable="Brand Name"
-        type="text"
-        [control]="formGroup.controls.brandName"
-      ></app-input>
-      <app-input-textarea
-        lable="Description"
-        [control]="formGroup.controls.description"
-      ></app-input-textarea>
-      <app-input
-        lable="Price"
-        type="number"
-        unit="LE"
-        [control]="formGroup.controls.price"
-      ></app-input>
-      <app-input
-        lable="Discount"
-        type="number"
-        [control]="formGroup.controls.discountPercentage"
-        unit="%"
-      ></app-input>
-      <app-input
-        lable="Category"
-        [control]="formGroup.controls.category"
-        [options]="[
-          'test1',
-          'test2',
-          'test3',
-          'test4',
-          'test5',
-          'Smart Phones'
-        ]"
-        [isDropdown]="true"
-      ></app-input>
-      <app-input
-        lable="Sub Category"
-        [control]="formGroup.controls.subcategory"
-        [options]="[
-          'test1',
-          'test2',
-          'test3',
-          'test4',
-          'test5',
-          'Gaming Phones'
-        ]"
-        [isDropdown]="true"
-      ></app-input>
-      <app-input
-        lable="Model Number"
-        type="text"
-        [control]="formGroup.controls.modelNumber"
-      ></app-input>
-      <app-input
-        lable="Manufacturer"
-        type="text"
-        [control]="formGroup.controls.manufacturer"
-      ></app-input>
-      <app-input
-        lable="Made In"
-        type="text"
-        [control]="formGroup.controls.countryOfOrigin"
-      ></app-input>
-      <!-- <app-input-two-fields
-        [control_key]="formGroup.controls.specKey"
-        [control_value]="formGroup.controls.specValue"
-        label="Specification"
-        mainPlaceholder="spec"
-        subPlaceholder="value"
-        [options]="product._specs"
-      ></app-input-two-fields>
-      <app-input-two-fields
-        [control_key]="formGroup.controls.color_l_controlKey"
-        [control_value]="formGroup.controls.color_l_controlValue"
-        label="Colors"
-        mainPlaceholder="Color Value"
-        subPlaceholder="Quantity"
-        [options]="product._colors"
-      ></app-input-two-fields> -->
-      <app-input
-        lable="Stock"
-        type="number"
-        [control]="formGroup.controls.stock"
-      ></app-input>
-      <app-input-keywords [keywords]="product?.keywords"></app-input-keywords>
-      <app-card-cta
-        [config]="{
-          data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-          color: 'secondary',
-          text: 'Freeze'
-        }"
-      ></app-card-cta>
-      <app-card-cta
-        [config]="{
-          data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-          color: 'warning',
-          text: 'Open Ticket'
-        }"
-      ></app-card-cta>
-      <app-card-cta
-        [config]="{
-          data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-          color: 'danger',
-          text: 'Delete'
-        }"
-      ></app-card-cta>
+      <app-input lable="Product ID" type="text" [disabled]="true" [control]="formGroup.controls._id"></app-input>
+      <app-input lable="Product Name" type="text" [control]="formGroup.controls.name"></app-input>
+      <app-input lable="Brand Name" type="text" [control]="formGroup.controls.brandName"></app-input>
+      <app-input-textarea lable="Description" [control]="formGroup.controls.description"></app-input-textarea>
+      <app-input lable="Price" type="number" [value]="product.price" unit="LE"
+        [control]="formGroup.controls.price"></app-input>
+      <app-input lable="Discount" type="number" [control]="formGroup.controls.discountPercentage" unit="%"></app-input>
+      <app-input lable="Category" [control]="formGroup.controls.category"
+        [options]="['test1', 'test2', 'test3', 'test4', 'test5', 'Smart Phones']" [isDropdown]="true"></app-input>
+      <app-input lable="Sub Category" [control]="formGroup.controls.subcategory"
+        [options]="['test1', 'test2', 'test3', 'test4', 'test5', 'Gaming Phones']" [isDropdown]="true"></app-input>
+      <app-input lable="Model Number" type="text" [control]="formGroup.controls.modelNumber"></app-input>
+      <app-input lable="Manufacturer" type="text" [control]="formGroup.controls.manufacturer"></app-input>
+      <app-input lable="Made In" type="text" [control]="formGroup.controls.countryOfOrigin"></app-input>
+      <app-input-two-fields [control_key]="formGroup.controls.specKey" [control_value]="formGroup.controls.specValue"
+        label="Specification" mainPlaceholder="spec" subPlaceholder="value"
+        [options]="product._specs"></app-input-two-fields>
+      <app-input-two-fields [control_key]="formGroup.controls.color_l_controlKey"
+        [control_value]="formGroup.controls.color_l_controlValue" label="Colors" mainPlaceholder="Color Value"
+        subPlaceholder="Quantity" [options]="product._colors"></app-input-two-fields>
+      <app-input lable="Stock" [disabled]="true" type="number" [control]="formGroup.controls.stock"></app-input>
+      <app-input-keywords [keywords]="product.keywords"></app-input-keywords>
+      <app-card-cta [config]="{
+        data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+        color: 'secondary',
+        text: 'Freeze'
+      }"></app-card-cta>
+      <app-card-cta [config]="{
+        data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+        color: 'warning',
+        text: 'Open Ticket'
+      }"></app-card-cta>
+      <app-card-cta [config]="{
+        data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+        color: 'danger',
+        text: 'Delete'
+      }"></app-card-cta>
     </div>
     <div class="mt-5" style="width: 400px">
-      <app-card-prompt
-        [config]="{
-          data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-          color: 'success',
-          text: 'Apply Changes'
-        }"
-        [isDisabled]="true"
-      ></app-card-prompt>
+      <app-card-prompt [config]="{
+        data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+        color: 'success',
+        text: 'Apply Changes'
+      }" [isDisabled]="true"></app-card-prompt>
     </div>
   </div>
 </form>
