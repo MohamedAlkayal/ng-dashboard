@@ -33,6 +33,7 @@
       <div
         class="w-100 overflow-scroll p-4 d-flex flex-column justify-content-between"
       >
+
         
           <h1 class="mb-5">Filters</h1>
           <app-filter-text 
@@ -45,6 +46,7 @@
             [id]="'genderField'"
             [lable]="'Gender'"
             [items]="['Male', 'Female']"
+
             [control]="formGroup.controls.gender"
           >
           </app-filter-dropdown>
@@ -53,6 +55,7 @@
             [lable]="'governorates'"
             [items]="governorates"
             (dropdownEmmiter)="getSelectedGov($event)"
+
             [control]="formGroup.controls.governorates"
           >
           </app-filter-dropdown>
@@ -67,6 +70,7 @@
             [id]="'sortField'"
             [lable]="'Sort By'"
             [items]="['Name', 'Email', 'Phone', 'Orders']"
+
             [control]="formGroup.controls.sortBy"
           >
           </app-filter-dropdown>
@@ -75,6 +79,7 @@
             [allMin]="10"
             [lable]="'Age'"
             [myStep]="1"
+
             (valuesEmiter)="ageValues($event)"
           >
           </app-filter-range>

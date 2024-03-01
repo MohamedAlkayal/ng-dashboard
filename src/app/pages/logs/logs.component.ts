@@ -6,35 +6,26 @@ import { AdminLogsService } from '../../services/admin-logs.service';
   selector: 'app-logs',
   standalone: true,
   imports: [TableComponent],
-  providers:[AdminLogsService],
+  providers: [AdminLogsService],
   templateUrl: './logs.component.html',
-  styleUrl: './logs.component.css'
+  styleUrl: './logs.component.css',
 })
-export class LogsComponent  {
-  constructor(
-    private  adminLogsService: AdminLogsService
-  ){}
+export class LogsComponent {
+  constructor(private adminLogsService: AdminLogsService) {}
   tableCols = [
     { lable: 'process', colData: 'process' },
     { lable: 'doneBy', colData: 'doneBy' },
     { lable: 'createdAt', colData: 'createdAt' },
-    { lable: 'updatedAt', colData: 'updatedAt' }
+    { lable: 'updatedAt', colData: 'updatedAt' },
   ];
-  
-  
-  logs : any[]=[]
-  ngOnInit() {
 
-    
+  logs: any[] = [];
+  ngOnInit() {
     this.adminLogsService.getAll().subscribe({
-      next:(data:any)=>{
-      this.logs=data.logs;
-      console.log(data);
-      
+      next: (data: any) => {
+        this.logs = data.logs;
       },
-      error:(err)=>console.log(err),
-      
+      error: (err) => console.log(err),
     });
-   
   }
 }
