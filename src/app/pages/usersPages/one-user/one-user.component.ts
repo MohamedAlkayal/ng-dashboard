@@ -64,7 +64,6 @@ export class OneUserComponent {
         // this.cities_2 = this.locations.find(
         //   (l) => l.governorate === this.user.address_2?.state
         // )?.cities;
-        console.log(this.user);
         // this.formGroup.patchValue({_id: this.user._id,firstName:this.user.firstName,lastName:this.user.lastName})
         this.formGroup.get('_id')?.patchValue(this.user._id);
         this.formGroup.get('firstName')?.patchValue(this.user.firstName);
@@ -127,7 +126,9 @@ export class OneUserComponent {
   getSelectedGov_2(gov_2: any) {
     console.log(this.formGroup.get('state_2'));
     this.locations.map((l) =>
-      l.governorate === this.formGroup.get('state_2')?.value ? (this.cities_2 = l.cities) : null
-  )}
+      l.governorate === this.formGroup.get('state_2')?.value
+        ? (this.cities_2 = l.cities)
+        : null
+    );
+  }
 }
-
