@@ -1,9 +1,10 @@
-<form *ngIf="user" [formGroup]="formGroup" (ngSubmit)="onSubmit($event)">
+<form [formGroup]="formGroup">
   <div *ngIf="user" class="d-flex gap-5 pt-4 my-5">
     <div style="width: 700px" class="d-flex align-items-end flex-column mt-5">
       <app-input
-        lable="User ID"
+        lable="Product ID"
         [type]="'text'"
+        [disabled]="true"
         (touched)="InputTouched($event)"
         [control]="formGroup.controls._id"
       ></app-input>
@@ -29,7 +30,13 @@
         lable="Date Of Birth"
         [type]="'date'"
         (touched)="InputTouched($event)"
-        [control]="formGroup.controls.dateOfBirth"
+        [control]="formGroup.controls.age"
+      ></app-input>
+      <app-input
+        lable="Gender"
+        [type]="'text'"
+        (touched)="InputTouched($event)"
+        [control]="formGroup.controls.gender"
       ></app-input>
       <app-input-inner-lable
         lable="Phones"
@@ -45,13 +52,13 @@
         type="number"
         (isInnerInputToched)="innerinputTouched($event)"
         [control]="formGroup.controls.phone_2"
+        [disabled]="true"
       >
       </app-input-inner-lable>
-      <!-- ###################### -->
       <app-input-inner-dropdown
         [options]="governorates"
         lable="Address 1"
-        innerLable="state"
+        innerLable="State"
         (selectedEmitter)="getSelectedGov_1($event)"
         [control]="formGroup.controls.state_1"
       ></app-input-inner-dropdown>
@@ -63,7 +70,7 @@
       ></app-input-inner-dropdown>
       <app-input-inner-lable
         lable=""
-        innerLable="street"
+        innerLable="Street"
         type="string"
         (isInnerInputToched)="innerinputTouched($event)"
         [control]="formGroup.controls.street_1"
@@ -72,7 +79,7 @@
       <app-input-inner-dropdown
         [options]="governorates"
         lable="Address 2"
-        innerLable="state"
+        innerLable="State"
         (selectedEmitter)="getSelectedGov_2($event)"
         [control]="formGroup.controls.state_2"
       ></app-input-inner-dropdown>
@@ -84,7 +91,7 @@
       ></app-input-inner-dropdown>
       <app-input-inner-lable
         lable=""
-        innerLable="street"
+        innerLable="Street"
         type="string"
         (isInnerInputToched)="innerinputTouched($event)"
         [control]="formGroup.controls.street_2"
@@ -104,6 +111,7 @@
           color: 'warning',
           text: 'Suspend'
         }"
+        (clicked)="handleSuspending($event)"
       ></app-card-cta>
       <app-card-cta
         [config]="{
@@ -111,6 +119,7 @@
           color: 'danger',
           text: 'Delete'
         }"
+        (clicked)="handleDeleting($event)"
       ></app-card-cta>
     </div>
     <div class="mt-5" style="width: 400px">
@@ -124,5 +133,14 @@
         [isDisabled]="isDisabeled"
       ></app-card-prompt>
     </div>
+    <app-prompt-confirm
+      [promptText]="promptText"
+      (ConfirmUpdated)="handleUpdate($event)"
+    ></app-prompt-confirm>
+    <app-prompt-danger
+      [Deleted]="this.user.firstName"
+      [action]="action"
+      (clickedConfirm)="handleConfirming($event)"
+    ></app-prompt-danger>
   </div>
 </form>

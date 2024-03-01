@@ -14,6 +14,7 @@ import { ErrorComponent } from './layouts/error/error.component';
 import { CategoryComponent } from './pages/categoriesPages/categories/category.component';
 import { VouchersComponent } from './pages/vouchers/vouchers/vouchers.component';
 import { LogsComponent } from './pages/logs/logs.component';
+import { AdminsComponent } from './pages/adminPages/admins/admins.component';
 
 export const routes: Routes = [
   {
@@ -82,6 +83,11 @@ export const routes: Routes = [
         path: 'vouchers',
         canActivate: [authGuard],
         children: [{ path: '', component: VouchersComponent }],
+      },
+      {
+        path: 'authorization',
+        canActivate: [authGuard],
+        children: [{ path: '', component: AdminsComponent }],
       },
       {
         path: 'logs',

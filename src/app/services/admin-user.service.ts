@@ -57,9 +57,54 @@ export class AdminUserServices {
     });
   }
 
-  updateUser(id: string, userObj: object) {
+  updateUser(
+    id: string,
+    userObj: {
+      age?: any;
+      city_1?: any;
+      city_2?: any;
+      email?: any;
+      firstName?: any;
+      lastName?: any;
+      gender?: any;
+      phone_1?: any;
+      phone_2?: any;
+      state_1?: any;
+      state_2?: any;
+      street_1?: any;
+      street_2?: any;
+    }
+  ) {
     const headers = this.token.getHeader();
-    const payload = userObj;
+    const dob: any = new Date(userObj.age);
+    const now: any = new Date();
+    const diffMs: any = now - dob;
+    const newAge: any = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 365.25));
+
+    const payload: any = {
+      firstName: userObj.firstName,
+      lastName: userObj.lastName,
+      age: newAge,
+      gender: userObj.gender,
+      phones: [userObj.phone_1],
+      address_1: {
+        city: userObj.city_1,
+        state: userObj.state_1,
+        street: userObj.street_1,
+      },
+    };
+
+    if (userObj.state_2) {
+      payload.address_2 = {
+        city: userObj.city_2,
+        state: userObj.state_2,
+        street: userObj.street_2,
+      };
+    }
+    if (userObj.phone_2) {
+      payload.phones[1] = userObj.phone_2;
+    }
+
     return this.http.patch(this.usersUrl + `update/${id}`, payload, {
       headers: headers,
     });
