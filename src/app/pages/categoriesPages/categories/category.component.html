@@ -7,28 +7,26 @@
   <span class="sr-only"></span>
 </div>
 }@else{
-<form [formGroup]="formGroup" class="page">
-  <div class="d-flex gap-3 h-100">
-    <div
-      style="width: 320px"
-      class="border border-color rounded-2 overflow-hidden"
-    >
-      <app-list
-        (selectedComponent)="handleSelectedComponent($event)"
-        (newListItem)="handleNewCategory($event)"
-        [list]="categoriesFromDb"
-        addingButtonText="Add New Category"
-      ></app-list>
-    </div>
-    <div
-      class="w-100 p-4 bg-white border border-color rounded-2 overflow-y-scroll"
-    >
-      <app-one-category
-        [selectedCategory]="selectedCategory"
-        [newCategory]="newCat"
-        (changedCategory)="handleCategoryChange()"
-      ></app-one-category>
-    </div>
+<div class="d-flex gap-3 h-100 page">
+  <div
+    style="width: 320px"
+    class="border border-color rounded-2 overflow-hidden"
+  >
+    <app-list
+      (selectedComponent)="handleSelectedComponent($event)"
+      (newListItem)="handleNewCategory($event)"
+      [list]="categoriesFromDb"
+      addingButtonText="Add New Category"
+    ></app-list>
   </div>
-</form>
+  <div
+    class="w-100 p-4 bg-white border border-color rounded-2 overflow-y-scroll"
+  >
+    <app-one-category
+      [selectedCategory]="selectedCategory"
+      [newCategory]="newCat"
+      (changedCategory)="handleCategoryChange()"
+    ></app-one-category>
+  </div>
+</div>
 }

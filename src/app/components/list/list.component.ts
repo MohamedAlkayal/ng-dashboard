@@ -23,5 +23,7 @@ export class ListComponent implements OnInit {
     this.selectedComponent.emit(id);
   }
 
-  newCategoryClick() {}
+  newCategoryClick() {
+    this.newListItem.emit();
+  }
 }
