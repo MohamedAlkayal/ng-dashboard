@@ -7,6 +7,7 @@ import { provideHttpClient, withFetch, withInterceptors, withInterceptorsFromDi 
 import { httpInterceptor } from './services/interceptors/http-interceptor.interceptor';
 import { authTokenInterceptor } from './services/interceptors/auth-token.interceptor';
 import { TokenUtilsService } from './services/token/token-utils.service';
+import { provideToastr } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
   providers:
@@ -15,5 +16,6 @@ export const appConfig: ApplicationConfig = {
       provideClientHydration(),
       provideAnimationsAsync(),
       provideHttpClient(withInterceptors([httpInterceptor,authTokenInterceptor])),
+      provideToastr()
     ]
 };
