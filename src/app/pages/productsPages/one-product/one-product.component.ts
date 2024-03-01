@@ -5,16 +5,14 @@ import { InputTextareaComponent } from '../../../components/formComponents/input
 import { InputTwoFieldsComponent } from '../../../components/formComponents/input-two-fields/input-two-fields.component';
 import { InputKeywordsComponent } from '../../../components/formComponents/input-keywords/input-keywords.component';
 import { CardCtaComponent } from '../../../components/cardComponents/card-cta/card-cta.component';
-<<<<<<< HEAD
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-=======
+
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
->>>>>>> 66c46e0072e4538d0ef8ae5222a70529bf8c1b45
+
 import { MatIcon } from '@angular/material/icon';
 import { AdminProductService } from '../../../services/admin-product.service';
 import { ActivatedRoute } from '@angular/router';

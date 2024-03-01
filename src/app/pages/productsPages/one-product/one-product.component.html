@@ -4,7 +4,6 @@
     <div style="width: 700px" class="d-flex align-items-end flex-column mt-5">
       <app-input lable="Product ID" type="text" [disabled]="true" [control]="formGroup.controls._id"></app-input>
       <app-input lable="Product Name" type="text" [control]="formGroup.controls.name"></app-input>
-
       <app-input lable="Brand Name" type="text" [control]="formGroup.controls.brandName"></app-input>
       <app-input-textarea lable="Description" [control]="formGroup.controls.description"></app-input-textarea>
       <app-input lable="Price" type="number" [value]="product.price" unit="LE"
