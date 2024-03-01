@@ -7,6 +7,9 @@ import { InputKeywordsComponent } from '../../../components/formComponents/input
 import { CardCtaComponent } from '../../../components/cardComponents/card-cta/card-cta.component';
 import { InputInnerLableComponent } from '../../../components/formComponents/input-inner-lable/input-inner-lable.component';
 import { AdminOrdersService } from '../../../services/admin-orders.service';
+import { CommonModule } from '@angular/common';
+import { InvoiceComponent } from '../../../components/invoice/invoice.component';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-one-order',
   standalone: true,
@@ -18,19 +21,32 @@ import { AdminOrdersService } from '../../../services/admin-orders.service';
     InputKeywordsComponent,
     CardCtaComponent,
     InputInnerLableComponent,
+    CommonModule,
+    InvoiceComponent,
   ],
   providers: [AdminOrdersService],
   templateUrl: './one-order.component.html',
   styleUrl: './one-order.component.css',
 })
 export class OneOrderComponent {
-  constructor(private ordersService: AdminOrdersService) {}
+  constructor(
+    private ordersService: AdminOrdersService,
+    private route: ActivatedRoute
+  ) {}
 
+  orderID!: string;
   order!: any;
 
   ngOnInit() {
-    this.ordersService.getOne('65df823f0b373b309837b70a').subscribe({
-      next: (data) => {},
+    this.orderID = this.route.snapshot.params['order_ID'];
+    this.ordersService.getOne(this.orderID).subscribe({
+      next: (data: any) => {
+        console.log(data);
+        this.order = data.order;
+        this.order.fullName =
+          data.order.user.firstName + ' ' + data.order.user.lastName;
+        this.order.user.email = this.order.user.email.toLowerCase();
+      },
       error: (err) => console.log(err),
     });
   }

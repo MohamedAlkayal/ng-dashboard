@@ -1,4 +1,4 @@
-<div class="d-flex gap-5 pt-4 my-5">
+<div *ngIf="product" class="d-flex gap-5 pt-4 my-5">
   <div style="width: 700px" class="d-flex align-items-end flex-column mt-5">
     <app-input
       lable="Product ID"
@@ -11,6 +11,7 @@
       type="text"
       [value]="product.name"
     ></app-input>
+
     <app-input
       lable="Brand Name"
       type="text"
@@ -59,7 +60,7 @@
       type="text"
       [value]="product.countryOfOrigin"
     ></app-input>
-    <app-input-two-fields
+    <!-- <app-input-two-fields
       label="Specification"
       mainPlaceholder="spec"
       subPlaceholder="value"
@@ -76,7 +77,7 @@
       [disabled]="true"
       type="number"
       [value]="product._stock"
-    ></app-input>
+    ></app-input> -->
     <app-input-keywords [keywords]="product.keywords"></app-input-keywords>
     <app-card-cta
       [config]="{

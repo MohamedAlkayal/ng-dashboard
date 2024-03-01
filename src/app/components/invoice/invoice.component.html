@@ -1,43 +1,49 @@
-<table class="table table-light w-50 m-auto text-center">
-  <thead class="table-active">
-    <tr style="border-bottom-style: hidden">
-      <th class="border-radiusTL">ID</th>
-      <th>Name</th>
-      <th class="border-radiusTR">Price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <div class="p-1">
-      <tr *ngFor="let item of list" class="m-2">
-        <td>{{ item.id }}</td>
-        <td>{{ item.name }}</td>
-        <td>${{ item.price }}</td>
+<div class="input-group d-flex gap-3 align-items-start mb-3">
+  <label [for]="lable" class="form-label fw-semibold m-0 pt-2">{{
+    lable
+  }}</label>
+  <table
+    style="width: 550px"
+    class="text-center table table-light border rounded-2 border-color overflow-hidden"
+  >
+    <thead class="table-active">
+      <tr style="border-bottom-style: hidden">
+        <th class="text-start">Name</th>
+        <th class="">Quantity</th>
+        <th class="">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of _invoice" class="">
+        <td class="text-start">{{ item.product.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.product.price * item.quantity }} $</td>
       </tr>
       <tr>
-        <td>Items</td>
-        <td></td>
-        <td>{{ invoce.items }} pcs</td>
+        <td class="text-start pt-4 ps-4">Items</td>
+        <td class="pt-4"></td>
+        <td class="pt-4">{{ order.totalItems }} pcs</td>
       </tr>
       <tr style="border-top-style: hidden; padding: 10">
-        <td>Sub Total</td>
+        <td class="text-start">Sub Total</td>
         <td></td>
-        <td>${{ invoce.subtotal }}</td>
+        <td>{{ order.finalPrice }} $</td>
       </tr>
       <tr style="border-top-style: hidden">
-        <td>Tax</td>
+        <td class="text-start">Tax 14%</td>
         <td></td>
-        <td>${{ invoce.tax }}</td>
+        <td>{{ order.tax }} $</td>
       </tr>
       <tr style="border-top-style: hidden">
-        <td>Vouchers</td>
+        <td class="text-start">Vouchers</td>
         <td></td>
-        <td>${{ invoce.vouchersdiscount }}</td>
+        <td>{{ order.discount }} $</td>
       </tr>
       <tr style="border-style: hidden">
-        <td class="border-radiusBL">Total</td>
+        <td class="text-start">Total</td>
         <td></td>
-        <td class="border-radiusBR">${{ invoce.total }}</td>
+        <td>{{ order.finalPrice + order.tax + order.discount }} $</td>
       </tr>
-    </div>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>
