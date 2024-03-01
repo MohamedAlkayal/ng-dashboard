@@ -1,3 +1,4 @@
+@import 'ngx-toastr/toastr';
 :root {
   --black: #121212;
   --dark: #333;
