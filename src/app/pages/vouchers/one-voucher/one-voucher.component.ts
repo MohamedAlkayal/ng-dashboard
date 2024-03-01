@@ -40,15 +40,11 @@ export class OneVoucherComponent {
     if (this.selectedVoucher) {
       this.currentFieldInfo = {};
       for (const key in this.selectedVoucher) {
-        if (key === 'subCategories') {
-          this.currentFieldInfo[key] = [...this.selectedVoucher[key]];
-        } else {
-          this.currentFieldInfo[key] = this.selectedVoucher[key];
-        }
+        this.currentFieldInfo[key] = this.selectedVoucher[key];
       }
       this.promptText = this.newVoucher
-        ? `You are about to create a new category with code ${this.currentFieldInfo.code}`
-        : `You are about to edit the category coded ${this.currentFieldInfo.code}`;
+        ? `You are about to create a new voucher with code ${this.currentFieldInfo.code}`
+        : `You are about to edit the voucher coded ${this.currentFieldInfo.code}`;
     }
     this.cardInfo = {
       data: `${

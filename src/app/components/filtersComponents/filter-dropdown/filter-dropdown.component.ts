@@ -12,10 +12,8 @@ import { RouterOutlet } from '@angular/router';
 })
 export class FilterDropdownComponent {
   @Input() id!: string;
-
   @Input() items: string[] = [];
   item: string[] = [];
-
   @Input() lable: any;
   constructor() {}
   selectValue: string = '';

@@ -9,6 +9,7 @@ import { MatIcon } from '@angular/material/icon';
 import { AdminProductService } from '../../../services/admin-product.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-one-product',
@@ -35,6 +36,7 @@ export class OneProductComponent {
 
   productID!: string;
   product!: any;
+
 
   ngOnInit() {
     this.productID = this.route.snapshot.params['product_ID'];

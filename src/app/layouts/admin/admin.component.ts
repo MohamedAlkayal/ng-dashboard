@@ -30,4 +30,5 @@ export class AdminComponent {
     this.user = localStorage.getItem('currentUser');
     this.user = JSON.parse(this.user);
   }
+
 }
