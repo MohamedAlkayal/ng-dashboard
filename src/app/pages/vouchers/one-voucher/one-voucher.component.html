@@ -1,7 +1,4 @@
 <div style="width: 700px" class="d-flex align-items-end flex-column mt-3">
-  @if(!selectedVoucher){
-  <h1>Loading</h1>
-  } @else {
   <app-input
     lable="Voucher Code"
     [disabled]="true"
@@ -12,7 +9,7 @@
     lable="Discount Value"
     (valueChange)="onVoucherAttrChange($event, 'discount')"
   ></app-input>
-  <app-input
+  <!-- <app-input
     lable="Discount Type"
     [isDropdown]="true"
     [options]="['flat', 'percentage']"
@@ -44,13 +41,12 @@
     [options]="['Active', 'Inactive']"
     [value]="currentFieldInfo.active ? 'Active' : 'Inactive'"
     (valueChange)="onVoucherAttrChange($event, 'active')"
-  ></app-input>
+  ></app-input> -->
   <app-card-prompt
     [config]="cardInfo"
     [isDisabled]="isDisabled"
     (cancel)="clickedCancel()"
   ></app-card-prompt>
-  }
 </div>
 <app-prompt-confirm
   [promptText]="promptText"

@@ -15,6 +15,7 @@ export class PromptDangerComponent {
   @Input() Deleted!: string;
   @Output() clickedConfirm = new EventEmitter();
   @Input() action!: string;
+  confirmed = false;
 
   ConfirmDelete() {
     if (this.ConfirmValve === 'CONFIRM') {

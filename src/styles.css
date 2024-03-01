@@ -1,4 +1,4 @@
-@import 'ngx-toastr/toastr';
+@import "ngx-toastr/toastr";
 :root {
   --black: #121212;
   --dark: #333;
@@ -147,7 +147,7 @@ body {
   min-height: 650px;
   height: calc(100vh - 76px);
   overflow: scroll;
-  background-color: rgb(237, 241, 245);
+  background-color: rgb(239, 243, 246);
 }
 
 .page-filters {

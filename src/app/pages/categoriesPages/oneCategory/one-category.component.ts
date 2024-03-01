@@ -26,7 +26,6 @@ import { AdminCategoriesService } from '../../../services/admin-categories.servi
   ],
   providers: [AdminCategoriesService],
   templateUrl: './one-category.component.html',
-  styles: '',
 })
 export class OneCategoryComponent implements OnChanges {
   @Input() selectedCategory!: any;
