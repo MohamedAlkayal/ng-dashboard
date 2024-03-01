@@ -20,7 +20,7 @@ export class InputComponent {
     value: new FormControl('', Validators.maxLength(4)),
 
   });
-  @Input() ValidInput!:any
+  @Input() ValidInput:any=true
   @Input()control!:FormControl
   @Input() unit: string = '';
   @Input() lable: string = '';

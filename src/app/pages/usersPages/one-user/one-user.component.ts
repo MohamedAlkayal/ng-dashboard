@@ -63,7 +63,7 @@ export class OneUserComponent {
   action: string = '';
   promptText: string = '';
   suspensionObject: any = {
-    data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+    data: 'Confirming your request to suspend the specified user. This action will temporarily suspend their account. Please proceed only if necessary. Contact support for any inquiries or assistance.',
     color: 'warning',
   };
   ngOnInit() {
@@ -121,7 +121,7 @@ export class OneUserComponent {
   handleForm(){}
 
   formGroup = new FormGroup({
-    _id: new FormControl('', [Validators.required]),
+    _id: new FormControl({value:'',disabled:true}, [Validators.required]),
     firstName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z]+'),Validators.minLength(3),
     Validators.maxLength(15)]),
     lastName: new FormControl('',  [Validators.required, Validators.pattern('[a-zA-Z]+'),Validators.minLength(3),
@@ -132,7 +132,7 @@ export class OneUserComponent {
     age: new FormControl('', [
         Validators.required,
       ]),
-    gender: new FormControl('', [Validators.required]),
+    gender: new FormControl({value:'',disabled:true}, [Validators.required]),
     phone_1: new FormControl('', [Validators.required,Validators.pattern('^1[0-9]{9}$')]),
     phone_2: new FormControl(''),
     street_1: new FormControl('', [Validators.required]),
