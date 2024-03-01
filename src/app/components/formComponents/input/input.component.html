@@ -1,26 +1,15 @@
 <div class="input-group d-flex gap-3 align-items-center mb-3">
   <label [for]="lable" class="form-label fw-semibold m-0">{{ lable }}</label>
-  <select
-    *ngIf="isDropdown; else normal"
-    style="width: 550px"
-    class="form-select form-select-sm rounded"
-    aria-label="Small select example"
-  >
+  <select *ngIf="isDropdown; else normal" style="width: 550px" class="form-select form-select-sm rounded"
+    aria-label="Small select example">
     <option *ngFor="let opt of options" value="opt" [selected]="opt === value">
       {{ opt }}
     </option>
   </select>
-  <ng-template #normal class="position-relative">
-    <input
-      [id]="lable"
-      (keyup)="onValueChange($event)"
-      (input)="isInputTouched($event)"
-      [type]="type"
-      class="form-control form-control-sm rounded"
-      style="width: 550px"
-      [placeholder]="placeholder"
-      [formControl]="control"
-    />
+  <ng-template #normal class="position-relative  ">
+    <input [ngClass]="ValidInput?'':'is-invalid'" [id]="lable" (keyup)="onValueChange($event)"
+      (input)="isInputTouched($event)" [type]="type" class="form-control form-control-sm rounded" style="width: 550px"
+      [placeholder]="placeholder" [formControl]="control" />
     <span class="position-absolute end-0 p-3 text-secondary">{{ unit }}</span>
   </ng-template>
 </div>

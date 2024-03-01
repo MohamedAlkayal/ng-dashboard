@@ -9,6 +9,7 @@ import { AdminUserServices } from '../../../services/admin-user.service';
 import {
   FormControl,
   FormGroup,
+  NgModel,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -34,6 +35,7 @@ import { PromptDangerComponent } from '../../../components/messagesComponents/pr
     CommonModule,
     PromptConfirmComponent,
     PromptDangerComponent,
+    
   ],
   templateUrl: './one-user.component.html',
   styleUrl: './one-user.component.css',
@@ -112,24 +114,32 @@ export class OneUserComponent {
         }
       },
     });
-    console.log(this.suspensionObject);
+    // console.log(this.suspensionObject);
   }
+  handleForm(){}
 
   formGroup = new FormGroup({
     _id: new FormControl('', [Validators.required]),
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
-    age: new FormControl('', [Validators.required]),
+    firstName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z]+'),Validators.minLength(3),
+    Validators.maxLength(15)]),
+    lastName: new FormControl('',  [Validators.required, Validators.pattern('[a-zA-Z]+'),Validators.minLength(3),
+    Validators.maxLength(15)]),
+    email: new FormControl('', 
+    [ Validators.required,
+      Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{1,}$')]),
+    age: new FormControl('', [
+        Validators.required,
+      ]),
     gender: new FormControl('', [Validators.required]),
-    phone_1: new FormControl('', [Validators.required]),
-    phone_2: new FormControl('', [Validators.required]),
+    phone_1: new FormControl('', [Validators.required,Validators.pattern('^1[0-9]{9}$')]),
+    phone_2: new FormControl(''),
     street_1: new FormControl('', [Validators.required]),
     city_1: new FormControl('', [Validators.required]),
     state_1: new FormControl('', [Validators.required]),
-    street_2: new FormControl('', [Validators.required]),
+    street_2: new FormControl(''),
     city_2: new FormControl('', [Validators.required]),
     state_2: new FormControl('', [Validators.required]),
+
   });
 
   onSubmit(e: any) {
@@ -145,6 +155,8 @@ export class OneUserComponent {
     this.isDisabeled = e;
   }
   InputTouched(e: any) {
+    console.log(this.formGroup.status);
+    
     this.isDisabeled = e;
   }
   handleSuspending(x: any) {
