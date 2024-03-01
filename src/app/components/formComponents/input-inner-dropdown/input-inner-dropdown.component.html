@@ -17,10 +17,9 @@
       class="form-select form-select-sm"
       [id]="lable"
       [formControl]="control"
-
     >
       <option>Select option</option>
-      <option *ngFor="let opt of options">
+      <option *ngFor="let opt of options" [value]="opt">
         {{ opt }}
       </option>
     </select>

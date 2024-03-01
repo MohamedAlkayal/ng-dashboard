@@ -1,13 +1,14 @@
 import { Component, EventEmitter, Output, Input } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-input-textarea',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,ReactiveFormsModule],
   templateUrl: './input-textarea.component.html',
   styles: ``,
 })
 export class InputTextareaComponent {
+  @Input() control!: FormControl
   @Input() value!: string;
   @Input() lable!: string;
   @Input() placeholder: string = '';

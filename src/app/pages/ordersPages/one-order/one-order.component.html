@@ -3,26 +3,22 @@
     <app-input
       [value]="order.trackingNumber"
       lable="Tracking Number"
-      [disabled]="true"
       [type]="'text'"
     ></app-input>
     <app-input
       [value]="order.fullName"
       lable="Full Name"
-      [disabled]="true"
       [type]="'text'"
     ></app-input>
     <app-input
       [value]="order.user.email"
       lable="Email"
-      [disabled]="true"
       [type]="'text'"
     ></app-input>
     <app-input-inner-lable
       innerLable="+20"
       [value]="order.user.phones[0]"
       lable="Phone"
-      [disabled]="true"
       [type]="'number'"
     ></app-input-inner-lable>
 
@@ -30,48 +26,29 @@
       lable="Address"
       innerLable="state"
       [value]="order.address.state"
-      [disabled]="true"
     >
     </app-input-inner-lable>
     <app-input-inner-lable
       lable=""
       innerLable="City"
       [value]="order.address.city"
-      [disabled]="true"
     >
     </app-input-inner-lable>
     <app-input-inner-lable
       lable=""
       innerLable="Street"
       [value]="order.address.street"
-      [disabled]="true"
     >
     </app-input-inner-lable>
-    <app-input-inner-lable
-      lable="Voucher"
-      innerLable="Code"
-      [value]="'test1'"
-      [disabled]="true"
-    >
+    <app-input-inner-lable lable="Voucher" innerLable="Code" [value]="'test1'">
     </app-input-inner-lable>
-    <app-input-inner-lable
-      lable=""
-      innerLable="Type"
-      [value]="'Flat'"
-      [disabled]="true"
-    >
+    <app-input-inner-lable lable="" innerLable="Type" [value]="'Flat'">
     </app-input-inner-lable>
-    <app-input-inner-lable
-      lable=""
-      innerLable="Amount"
-      [value]="'10'"
-      [disabled]="true"
-    >
+    <app-input-inner-lable lable="" innerLable="Amount" [value]="'10'">
     </app-input-inner-lable>
     <app-input
       [value]="order.paymentMethod"
       lable="Payment Method"
-      [disabled]="true"
       [type]="'text'"
     ></app-input>
     <app-invoice
