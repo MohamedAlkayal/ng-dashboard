@@ -64,7 +64,7 @@ export class ProductsComponent {
   }
 
   getProducts(n: number, l: number) {
-    this.productService.getAllProducts(n, l).subscribe({
+    this.productService.getAllProducts(n, l, 'createdAt').subscribe({
       next: (data: any) => {
         this.products = data.products;
         this.products.map((p: any) => {

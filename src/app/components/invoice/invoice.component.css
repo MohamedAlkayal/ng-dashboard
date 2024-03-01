@@ -1,12 +1,4 @@
-.border-radiusTL{
-    border-top-left-radius: 15px !important;
-}
-.border-radiusTR{
-    border-top-right-radius: 15px !important;
-}
-.border-radiusBL{
-    border-bottom-left-radius: 15px !important;
-}
-.border-radiusBR{
-    border-bottom-right-radius: 15px !important;
+th,
+td {
+  padding: 8px 22px;
 }
