@@ -81,24 +81,24 @@ export class OrdersComponent {
 //     console.log(this.selectedGov);
 //     this.selectedCities = this.selectedGov.cities;
 //   }
-
-//   getOrders(n: number, l: number) {
-//     this.ordersService.getAll(n, l).subscribe({
-//       next: (data: any) => {
-//         this.ordersCount = data.totalCount;
-//         this.orders = data.orders;
-//         this.orders.map((o: any) => {
-//           o.selected = false;
-//           o.itemsCount = o.products.length;
-//           o.addressStr = o.address.city + ' ' + o.address.street;
-//           o.fullName = o.user.firstName + ' ' + o.user.lastName;
-//         });
-//         this.itemsCount = this.orders.length;
-//         this.pagesCount = Math.ceil(this.ordersCount / this.pageLimit);
-//       },
-//       error: (err) => console.log(err),
-//     });
-//   }
+  getOrders(n: number, l: number) {
+    this.ordersService.getAll(n, l).subscribe({
+      next: (data: any) => {
+        this.ordersCount = data.totalCount;
+        this.orders = data.orders;
+        this.orders.map((o: any) => {
+          o.selected = false;
+          o.itemsCount = o.products.length;
+          o.addressStr = o.address.city + ' ' + o.address.street;
+          o.fullName = o.user?.firstName + ' ' + o.user?.lastName;
+        });
+        this.orders = this.orders.filter((o: any) => o.user);
+        this.itemsCount = this.orders.length;
+        this.pagesCount = Math.ceil(this.ordersCount / this.pageLimit);
+      },
+      error: (err) => console.log(err),
+    });
+  }
 
 //   getPage(pageNumber: any) {
 //     this.getOrders(pageNumber, this.pageLimit);

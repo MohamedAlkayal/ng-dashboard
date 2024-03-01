@@ -1,0 +1,32 @@
+<!-- @if(isLoading){
+<div
+  class="spinner-border text-dark"
+  style="width: 5rem; height: 5rem; position: absolute; top: 50%; left: 50%"
+  role="status"
+>
+  <span class="sr-only"></span>
+</div>
+}@else{
+<div class="page">
+  <div class="row h-100">
+    <div class="col-3">
+      <app-list
+        (selectedComponent)="handleSelectedComponent($event)"
+        (newListItem)="handlenewAdmin($event)"
+        [list]="adminsFromDb"
+        class="h-100 cols-2"
+        newPlaceholderText="New Admin userame"
+        addingButtonText="Add New Admin"
+        shownAttr="username"
+      ></app-list>
+    </div>
+    <div class="col-8">
+      <app-one-admin
+        [selectedAdmin]="selectedAdmin"
+        [newAdmin]="newAdmin"
+        (changedAdmin)="handleAdminChange()"
+      ></app-one-admin>
+    </div>
+  </div>
+</div>
+} -->

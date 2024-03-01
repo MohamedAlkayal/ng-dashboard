@@ -1,4 +1,7 @@
-<div class="p-4 border border-1 rounded-2 d-flex text-center flex-column">
+<div
+  style="width: 550px"
+  class="p-4 border border-1 rounded-2 d-flex text-center flex-column"
+>
   <p class="text-secondary" style="font-size: 14px">{{ config.data }}</p>
   <button
     data-bs-toggle="modal"
@@ -13,10 +16,7 @@
     class="btn btn-outline-secondary"
     [disabled]="isDisabled"
     (click)="clickedCancel($event)"
-    data-bs-toggle="modal"
-    data-bs-target="#Confirm"
   >
-     Cancel
+    Cancel
   </button>
 </div>
-
