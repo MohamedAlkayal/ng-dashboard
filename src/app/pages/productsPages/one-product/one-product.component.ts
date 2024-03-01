@@ -10,7 +10,6 @@ import { MatIcon } from '@angular/material/icon';
 import { AdminProductService } from '../../../services/admin-product.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-one-product',
@@ -22,7 +21,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
     InputTwoFieldsComponent,
     InputKeywordsComponent,
     CardCtaComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
     MatIcon,
     CommonModule,
   ],
@@ -132,5 +131,4 @@ productID!: string;
     };
     reader.readAsDataURL(file);
   }
-}
 }
