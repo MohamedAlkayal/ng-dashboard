@@ -29,25 +29,25 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './one-order.component.css',
 })
 export class OneOrderComponent {
-  constructor(
-    private ordersService: AdminOrdersService,
-    private route: ActivatedRoute
-  ) {}
+//   constructor(
+//     private ordersService: AdminOrdersService,
+//     private route: ActivatedRoute
+//   ) {}
 
-  orderID!: string;
-  order!: any;
+//   orderID!: string;
+//   order!: any;
 
-  ngOnInit() {
-    this.orderID = this.route.snapshot.params['order_ID'];
-    this.ordersService.getOne(this.orderID).subscribe({
-      next: (data: any) => {
-        console.log(data);
-        this.order = data.order;
-        this.order.fullName =
-          data.order.user.firstName + ' ' + data.order.user.lastName;
-        this.order.user.email = this.order.user.email.toLowerCase();
-      },
-      error: (err) => console.log(err),
-    });
-  }
+//   ngOnInit() {
+//     this.orderID = this.route.snapshot.params['order_ID'];
+//     this.ordersService.getOne(this.orderID).subscribe({
+//       next: (data: any) => {
+//         console.log(data);
+//         this.order = data.order;
+//         this.order.fullName =
+//           data.order.user.firstName + ' ' + data.order.user.lastName;
+//         this.order.user.email = this.order.user.email.toLowerCase();
+//       },
+//       error: (err) => console.log(err),
+//     });
+//   }
 }

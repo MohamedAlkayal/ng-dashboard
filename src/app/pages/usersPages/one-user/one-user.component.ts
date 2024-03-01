@@ -68,13 +68,6 @@ export class OneUserComponent {
       next: (data) => {
         this.user = data;
         this.user.email = this.user.email.toLowerCase();
-        // this.cities_1 = this.locations.find(
-        //   (l) => l.governorate === this.user.address_1?.state
-        // )?.cities;
-        // this.cities_2 = this.locations.find(
-        //   (l) => l.governorate === this.user.address_2?.state
-        // )?.cities;
-        // this.formGroup.patchValue({_id: this.user._id,firstName:this.user.firstName,lastName:this.user.lastName})
         const birthDate = getBirthDateFromAge(this.user.age);
         this.formGroup.get('_id')?.patchValue(this.user._id);
         this.formGroup.get('firstName')?.patchValue(this.user.firstName);
@@ -84,11 +77,10 @@ export class OneUserComponent {
         this.formGroup.get('gender')?.patchValue(this.user.gender);
         this.formGroup.get('phone_1')?.patchValue(this.user.phones[0]);
         this.formGroup.get('phone_2')?.patchValue(this.user.phones[1]);
-        this.formGroup.get('state_1')?.patchValue(this.user.address_1.state);
-        this.user.address_2
-          ? this.formGroup.get('state_2')?.patchValue(this.user.address_2.state)
-          : null;
-
+        this.formGroup.get('city_1')?.patchValue(this.user.address_1.city);
+        this.formGroup.get('city_2')?.patchValue(this.user.address_2.city);
+        this.formGroup.get('state_1')?.patchValue(this.user.address_1['state']);
+        this.formGroup.get('state_2')?.patchValue(this.user.address_2.state);
         this.formGroup.get('street_1')?.patchValue(this.user.address_1.street);
         this.user.address_2
           ? this.formGroup
