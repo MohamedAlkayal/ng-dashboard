@@ -13,6 +13,12 @@ import { InputTextareaComponent } from '../../../components/formComponents/input
 import { CardPromptComponent } from '../../../components/cardComponents/card-prompt/card-prompt.component';
 import { PromptConfirmComponent } from '../../../components/messagesComponents/prompt-confirm/prompt-confirm.component';
 import { AdminCategoriesService } from '../../../services/admin-categories.service';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-one-category',
@@ -23,6 +29,7 @@ import { AdminCategoriesService } from '../../../services/admin-categories.servi
     InputTextareaComponent,
     CardPromptComponent,
     PromptConfirmComponent,
+    ReactiveFormsModule,
   ],
   providers: [AdminCategoriesService],
   templateUrl: './one-category.component.html',
@@ -43,11 +50,30 @@ export class OneCategoryComponent implements OnChanges {
     color: 'success',
     text: `${this.newCategory ? 'Create' : 'Update'}`,
   };
-  constructor(private category: AdminCategoriesService) {}
+  formGroup = new FormGroup({
+    catName: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
+  });
+  constructor(private category: AdminCategoriesService) {
+    this.formGroup.valueChanges.subscribe(() => {
+      if (this.formGroup.dirty) {
+        // Do something when any input is touched
+        this.isDisabled = false;
+        this.currentFieldInfo.name = this.formGroup.get('catName')?.value;
+        this.currentFieldInfo.description =
+          this.formGroup.get('description')?.value;
+      }
+    });
+  }
   ngOnChanges(changes: SimpleChanges): void {
+    console.log(this.selectedCategory);
     this.isDisabled = true;
     if (this.selectedCategory) {
       this.currentFieldInfo = {};
+      this.formGroup.get('catName')?.patchValue(this.selectedCategory.name);
+      this.formGroup
+        .get('description')
+        ?.patchValue(this.selectedCategory.description);
       for (const key in this.selectedCategory) {
         if (key === 'subCategories') {
           this.currentFieldInfo[key] = [...this.selectedCategory[key]];
@@ -69,34 +95,25 @@ export class OneCategoryComponent implements OnChanges {
       text: `${this.newCategory ? 'Create' : 'Update'}`,
     };
   }
-  onCategoryNameChange(event: string) {
-    this.isDisabled = false;
-    this.currentFieldInfo.name = event;
-  }
-  onTextAreaChange(event: string) {
-    this.currentFieldInfo.description = event;
-    if (
-      this.currentFieldInfo.description === this.selectedCategory.description
-    ) {
-    } else {
-      this.isDisabled = false;
-    }
-  }
+
   onKeyWordChange(event: string) {
     this.currentFieldInfo.subCategories = [...event];
     this.isDisabled = false;
   }
   clickedCancel() {
     this.isDisabled = true;
+    this.formGroup.get('catName')?.patchValue(this.selectedCategory.name);
+    this.formGroup
+      .get('description')
+      ?.patchValue(this.selectedCategory.description);
     for (const key in this.selectedCategory) {
       if (key === 'subCategories') {
         this.currentFieldInfo[key] = [...this.selectedCategory[key]];
-      } else {
-        this.currentFieldInfo[key] = this.selectedCategory[key];
       }
     }
   }
   handlePromptConfirm() {
+    console.log('handledPrompt');
     if (!this.newCategory) {
       this.category
         .edit(this.currentFieldInfo.name, {

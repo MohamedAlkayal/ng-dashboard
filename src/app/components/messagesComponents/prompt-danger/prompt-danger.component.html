@@ -1,4 +1,5 @@
 <div
+  [style]="isOpen"
   class="modal fade"
   id="exampleModal"
   tabindex="-1"
@@ -42,11 +43,11 @@
           Close
         </button>
         <button
+          [disabled]="ConfirmValve !== 'CONFIRM'"
+          data-bs-dismiss="modal"
           type="button"
           (click)="ConfirmDelete()"
           class="btn btn-danger"
-          {data-bs-dismiss="modal"
-          }
         >
           {{ action.toUpperCase() }}
         </button>

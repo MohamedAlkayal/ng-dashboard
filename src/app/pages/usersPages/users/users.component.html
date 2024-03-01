@@ -20,31 +20,66 @@
       (pageEmitter)="getPage($event)"
       class="mx-4"
     ></app-pagination>
-
   </div>
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-    <div class="offcanvas-body">
-      <div
-        class="w-100 overflow-scroll p-4 d-flex flex-column justify-content-between"
-      >
-        <form>
-
+  <div
+    class="offcanvas offcanvas-end"
+    tabindex="-1"
+    id="offcanvasRight"
+    aria-labelledby="offcanvasRightLabel"
+  >
+    <form [formGroup]="formGroup" (ngSubmit)="handelSubmit($event)">
+      <div class="offcanvas-body">
+        <div
+          class="w-100 overflow-scroll p-4 d-flex flex-column justify-content-between"
+        >
           <h1 class="mb-5">Filters</h1>
-          <app-filter-text [lable]="'Search'" [type]="'text'"></app-filter-text>
-          <app-filter-dropdown [id]="'genderField'" [lable]="'Gender'"
-            [items]="['Male', 'Female']"></app-filter-dropdown>
-          <app-filter-dropdown [id]="'govField'" [lable]="'governorates'" [items]="governorates"
-            (dropdownEmmiter)="getSelectedGov($event)"></app-filter-dropdown>
-          <app-filter-dropdown [id]="'cityField'" [lable]="'City'" [items]="selectedCities"></app-filter-dropdown>
-          <app-filter-dropdown [id]="'sortField'" [lable]="'Sort By'"
-            [items]="['Name', 'Email', 'Phone', 'Orders']"></app-filter-dropdown>
-          <app-filter-range [allMax]="80" [allMin]="10" [lable]="'Age'" [myStep]="1">
+          <app-filter-text
+            [lable]="'Search'"
+            [type]="'text'"
+            [control]="formGroup.controls.search"
+          >
+          </app-filter-text>
+          <app-filter-dropdown
+            [id]="'genderField'"
+            [lable]="'Gender'"
+            [items]="['Male', 'Female']"
+            [control]="formGroup.controls.gender"
+          >
+          </app-filter-dropdown>
+          <app-filter-dropdown
+            [id]="'govField'"
+            [lable]="'governorates'"
+            [items]="governorates"
+            (dropdownEmmiter)="getSelectedGov($event)"
+            [control]="formGroup.controls.governorates"
+          >
+          </app-filter-dropdown>
+          <app-filter-dropdown
+            [id]="'cityField'"
+            [lable]="'City'"
+            [items]="selectedCities"
+            [control]="formGroup.controls.city"
+          >
+          </app-filter-dropdown>
+          <app-filter-dropdown
+            [id]="'sortField'"
+            [lable]="'Sort By'"
+            [items]="['Name', 'Email', 'Phone', 'Orders']"
+            [control]="formGroup.controls.sortBy"
+          >
+          </app-filter-dropdown>
+          <app-filter-range
+            [allMax]="80"
+            [allMin]="10"
+            [lable]="'Age'"
+            [myStep]="1"
+            (valuesEmiter)="ageValues($event)"
+          >
           </app-filter-range>
-        </form>
-        <button (click)="applyFilters()" class="btn btn-dark w-100">
-          Apply
-        </button>
+
+          <button class="btn btn-dark w-100">Apply</button>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
 </div>

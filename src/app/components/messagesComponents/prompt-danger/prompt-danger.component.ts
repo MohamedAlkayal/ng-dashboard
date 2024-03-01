@@ -11,15 +11,18 @@ import { FormsModule } from '@angular/forms';
   styles: ``,
 })
 export class PromptDangerComponent {
-  ConfirmValve!: string;
   @Input() Deleted!: string;
   @Output() clickedConfirm = new EventEmitter();
   @Input() action!: string;
+  ConfirmValve!: string;
   confirmed = false;
+  isOpen: string = 'display:none';
 
   ConfirmDelete() {
     if (this.ConfirmValve === 'CONFIRM') {
       this.clickedConfirm.emit(this.action);
+      this.ConfirmValve = '';
+      this.isOpen = 'display:none';
     } else {
       const inputConfirm = document.querySelector(
         '.CheckChackChock'

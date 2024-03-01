@@ -30,6 +30,7 @@ export const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent,
+        title: "Login" ,
       },
     ],
   },
@@ -43,11 +44,15 @@ export const routes: Routes = [
         path: '',
         redirectTo: 'home',
         pathMatch: 'full',
+       title: "Admin" ,
+
       },
       {
         path: 'home',
         canActivate: [authGuard],
         component: HomeComponent,
+       title: "Home" ,
+
       },
       {
         path: 'orders',
@@ -55,7 +60,10 @@ export const routes: Routes = [
         children: [
           { path: '', component: OrdersComponent },
           { path: ':order_ID', component: OneOrderComponent },
+
         ],
+       title: "Orders" ,
+
       },
       {
         path: 'products',
@@ -65,6 +73,8 @@ export const routes: Routes = [
           { path: ':product_ID', component: OneProductComponent },
           { path: 'add', component: OneProductComponent },
         ],
+       title: "Products" ,
+
       },
       {
         path: 'users',
@@ -73,6 +83,8 @@ export const routes: Routes = [
           { path: '', component: UsersComponent },
           { path: ':user_ID', component: OneUserComponent },
         ],
+       title: "Users" ,
+
       },
       {
         path: 'categories',

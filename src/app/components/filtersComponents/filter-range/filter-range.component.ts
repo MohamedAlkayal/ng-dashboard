@@ -7,7 +7,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-filter-range',
@@ -17,10 +17,13 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './filter-range.component.css',
 })
 export class FilterRangeComponent implements OnInit {
+  @Input() control_minAge!:FormControl
+  @Input() control_maxAge!:FormControl
   @Input() allMax!: number;
   @Input() allMin!: number;
   @Input() lable!: string;
   @Input() myStep!: number;
+
   @Output() valuesEmitter = new EventEmitter();
 
   step!: number;

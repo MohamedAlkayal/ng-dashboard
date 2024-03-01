@@ -18,6 +18,7 @@ import { InputInnerDropdownComponent } from '../../../components/formComponents/
 import { CommonModule } from '@angular/common';
 import { PromptConfirmComponent } from '../../../components/messagesComponents/prompt-confirm/prompt-confirm.component';
 import { PromptDangerComponent } from '../../../components/messagesComponents/prompt-danger/prompt-danger.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-one-user',
@@ -46,7 +47,8 @@ export class OneUserComponent {
   constructor(
     private route: ActivatedRoute,
     private userService: AdminUserServices,
-    private myrouter: Router
+    private myrouter: Router,
+    private toaster: ToastrService
   ) {}
 
   user: any;
@@ -64,55 +66,7 @@ export class OneUserComponent {
   };
   ngOnInit() {
     this.userID = this.route.snapshot.params['user_ID'];
-    this.userService.getUser(this.userID).subscribe({
-      next: (data) => {
-        this.user = data;
-        this.user.email = this.user.email.toLowerCase();
-        // this.cities_1 = this.locations.find(
-        //   (l) => l.governorate === this.user.address_1?.state
-        // )?.cities;
-        // this.cities_2 = this.locations.find(
-        //   (l) => l.governorate === this.user.address_2?.state
-        // )?.cities;
-        // this.formGroup.patchValue({_id: this.user._id,firstName:this.user.firstName,lastName:this.user.lastName})
-        const birthDate = getBirthDateFromAge(this.user.age);
-        this.formGroup.get('_id')?.patchValue(this.user._id);
-        this.formGroup.get('firstName')?.patchValue(this.user.firstName);
-        this.formGroup.get('lastName')?.patchValue(this.user.lastName);
-        this.formGroup.get('email')?.patchValue(this.user.email);
-        this.formGroup.get('age')?.patchValue(birthDate);
-        this.formGroup.get('gender')?.patchValue(this.user.gender);
-        this.formGroup.get('phone_1')?.patchValue(this.user.phones[0]);
-        this.formGroup.get('phone_2')?.patchValue(this.user.phones[1]);
-        this.formGroup.get('state_1')?.patchValue(this.user.address_1.state);
-        this.user.address_2
-          ? this.formGroup.get('state_2')?.patchValue(this.user.address_2.state)
-          : null;
-
-        this.formGroup.get('street_1')?.patchValue(this.user.address_1.street);
-        this.user.address_2
-          ? this.formGroup
-              .get('street_2')
-              ?.patchValue(this.user.address_2.street)
-          : null;
-        this.getSelectedGov_1(this.user.address_1.state);
-        this.formGroup.get('city_1')?.patchValue(this.user.address_1.city);
-        this.user.address_2
-          ? this.formGroup.get('city_2')?.patchValue(this.user.address_2.city)
-          : null;
-        this.promptText =
-          'You are trying to modify user ' + this.user.firstName;
-        if (this.user.active) {
-          this.suspensionObject.text = 'Suspend';
-          this.action = 'suspend';
-        } else {
-          console.log(this.user.active);
-          this.suspensionObject.text = 'Unsuspend';
-          this.action = 'unsuspend';
-        }
-      },
-    });
-    console.log(this.suspensionObject);
+    this.getUser(this.userID);
   }
 
   formGroup = new FormGroup({
@@ -147,6 +101,7 @@ export class OneUserComponent {
   InputTouched(e: any) {
     this.isDisabeled = e;
   }
+
   handleSuspending(x: any) {
     if (this.user.active) {
       this.suspensionObject.text = 'Suspend';
@@ -156,6 +111,7 @@ export class OneUserComponent {
       this.action = 'unsuspend';
     }
   }
+
   handleDeleting(x: any) {
     this.action = 'delete';
   }
@@ -170,7 +126,6 @@ export class OneUserComponent {
       },
     });
   }
-
   getSelectedGov_1(gov_1: any) {
     this.locations.map((l) =>
       l.governorate === this.formGroup.get('state_1')?.value
@@ -178,7 +133,6 @@ export class OneUserComponent {
         : null
     );
   }
-
   getSelectedGov_2(gov_2: any) {
     this.locations.map((l) => {
       return l.governorate === this.formGroup.get('state_2')?.value
@@ -190,31 +144,46 @@ export class OneUserComponent {
     switch (action) {
       case 'suspend':
         this.userService.deactivateUsers([this.userID]).subscribe({
-          next(x) {
-            console.log(x);
+          next: () => {
+            this.getUser(this.userID);
+            this.toaster.warning(
+              `${this.user.firstName + ' ' + this.user.lastName} is suspended`
+            );
           },
-          error(x) {
-            console.log(x);
+          error(err) {
+            console.log(err);
           },
         });
         break;
       case 'unsuspend':
         this.userService.activateUsers([this.userID]).subscribe({
-          next(x) {
-            console.log(x);
+          next: () => {
+            this.getUser(this.userID);
+            this.toaster.info(
+              `${
+                this.user.firstName + ' ' + this.user.lastName
+              } is active again`
+            );
           },
-          error(x) {
-            console.log(x);
+          error: (err) => {
+            console.log(err);
           },
         });
         break;
       case 'delete':
         this.userService.deleteUsers([this.userID]).subscribe({
-          next(x) {
-            console.log(x);
+          next: () => {
+            this.myrouter.navigate([`/admin/users`], {
+              queryParams: { page: 1 },
+            });
+            this.toaster.error(
+              `${
+                this.user.firstName + ' ' + this.user.lastName
+              } is active again`
+            );
           },
-          error(x) {
-            console.log(x);
+          error: (err) => {
+            console.log(err);
           },
         });
         break;
@@ -223,25 +192,67 @@ export class OneUserComponent {
         break;
     }
   }
-}
-function getBirthDateFromAge(age: number): string {
-  // Get the current date
-  const currentDate: Date = new Date();
+  getBirthDateFromAge(age: number): string {
+    // Get the current date
+    const currentDate: Date = new Date();
 
-  // Calculate the birth date by subtracting the age from the current date
-  const birthDate: Date = new Date(
-    currentDate.getTime() - age * 365 * 24 * 60 * 60 * 1000
-  ); // Assuming a year has 365 days
+    // Calculate the birth date by subtracting the age from the current date
+    const birthDate: Date = new Date(
+      currentDate.getTime() - age * 365 * 24 * 60 * 60 * 1000
+    ); // Assuming a year has 365 days
 
-  // Extract day, month, and year from the birth date
-  const day: number = birthDate.getDate();
-  const month: number = Math.floor(Math.random() * 12);
-  const year: number = birthDate.getFullYear();
+    // Extract day, month, and year from the birth date
+    const day: number = birthDate.getDate();
+    const month: number = Math.floor(Math.random() * 12);
+    const year: number = birthDate.getFullYear();
 
-  // Format the birth date as a string in 'dd mm yyyy' format
-  const birthDateStr: string = `${year}-${month
-    .toString()
-    .padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+    // Format the birth date as a string in 'dd mm yyyy' format
+    const birthDateStr: string = `${year}-${month
+      .toString()
+      .padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+    return birthDateStr;
+  }
 
-  return birthDateStr;
+  getUser(ID: any) {
+    this.userService.getUser(ID).subscribe({
+      next: (data) => {
+        this.user = data;
+        this.user.email = this.user.email.toLowerCase();
+        const birthDate = this.getBirthDateFromAge(this.user.age);
+        this.formGroup.get('_id')?.patchValue(this.user._id);
+        this.formGroup.get('firstName')?.patchValue(this.user.firstName);
+        this.formGroup.get('lastName')?.patchValue(this.user.lastName);
+        this.formGroup.get('email')?.patchValue(this.user.email);
+        this.formGroup.get('age')?.patchValue(birthDate);
+        this.formGroup.get('gender')?.patchValue(this.user.gender);
+        this.formGroup.get('phone_1')?.patchValue(this.user.phones[0]);
+        this.formGroup.get('phone_2')?.patchValue(this.user.phones[1]);
+        this.formGroup.get('state_1')?.patchValue(this.user.address_1.state);
+        this.user.address_2
+          ? this.formGroup.get('state_2')?.patchValue(this.user.address_2.state)
+          : null;
+
+        this.formGroup.get('street_1')?.patchValue(this.user.address_1.street);
+        this.user.address_2
+          ? this.formGroup
+              .get('street_2')
+              ?.patchValue(this.user.address_2.street)
+          : null;
+        this.getSelectedGov_1(this.user.address_1.state);
+        this.formGroup.get('city_1')?.patchValue(this.user.address_1.city);
+        this.user.address_2
+          ? this.formGroup.get('city_2')?.patchValue(this.user.address_2.city)
+          : null;
+        this.promptText =
+          'You are trying to modify user ' + this.user.firstName;
+        if (this.user.active) {
+          this.suspensionObject.text = 'Suspend';
+          this.action = 'suspend';
+        } else {
+          this.suspensionObject.text = 'Unsuspend';
+          this.action = 'unsuspend';
+        }
+      },
+    });
+  }
 }

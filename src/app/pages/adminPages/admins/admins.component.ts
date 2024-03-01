@@ -22,7 +22,6 @@ export class AdminsComponent {
       next: (response: any) => {
         this.adminsFromDb = response.admins;
         this.selectedAdmin = this.adminsFromDb[0];
-        console.log(response);
         this.isLoading = false;
       },
       error(x) {

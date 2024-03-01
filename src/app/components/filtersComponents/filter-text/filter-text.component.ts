@@ -17,16 +17,14 @@ import {
   styles: ``,
 })
 export class FilterTextComponent {
-  reqValidation = new FormGroup({
-    value: new FormControl('', Validators.maxLength(4)),
-  });
+  @Input() control!:FormControl
   @Input() lable: string = '';
   @Input() type: string = '';
   // @Input() formControlName!: string;
-  @Output() value = new EventEmitter<string>();
-  inptValue: any;
+  // @Output() value = new EventEmitter<string>();
+  // inptValue: any;
 
-  onValueChange(data: any) {
-    this.value.emit(data);
-  }
+  // onValueChange(data: any) {
+  //   this.value.emit(data);
+  // }
 }

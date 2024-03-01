@@ -64,7 +64,7 @@ export class ProductsComponent {
   }
 
   getProducts(n: number, l: number) {
-    this.productService.getAllProducts(n, l, 'createdAt').subscribe({
+    this.productService?.getAllProducts(n, l, 'createdAt').subscribe({
       next: (data: any) => {
         this.products = data.products;
         this.products.map((p: any) => {
@@ -74,10 +74,10 @@ export class ProductsComponent {
           p.selected = false;
           p.stock = 20;
           p.isFrozen = p.frozen ? 'Frozen' : 'Active';
+          this.productsCount = data.numberOfProducts;
+          this.itemsCount = this.products.length;
+          this.pagesCount = Math.ceil(this.productsCount / this.pageLimit);
         });
-        this.productsCount = data.numberOfProducts;
-        this.itemsCount = this.products.length;
-        this.pagesCount = Math.ceil(this.productsCount / this.pageLimit);
       },
       error: (err) => console.log(err),
     });
