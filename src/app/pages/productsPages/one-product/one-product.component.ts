@@ -37,7 +37,6 @@ export class OneProductComponent {
   productID!: string;
   product!: any;
 
-
   ngOnInit() {
     this.productID = this.route.snapshot.params['product_ID'];
     this.productsService.getOneProduct(this.productID).subscribe({
