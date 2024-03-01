@@ -79,7 +79,7 @@ export class OneUserComponent {
         //   (l) => l.governorate === this.user.address_2?.state
         // )?.cities;
         // this.formGroup.patchValue({_id: this.user._id,firstName:this.user.firstName,lastName:this.user.lastName})
-        const birthDate = getBirthDateFromAge(this.user.age);
+        const birthDate = this.getBirthDateFromAge(this.user.age);
         this.formGroup.get('_id')?.patchValue(this.user._id);
         this.formGroup.get('firstName')?.patchValue(this.user.firstName);
         this.formGroup.get('lastName')?.patchValue(this.user.lastName);
