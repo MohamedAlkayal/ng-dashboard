@@ -105,11 +105,6 @@ export class OneUserComponent {
     console.log(this.formGroup.value)
   }
 
-
-  isDisabeled: boolean = true;
-
-
-
   sendUserData(e: any) {
     this.userData.emit(this.user);
   }
@@ -132,3 +127,5 @@ export class OneUserComponent {
     console.log(this.formGroup.get('state_2'))
     this.locations.map((l) =>
       l.governorate === this.formGroup.get('state_2')?.value ? (this.cities_2 = l.cities) : null
+  )}
+}

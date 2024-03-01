@@ -1,71 +1,80 @@
+<form [formGroup]="formGroup"  (ngSubmit)="onSubmit($event)">
 <div class="d-flex gap-5 pt-4 my-5">
   <div style="width: 700px" class="d-flex align-items-end flex-column mt-5">
     <app-input
       lable="Product ID"
       type="text"
       [disabled]="true"
-      [value]="product._id"
+    [control]="formGroup.controls._id"
     ></app-input>
     <app-input
       lable="Product Name"
       type="text"
-      [value]="product.name"
+      [control]="formGroup.controls.name"
+
     ></app-input>
     <app-input
       lable="Brand Name"
       type="text"
-      [value]="product.brandName"
+      [control]="formGroup.controls.brandName"
+
     ></app-input>
     <app-input-textarea
       lable="Description"
-      [value]="product.description"
+      [control]="formGroup.controls.description"
+
     ></app-input-textarea>
     <app-input
       lable="Price"
       type="number"
       [value]="product.price"
       unit="LE"
+      [control]="formGroup.controls.price"
     ></app-input>
     <app-input
       lable="Discount"
       type="number"
-      [value]="product.discountPercentage"
+      [control]="formGroup.controls.discountPercentage"
       unit="%"
     ></app-input>
     <app-input
       lable="Category"
-      [value]="product.category"
+      [control]="formGroup.controls.category"
       [options]="['test1', 'test2', 'test3', 'test4', 'test5', 'Smart Phones']"
       [isDropdown]="true"
     ></app-input>
     <app-input
       lable="Sub Category"
-      [value]="product.subCategory"
+      [control]="formGroup.controls.subcategory"
       [options]="['test1', 'test2', 'test3', 'test4', 'test5', 'Gaming Phones']"
       [isDropdown]="true"
     ></app-input>
     <app-input
       lable="Model Number"
       type="text"
-      [value]="product.modelNumber"
+      [control]="formGroup.controls.modelNumber"
     ></app-input>
     <app-input
       lable="Manufacturer"
       type="text"
-      [value]="product.manufacturer"
+      [control]="formGroup.controls.manufacturer"
     ></app-input>
     <app-input
       lable="Made In"
       type="text"
-      [value]="product.countryOfOrigin"
+      [control]="formGroup.controls.countryOfOrigin"
     ></app-input>
     <app-input-two-fields
+    [control_key]="formGroup.controls.specKey"
+    [control_value]="formGroup.controls.specValue"
       label="Specification"
       mainPlaceholder="spec"
       subPlaceholder="value"
       [options]="product._specs"
     ></app-input-two-fields>
     <app-input-two-fields
+    [control_key]="formGroup.controls.color_l_controlKey"
+    [control_value]="formGroup.controls.color_l_controlValue"
       label="Colors"
       mainPlaceholder="Color Value"
       subPlaceholder="Quantity"
@@ -75,7 +84,7 @@
       lable="Stock"
       [disabled]="true"
       type="number"
-      [value]="product._stock"
+      [control]="formGroup.controls.stock"
     ></app-input>
     <app-input-keywords [keywords]="product.keywords"></app-input-keywords>
     <app-card-cta
@@ -111,3 +120,4 @@
     ></app-card-prompt>
   </div>
 </div>
+</form>

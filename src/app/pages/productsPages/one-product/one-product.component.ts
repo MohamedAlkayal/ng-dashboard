@@ -5,7 +5,7 @@ import { InputTextareaComponent } from '../../../components/formComponents/input
 import { InputTwoFieldsComponent } from '../../../components/formComponents/input-two-fields/input-two-fields.component';
 import { InputKeywordsComponent } from '../../../components/formComponents/input-keywords/input-keywords.component';
 import { CardCtaComponent } from '../../../components/cardComponents/card-cta/card-cta.component';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-one-product',
@@ -17,13 +17,34 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
     InputTwoFieldsComponent,
     InputKeywordsComponent,
     CardCtaComponent,
+    ReactiveFormsModule
   ],
   templateUrl: './one-product.component.html',
   styleUrl: './one-product.component.css',
 })
 export class OneProductComponent {
 
-
+  formGroup=new FormGroup({
+    _id:new FormControl("",[Validators.required]),
+    name:new FormControl("",[Validators.required]),
+    images:new FormControl("",[Validators.required]),
+    description:new FormControl("",[Validators.required]),
+    modelNumber:new FormControl("",[Validators.required]),
+    manufacturer:new FormControl("",[Validators.required]),
+    countryOfOrigin:new FormControl("",[Validators.required]),
+    brandName:new FormControl("",[Validators.required]),
+    price:new FormControl("",[Validators.required]),
+    discountPercentage:new FormControl("",[Validators.required]),
+    ratings:new FormControl("",[Validators.required]),
+    category:new FormControl("",[Validators.required]),
+    subcategory:new FormControl("",[Validators.required]),
+    keywords:new FormControl("",[Validators.required]),
+    stock:new FormControl("",[Validators.required]),
+    specValue:new FormControl("",[Validators.required]),
+    specKey:new FormControl("",[Validators.required]),
+    color_l_controlKey:new FormControl ("",[Validators.required]),
+    color_l_controlValue:new FormControl ("",[Validators.required]),
+  })
 
 
   product: any = {
@@ -95,6 +116,32 @@ export class OneProductComponent {
     this.product.colors.map((c: any) => {
       this.product._colors.push({ value: c.colorName, subValue: c.quantity });
       this.product._stock += c.quantity;
+
+console.log(this.formGroup.value)
+      // this.formGroup.get('_id')?.patchValue(this.product._id)  
+      // this.formGroup.get('firstName')?.patchValue(this.product.name) 
+      // this.formGroup.get('lastName')?.patchValue(this.product.lastName)
+      // this.formGroup.get('email')?.patchValue(this.product.email)
+      // this.formGroup.get('dateOfBirth')?.patchValue(this.product.dateOfBirth)
+      // this.formGroup.get('phone_1')?.patchValue(this.product.phones[0])
+      // this.formGroup.get('phone_2')?.patchValue(this.product.phones[1])
+      // this.formGroup.get('city_1')?.patchValue(this.product.address_1.city)
+      // this.formGroup.get('city_2')?.patchValue(this.product.address_2.city)
+      // this.formGroup.get('state_1')?.patchValue(this.product.address_1['state'])
+      // this.formGroup.get('state_2')?.patchValue(this.product.address_2.state)
+      // this.formGroup.get('street_1')?.patchValue(this.product.address_1.street)  
+      // this.formGroup.get('street_2')?.patchValue(this.product.address_2.street) 
     });
   }
+  onSubmit(productData: any){
+    console.log(this.formGroup.value)
+    console.log(productData)
+    
+  }
+}
+function getFormProduct(product:any){
+const myObj={};
+for (const key of product) {
+  console.log(key);
+}
 }
