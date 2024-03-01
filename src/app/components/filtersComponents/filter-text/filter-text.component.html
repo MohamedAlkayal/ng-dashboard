@@ -1,4 +1,14 @@
 <div class="reg mb-4">
-  <label [for]="lable" class="form-label">{{ lable }}</label>
-  <input [id]="lable" [type]="type" class="form-control" />
+  <label 
+  [for]="lable" 
+  class="form-label"
+  >
+  {{ lable }}
+</label>
+  <input 
+  [id]="lable" 
+  [type]="type" 
+  class="form-control" 
+  [formControl]="control"
+  />
 </div>

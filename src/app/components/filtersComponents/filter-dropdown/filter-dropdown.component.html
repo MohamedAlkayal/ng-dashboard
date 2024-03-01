@@ -3,7 +3,7 @@
   <select
     [id]="id"
     class="form-select"
-    [(ngModel)]="selectValue"
+    [formControl]="control"
     (ngModelChange)="onValueChange($event)"
     aria-label="form-select example"
     style="max-height: 200px; overflow: scroll"

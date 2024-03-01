@@ -11,9 +11,11 @@ import { locations } from '../../../utilities/geoData';
 import { ActivatedRoute } from '@angular/router';
 import { PaginationComponent } from '../../../components/tableComponents/pagination/pagination.component';
 import {
+  FormControl,
   FormGroup,
-  FormGroupDirective,
   ReactiveFormsModule,
+  Validators,
+
 } from '@angular/forms';
 
 @Component({
@@ -40,6 +42,34 @@ export class UsersComponent {
     private route: ActivatedRoute
   ) {}
 
+  search:any
+  gender:any
+  governorate:any
+  city:any
+  sortBy:any
+  age:any
+
+
+  formGroup= new FormGroup({
+    search: new FormControl('', [Validators.maxLength(50)]),
+    gender: new FormControl('', [Validators.maxLength(6)]),
+    governorates: new FormControl('', [Validators.maxLength(30)]),
+    city: new FormControl('', [Validators.maxLength(30)]),
+    sortBy: new FormControl('', [Validators.maxLength(10)]),
+    
+  })
+  filtrationData:{}={}
+  data:{}={}
+  ageValues(data:any){
+    console.log(data)
+    this.data=data
+  }
+  handelSubmit(data:any){
+    this.filtrationData={...this.formGroup.value,...this.data}
+    console.log(this.filtrationData)
+    console.log(this.formGroup.value)
+    this.getUsers(this.currentPage, this.pageLimit, this.search,this.gender,this.governorate,this.city,this.sortBy,"")
+  }
   usersForm = 'test';
   tableCols = [
     { lable: 'Name', colData: 'fullName' },
@@ -64,33 +94,45 @@ export class UsersComponent {
   selectedGov: any = '';
   selectedCities: string[] = [];
   // search: any = '';
-  // gender: string = '';
-
-  applyFilters() {}
+  // gender: string = '';F
 
   ngOnInit() {
+    
     this.route.queryParams.subscribe((params) => {
+      
+      this.search = params["search"] 
+      this.gender = params["gender"]
+      this.governorate = params["governorate"]
+      this.city = params["city"]
+      this.sortBy=params["sortBy"]
+      this.age=params["age"]
       this.currentPage = params['page'] ? +params['page'] : 1;
+      this.formGroup.get('search')?.patchValue(this.search);
+       this.formGroup.get('gender')?.patchValue(this.gender);
+       this.formGroup.get('governorates')?.patchValue(this.governorate);
+       console.log(this.governorate);
+       this.getSelectedGov(this.governorate)
+       this.formGroup.get('city')?.patchValue(this.city);
+       this.formGroup.get('sortBy')?.patchValue(this.sortBy);
+
+
     });
     locations.map((l) => this.governorates.push(l.governorate));
-    this.getUsers(this.currentPage, this.pageLimit);
+    this.getUsers(this.currentPage, this.pageLimit,this.search, this.gender, this.governorate, this.city, this.sortBy,"");
   }
-
   getSelected(selectedIDs: any) {
     this.selectedItems = selectedIDs;
   }
-
   getSelectedGov(gov: any) {
     this.selectedGov = locations.find((l) => l.governorate == gov);
-    this.selectedCities = this.selectedGov.cities;
+    this.selectedCities = this.selectedGov?.cities;
   }
-
   getPage(pageNumber: any) {
-    this.getUsers(pageNumber, this.pageLimit);
+    this.getUsers(pageNumber, this.pageLimit,this.search, this.gender, this.governorate, this.city, this.sortBy, this.age);
   }
-
-  getUsers(p: number, l: number) {
-    this.usersService.getAllUsers(p, l, 'createdAt').subscribe({
+  getUsers(p: number, l: number,search:string,gender:string,governorate:string,city:string,sortBy:string,age:string) {
+    console.log(governorate);
+    this.usersService.getAllUsers(p, l, 'createdAt',"",search,gender,governorate,city).subscribe({
       next: (data: any) => {
         this.users = data.users;
         this.usersCount = data.totalCount;
@@ -100,7 +142,7 @@ export class UsersComponent {
           u.fullName = u.firstName + ' ' + u.lastName;
           u.mainPhone = u.phones[0];
           u.isActive = u.active ? 'Active' : 'Suspended';
-          u.city = u.address_1.city;
+          u.city = u.address_1.city;          
         });
         this.itemsCount = this.users.length;
         this.pagesCount = Math.ceil(this.usersCount / this.pageLimit);
