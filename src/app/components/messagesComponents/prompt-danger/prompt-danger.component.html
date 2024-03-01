@@ -41,7 +41,13 @@
         >
           Close
         </button>
-        <button type="button" (click)="ConfirmDelete()" class="btn btn-danger">
+        <button
+          type="button"
+          (click)="ConfirmDelete()"
+          class="btn btn-danger"
+          {data-bs-dismiss="modal"
+          }
+        >
           {{ action.toUpperCase() }}
         </button>
       </div>
