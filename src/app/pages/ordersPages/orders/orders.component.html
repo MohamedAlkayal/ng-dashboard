@@ -1,4 +1,5 @@
-<!-- <div class="page d-flex gap-4">
+<form [formGroup]="formGroup" (ngSubmit)="handelSubmit($event)">
+<div class="page d-flex gap-4">
   <div class="table-wrap">
     <app-table-controls
       [resualtsCount]="ordersCount"
@@ -26,6 +27,7 @@
     id="offcanvasRight"
     aria-labelledby="offcanvasRightLabel"
   >
+  <form [formGroup]="formGroup"></form>
     <div class="offcanvas-body">
       <div
         class="w-100 overflow-scroll p-4 d-flex flex-column justify-content-between"
@@ -36,11 +38,13 @@
             [id]="'trckingField'"
             [lable]="'Tracking Number'"
             [type]="'number'"
+            [control]="formGroup.controls.trackingNumber"
           ></app-filter-text>
           <app-filter-text
             [id]="'userField'"
             [lable]="'User ID'"
             [type]="'number'"
+            [control]="formGroup.controls.userId"
           ></app-filter-text>
           <app-filter-dropdown
             [id]="'deliveryField'"
@@ -52,28 +56,33 @@
               'deliverd',
               'canceled'
             ]"
+            [control]="formGroup.controls.deliveryStatus"
           ></app-filter-dropdown>
           <app-filter-dropdown
             [id]="'govField'"
             [lable]="'governorates'"
             [items]="governorates"
             (dropdownEmmiter)="getSelectedGov($event)"
+            [control]="formGroup.controls.governorate"
           ></app-filter-dropdown>
           <app-filter-dropdown
             [id]="'cityField'"
             [lable]="'City'"
             [items]="selectedCities"
+            [control]="formGroup.controls.city"
           ></app-filter-dropdown>
           <app-filter-dropdown
             [id]="'sortField'"
             [lable]="'Sort By'"
             [items]="['test', 'test2', 'test3']"
+            [control]="formGroup.controls.sortBy"
           ></app-filter-dropdown>
           <app-filter-range
             [allMax]="10000"
             [allMin]="100"
             [lable]="'Price'"
             [myStep]="100"
+            (valuesEmiter)="priceValue($event)"
           >
           </app-filter-range>
           <app-filter-range
@@ -81,6 +90,7 @@
             [allMin]="1"
             [lable]="'Items'"
             [myStep]="1"
+            (valuesEmiter)="itemsValue($event)"
           >
           </app-filter-range>
         </div>
@@ -88,4 +98,5 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>
+</form>

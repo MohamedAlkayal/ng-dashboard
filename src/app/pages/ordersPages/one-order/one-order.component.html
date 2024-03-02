@@ -1,4 +1,5 @@
-<!-- <div *ngIf="order" class="d-flex gap-5 pt-4 my-5">
+<form action=""></form>
+<div *ngIf="order" class="d-flex gap-5 pt-4 my-5">
   <div style="width: 700px" class="d-flex align-items-end flex-column mt-5">
     <app-input
       [value]="order.trackingNumber"
@@ -40,11 +41,22 @@
       [value]="order.address.street"
     >
     </app-input-inner-lable>
-    <app-input-inner-lable lable="Voucher" innerLable="Code" [value]="'test1'">
+    <app-input-inner-lable 
+    lable="Voucher" 
+    innerLable="Code" 
+    [value]="'test1'">
     </app-input-inner-lable>
-    <app-input-inner-lable lable="" innerLable="Type" [value]="'Flat'">
+    <app-input-inner-lable 
+    lable="" 
+    innerLable="Type" 
+    [value]="'Flat'"
+    >
     </app-input-inner-lable>
-    <app-input-inner-lable lable="" innerLable="Amount" [value]="'10'">
+    <app-input-inner-lable 
+    lable="" 
+    innerLable="Amount" 
+    [value]="'10'"
+    >
     </app-input-inner-lable>
     <app-input
       [value]="order.paymentMethod"
@@ -71,4 +83,4 @@
       }"
     ></app-card-cta>
   </div>
-</div> -->
+</div>
