@@ -3,7 +3,7 @@
   class="d-flex bg-white flex-column justify-content-between border-end border-color h-100"
 >
   <div>
-    <ul style="position: fixed; width: 200px; transform: translateY(200px)">
+    <ul style="position: fixed; width: 200px; transform: translateY(140px)">
       <li
         class="p-3 ps-4"
         routerLinkActive="bg-dark text-light"
@@ -22,7 +22,17 @@
       >
         <a
           routerLink="orders"
-          [queryParams]="{ page: '1' }"
+          [queryParams]="{
+            page: '1',
+            trackingNumber: '',
+            userId: '',
+            deliveryStatus: '',
+            governorate: '',
+            city: '',
+            sortBy: '',
+            price: '',
+            items: ''
+          }"
           class="d-flex align-items-center gap-3"
         >
           <mat-icon> local_shipping </mat-icon>
@@ -38,7 +48,16 @@
       >
         <a
           routerLink="products"
-          [queryParams]="{ page: '1' }"
+          [queryParams]="{
+            page: '1',
+            _id: '',
+            name: '',
+            brandName: '',
+            category: '',
+            subCategory: '',
+            sortBy: '',
+            price: ''
+          }"
           class="d-flex align-items-center gap-3"
         >
           <mat-icon> shopping_cart </mat-icon>

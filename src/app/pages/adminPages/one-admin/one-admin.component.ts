@@ -9,11 +9,25 @@ import { AdminServices } from '../../../services/admin.service';
 import { InputComponent } from '../../../components/formComponents/input/input.component';
 import { CardPromptComponent } from '../../../components/cardComponents/card-prompt/card-prompt.component';
 import { PromptConfirmComponent } from '../../../components/messagesComponents/prompt-confirm/prompt-confirm.component';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-one-admin',
   standalone: true,
-  imports: [InputComponent, CardPromptComponent, PromptConfirmComponent],
+  imports: [
+    InputComponent,
+    CardPromptComponent,
+    PromptConfirmComponent,
+    ReactiveFormsModule,
+    CommonModule,
+  ],
   providers: [AdminServices],
   templateUrl: './one-admin.component.html',
   styles: '',
@@ -34,13 +48,73 @@ export class OneAdminComponent {
     text: `${this.newAdmin ? 'Create' : 'Update'}`,
   };
   promptText: string = '';
-  constructor(private admin: AdminServices) {}
+  constructor(private admin: AdminServices, private toaster: ToastrService) {
+    this.formGroup.valueChanges.subscribe(() => {
+      if (this.formGroup.dirty) {
+        this.isDisabled = false;
+
+        this.currentFieldInfo.authorities.admin =
+          this.formGroup.get('admins')?.value;
+
+        this.currentFieldInfo.authorities.orders =
+          this.formGroup.get('orders')?.value;
+
+        this.currentFieldInfo.authorities.products =
+          this.formGroup.get('products')?.value;
+
+        this.currentFieldInfo.authorities.categories =
+          this.formGroup.get('categories')?.value;
+
+        this.currentFieldInfo.authorities.users =
+          this.formGroup.get('users')?.value;
+
+        this.currentFieldInfo.authorities.vouchers =
+          this.formGroup.get('vouchers')?.value;
+      }
+    });
+  }
+
+  formGroup = new FormGroup({
+    username: new FormControl('', [Validators.required]),
+    createdBy: new FormControl('', [Validators.required]),
+    admins: new FormControl('', [Validators.required]),
+    orders: new FormControl('', [Validators.required]),
+    products: new FormControl('', [Validators.required]),
+    users: new FormControl('', [Validators.required]),
+    categories: new FormControl('', [Validators.required]),
+    vouchers: new FormControl('', [Validators.required]),
+  });
+
   ngOnChanges(changes: SimpleChanges): void {
+    this.formGroup.get('username')?.patchValue(this.selectedAdmin.username);
+    this.formGroup.get('createdBy')?.patchValue(this.selectedAdmin.createdBy);
+    this.formGroup
+      .get('admins')
+      ?.patchValue(this.selectedAdmin.authorities.admin);
+    console.log(this.selectedAdmin.authorities.admin);
+    this.formGroup
+      .get('orders')
+      ?.patchValue(this.selectedAdmin.authorities.orders);
+    this.formGroup
+      .get('products')
+      ?.patchValue(this.selectedAdmin.authorities.products);
+    this.formGroup
+      .get('categories')
+      ?.patchValue(this.selectedAdmin.authorities.categories);
+    this.formGroup
+      .get('users')
+      ?.patchValue(this.selectedAdmin.authorities.users);
+    this.formGroup
+      .get('vouchers')
+      ?.patchValue(this.selectedAdmin.authorities.vouchers);
+
     this.isDisabled = true;
     if (this.selectedAdmin) {
       this.currentFieldInfo = {};
       for (const key in this.selectedAdmin) {
-        this.currentFieldInfo[key] = this.selectedAdmin[key];
+        if (key === 'authorities') {
+          this.currentFieldInfo[key] = { ...this.selectedAdmin[key] };
+        } else this.currentFieldInfo[key] = this.selectedAdmin[key];
       }
       this.promptText = this.newAdmin
         ? `You are about to create a new admin with username ${this.currentFieldInfo.username}`
@@ -65,12 +139,65 @@ export class OneAdminComponent {
     this.currentFieldInfo[key] = event;
   }
   clickedCancel() {
+    this.formGroup.get('username')?.patchValue(this.selectedAdmin.username);
+    this.formGroup.get('createdBy')?.patchValue(this.selectedAdmin.createdBy);
+    this.formGroup
+      .get('admins')
+      ?.patchValue(this.selectedAdmin.authorities.admin);
+    this.formGroup
+      .get('orders')
+      ?.patchValue(this.selectedAdmin.authorities.orders);
+    this.formGroup
+      .get('products')
+      ?.patchValue(this.selectedAdmin.authorities.products);
+    this.formGroup
+      .get('categories')
+      ?.patchValue(this.selectedAdmin.authorities.categories);
+    this.formGroup
+      .get('users')
+      ?.patchValue(this.selectedAdmin.authorities.users);
+    this.formGroup
+      .get('vouchers')
+      ?.patchValue(this.selectedAdmin.authorities.vouchers);
     this.isDisabled = true;
-    for (const key in this.selectedAdmin) {
-      this.currentFieldInfo[key] = this.selectedAdmin[key];
-    }
   }
   handlePromptConfirm() {
+    if (!this.newAdmin) {
+      this.admin
+        .update(this.selectedAdmin._id, this.currentFieldInfo.authorities)
+        .subscribe({
+          next: (data: any) => {
+            console.log(data);
+            this.toaster.success(`${this.selectedAdmin.username} is updated`);
+          },
+          error: (err) => {
+            console.log(err);
+            this.toaster.error(
+              `${this.selectedAdmin.username} updating faield`
+            );
+          },
+        });
+    } else {
+      this.admin
+        .create(
+          this.currentFieldInfo.name,
+          this.currentFieldInfo.description,
+          this.currentFieldInfo.subCategories
+        )
+        .subscribe({
+          next: (x) => {
+            console.log(x);
+            this.changedAdmin.emit();
+            this.toaster.success(`${this.selectedAdmin.username} created`);
+          },
+          error: (x) => {
+            console.log(x);
+            this.toaster.error(`admin creation failed`);
+          },
+        });
+    }
+    this.changedAdmin.emit();
+
     // if (!this.newAdmin) {
     //   this.admin
     //     .update(

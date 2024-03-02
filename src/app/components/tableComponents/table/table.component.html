@@ -15,6 +15,22 @@
       </tr>
     </thead>
     <tbody>
+      @if(isLoading){
+      <div
+        class="spinner-border text-dark"
+        style="
+          width: 5rem;
+          height: 5rem;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+        "
+        role="status"
+      >
+        <span class="sr-only"></span>
+      </div>
+      }@else{
+
       <tr (click)="navigateTo(row)" *ngFor="let row of data">
         <td
           style="padding-left: 12px !important ; padding-right: 0 !important"
@@ -61,6 +77,7 @@
           </span>
         </td>
       </tr>
+      }
     </tbody>
   </table>
 </div>

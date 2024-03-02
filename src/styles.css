@@ -142,10 +142,10 @@ body {
 }
 
 .page {
-  margin-top: 76px;
+  margin-top: 50px;
   padding: 16px 16px 32px 16px;
   min-height: 650px;
-  height: calc(100vh - 76px);
+  height: calc(100vh - 50px);
   overflow: scroll;
   background-color: rgb(239, 243, 246);
 }

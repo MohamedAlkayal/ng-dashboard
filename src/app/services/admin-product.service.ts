@@ -13,6 +13,7 @@ export class AdminProductService {
   createProduct(productDetails: any, productImages: any) {
     const formData = new FormData();
     const headers = this.token.getHeader();
+    console.log(productDetails);
 
     const productData = JSON.stringify(productDetails);
     // Append productImage (file) to formData
@@ -74,8 +75,13 @@ export class AdminProductService {
   editProduct(id: string, productDetails: any, productImages: any) {
     const formData = new FormData();
     const headers = this.token.getHeader();
+    const myProductDetails = { ...productDetails };
+    delete myProductDetails.stock;
+    delete myProductDetails._id;
 
-    const productData = JSON.stringify(productDetails);
+    console.log(myProductDetails);
+
+    const productData = JSON.stringify(myProductDetails);
 
     formData.append('productData', productData);
 
