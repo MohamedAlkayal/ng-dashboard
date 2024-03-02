@@ -1,86 +1,35 @@
-<form action=""></form>
-<div *ngIf="order" class="d-flex gap-5 pt-4 my-5">
-  <div style="width: 700px" class="d-flex align-items-end flex-column mt-5">
-    <app-input
-      [value]="order.trackingNumber"
-      lable="Tracking Number"
-      [type]="'text'"
-    ></app-input>
-    <app-input
-      [value]="order.fullName"
-      lable="Full Name"
-      [type]="'text'"
-    ></app-input>
-    <app-input
-      [value]="order.user.email"
-      lable="Email"
-      [type]="'text'"
-    ></app-input>
-    <app-input-inner-lable
-      innerLable="+20"
-      [value]="order.user.phones[0]"
-      lable="Phone"
-      [type]="'number'"
-    ></app-input-inner-lable>
+<form>
+  <div *ngIf="order" class="d-flex gap-5 pt-4 my-5">
+    <div style="width: 700px" class="d-flex align-items-end flex-column mt-5">
+      <app-input [value]="order.trackingNumber" lable="Tracking Number" [disabled]="true" [type]="'text'"></app-input>
+      <app-input [value]="order.fullName" lable="Full Name" [type]="'text'"></app-input>
+      <app-input [value]="order.user.email" lable="Email" [type]="'text'"></app-input>
+      <app-input-inner-lable innerLable="+20" [value]="order.user.phones[0]" lable="Phone"
+        [type]="'number'"></app-input-inner-lable>
 
-    <app-input-inner-lable
-      lable="Address"
-      innerLable="state"
-      [value]="order.address.state"
-    >
-    </app-input-inner-lable>
-    <app-input-inner-lable
-      lable=""
-      innerLable="City"
-      [value]="order.address.city"
-    >
-    </app-input-inner-lable>
-    <app-input-inner-lable
-      lable=""
-      innerLable="Street"
-      [value]="order.address.street"
-    >
-    </app-input-inner-lable>
-    <app-input-inner-lable 
-    lable="Voucher" 
-    innerLable="Code" 
-    [value]="'test1'">
-    </app-input-inner-lable>
-    <app-input-inner-lable 
-    lable="" 
-    innerLable="Type" 
-    [value]="'Flat'"
-    >
-    </app-input-inner-lable>
-    <app-input-inner-lable 
-    lable="" 
-    innerLable="Amount" 
-    [value]="'10'"
-    >
-    </app-input-inner-lable>
-    <app-input
-      [value]="order.paymentMethod"
-      lable="Payment Method"
-      [type]="'text'"
-    ></app-input>
-    <app-invoice
-      lable="Invoice"
-      [_invoice]="order.products"
-      [order]="order"
-    ></app-invoice>
-    <app-card-cta
-      [config]="{
+      <app-input-inner-lable lable="Address" innerLable="state" [value]="order.address.state">
+      </app-input-inner-lable>
+      <app-input-inner-lable lable="" innerLable="City" [value]="order.address.city">
+      </app-input-inner-lable>
+      <app-input-inner-lable lable="" innerLable="Street" [value]="order.address.street">
+      </app-input-inner-lable>
+      <app-input-inner-lable lable="Voucher" innerLable="Code" [value]="'test1'">
+      </app-input-inner-lable>
+      <app-input-inner-lable lable="" innerLable="Type" [value]="'Flat'">
+      </app-input-inner-lable>
+      <app-input-inner-lable lable="" innerLable="Amount" [value]="'10'">
+      </app-input-inner-lable>
+      <app-input [value]="order.paymentMethod" lable="Payment Method" [type]="'text'"></app-input>
+      <app-invoice lable="Invoice" [_invoice]="order.products" [order]="order"></app-invoice>
+      <app-card-cta [config]="{
         data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
         color: 'warning',
         text: 'Open Ticket'
-      }"
-    ></app-card-cta>
-    <app-card-cta
-      [config]="{
+      }"></app-card-cta>
+      <app-card-cta [config]="{
         data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
         color: 'danger',
         text: 'Cancel'
-      }"
-    ></app-card-cta>
+      }"></app-card-cta>
+    </div>
   </div>
-</div>

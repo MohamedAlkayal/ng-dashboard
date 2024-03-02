@@ -1,36 +1,34 @@
 <form [formGroup]="formGroup">
   <div *ngIf="user" class="d-flex gap-5 pt-4 my-5">
     <div style="width: 700px" class="d-flex align-items-end flex-column mt-5">
-      <app-input
-        lable="Product ID"
-        [type]="'text'"
-        [ValidInput]="true"
-        [disabled]="true"
-        (touched)="InputTouched($event)"
-        [control]="formGroup.controls._id"
-      ></app-input>
-      <app-input
-        lable="First Name"
-        [type]="'text'"
-        [ValidInput]="formGroup.get('firstName')?.valid"
-        (touched)="InputTouched($event)"
-        [control]="formGroup.controls.firstName"
-      ></app-input>
-      <div class="invalid-feedback">More example invalid feedback text</div>
-      <app-input
-        lable="Last Name"
-        [ValidInput]="formGroup.get('lastName')?.valid"
-        [type]="'text'"
-        (touched)="InputTouched($event)"
-        [control]="formGroup.controls.lastName"
-      ></app-input>
-      <app-input
-        lable="Email"
-        [ValidInput]="formGroup.get('email')?.valid"
-        [type]="'text'"
-        (touched)="InputTouched($event)"
-        [control]="formGroup.controls.email"
-      ></app-input>
+
+
+      <app-input lable="Product ID" [type]="'text'" [ValidInput]="true" [disabled]="true"
+        (touched)="InputTouched($event)" [control]="formGroup.controls._id"></app-input>
+      <app-input lable="First Name" [type]="'text'" [ValidInput]="formGroup.get('firstName')?.valid"
+        (touched)="InputTouched($event)" [control]="formGroup.controls.firstName"></app-input>
+
+      <div *ngIf="!(formGroup.controls.firstName.valid)" style="height: 10px ; width: 550px;">
+        <p class="text-danger" style="transform: translateY(-12px); font-size: 12px;">First Name is required && Between
+          3-15</p>
+      </div>
+
+      <app-input lable="Last Name" [ValidInput]="formGroup.get('lastName')?.valid" [type]="'text'"
+        (touched)="InputTouched($event)" [control]="formGroup.controls.lastName"></app-input>
+
+      <div *ngIf="!(formGroup.controls.lastName.valid)" style="height: 10px ; width: 550px;">
+        <p class="text-danger" style="transform: translateY(-12px); font-size: 12px;">Last Name is required && Between
+          3-15</p>
+      </div>
+
+      <app-input lable="Email" [ValidInput]="formGroup.get('email')?.valid" [type]="'text'"
+        (touched)="InputTouched($event)" [control]="formGroup.controls.email"></app-input>
+
+      <div *ngIf="!(formGroup.controls.email.valid)" style="height: 10px ; width: 550px;">
+        <p class="text-danger" style="transform: translateY(-12px); font-size: 12px;">example deco&#64;gmail.com</p>
+      </div>
+
+
 
       <app-input
         lable="Date Of Birth"
@@ -56,15 +54,15 @@
         [control]="formGroup.controls.phone_1"
       >
       </app-input-inner-lable>
-      <app-input-inner-lable
-        lable=""
-        innerLable="+20"
-        [ValidInput]="formGroup.get('phone_2')?.valid"
-        type="number"
-        (isInnerInputToched)="innerinputTouched($event)"
-        [control]="formGroup.controls.phone_2"
-        [disabled]="true"
-      >
+
+      <div *ngIf="!(formGroup.controls.phone_1.valid)" style="height: 10px ; width: 550px;">
+        <p class="text-danger" style="transform: translateY(-12px); font-size: 12px;">Must be 11 number</p>
+      </div>
+
+      <app-input-inner-lable lable="" innerLable="+20" [ValidInput]="formGroup.get('phone_2')?.valid" type="number"
+        (isInnerInputToched)="innerinputTouched($event)" [control]="formGroup.controls.phone_2" [disabled]="true">
+
+
       </app-input-inner-lable>
       <app-input-inner-dropdown
         [options]="governorates"
@@ -80,14 +78,12 @@
         [control]="formGroup.controls.city_1"
       ></app-input-inner-dropdown>
 
-      <app-input-inner-lable
-        lable=""
-        innerLable="Street"
-        [ValidInput]="formGroup.get('street_1')?.valid"
-        type="string"
-        (isInnerInputToched)="innerinputTouched($event)"
-        [control]="formGroup.controls.street_1"
-      >
+        <div *ngIf="!(formGroup.controls.street_1.valid)" style="height: 10px ; width: 550px;">
+          <p class="text-danger" style="transform: translateY(-12px); font-size: 12px;">street is required && between
+            7-20</p>
+        </div>
+
+
       </app-input-inner-lable>
       <app-input-inner-dropdown
         [options]="governorates"
@@ -103,6 +99,7 @@
         [control]="formGroup.controls.city_2"
       ></app-input-inner-dropdown>
 
+
       <app-input-inner-lable
         lable=""
         innerLable="Street"
@@ -111,6 +108,7 @@
         (isInnerInputToched)="innerinputTouched($event)"
         [control]="formGroup.controls.street_2"
       >
+
       </app-input-inner-lable>
 
       <app-card-cta

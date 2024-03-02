@@ -9,7 +9,8 @@ import { InputInnerLableComponent } from '../../../components/formComponents/inp
 import { AdminOrdersService } from '../../../services/admin-orders.service';
 import { CommonModule } from '@angular/common';
 import { InvoiceComponent } from '../../../components/invoice/invoice.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { FormControl, FormGroup, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
 @Component({
   selector: 'app-one-order',
   standalone: true,
@@ -23,6 +24,9 @@ import { ActivatedRoute } from '@angular/router';
     InputInnerLableComponent,
     CommonModule,
     InvoiceComponent,
+    RouterModule,
+    ReactiveFormsModule,
+   
   ],
   providers: [AdminOrdersService],
   templateUrl: './one-order.component.html',
