@@ -150,6 +150,11 @@ export class ProductsComponent {
       this.sortBy
     );
   }
+
+  render(data: any) {
+    this.getProducts(this.currentPage, this.pageLimit, '', '', '', '', '', '');
+  }
+
   getProducts(
     n: number,
     l: number,
