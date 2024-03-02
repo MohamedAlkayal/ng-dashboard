@@ -9,6 +9,7 @@ import { AdminUserServices } from '../../../services/admin-user.service';
 import {
   FormControl,
   FormGroup,
+  NgModel,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -35,6 +36,7 @@ import { ToastrService } from 'ngx-toastr';
     CommonModule,
     PromptConfirmComponent,
     PromptDangerComponent,
+    
   ],
   templateUrl: './one-user.component.html',
   styleUrl: './one-user.component.css',
@@ -61,29 +63,85 @@ export class OneUserComponent {
   action: string = '';
   promptText: string = '';
   suspensionObject: any = {
-    data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+    data: 'Confirming your request to suspend the specified user. This action will temporarily suspend their account. Please proceed only if necessary. Contact support for any inquiries or assistance.',
     color: 'warning',
   };
   ngOnInit() {
     this.userID = this.route.snapshot.params['user_ID'];
-    this.getUser(this.userID);
+    this.userService.getUser(this.userID).subscribe({
+      next: (data) => {
+        this.user = data;
+        this.user.email = this.user.email.toLowerCase();
+        // this.cities_1 = this.locations.find(
+        //   (l) => l.governorate === this.user.address_1?.state
+        // )?.cities;
+        // this.cities_2 = this.locations.find(
+        //   (l) => l.governorate === this.user.address_2?.state
+        // )?.cities;
+        // this.formGroup.patchValue({_id: this.user._id,firstName:this.user.firstName,lastName:this.user.lastName})
+        const birthDate = this.getBirthDateFromAge(this.user.age);
+        this.formGroup.get('_id')?.patchValue(this.user._id);
+        this.formGroup.get('firstName')?.patchValue(this.user.firstName);
+        this.formGroup.get('lastName')?.patchValue(this.user.lastName);
+        this.formGroup.get('email')?.patchValue(this.user.email);
+        this.formGroup.get('age')?.patchValue(birthDate);
+        this.formGroup.get('gender')?.patchValue(this.user.gender);
+        this.formGroup.get('phone_1')?.patchValue(this.user.phones[0]);
+        this.formGroup.get('phone_2')?.patchValue(this.user.phones[1]);
+        this.formGroup.get('state_1')?.patchValue(this.user.address_1.state);
+        this.user.address_2
+          ? this.formGroup.get('state_2')?.patchValue(this.user.address_2.state)
+          : null;
+
+        this.formGroup.get('street_1')?.patchValue(this.user.address_1.street);
+        this.user.address_2
+          ? this.formGroup
+              .get('street_2')
+              ?.patchValue(this.user.address_2.street)
+          : null;
+        this.getSelectedGov_1(this.user.address_1.state);
+        this.formGroup.get('city_1')?.patchValue(this.user.address_1.city);
+        this.user.address_2
+          ? this.formGroup.get('city_2')?.patchValue(this.user.address_2.city)
+          : null;
+        this.promptText =
+          'You are trying to modify user ' + this.user.firstName;
+        if (this.user.active) {
+          this.suspensionObject.text = 'Suspend';
+          this.action = 'suspend';
+        } else {
+          console.log(this.user.active);
+          this.suspensionObject.text = 'Unsuspend';
+          this.action = 'unsuspend';
+        }
+      },
+    });
+    // console.log(this.suspensionObject);
   }
+  handleForm(){}
 
   formGroup = new FormGroup({
-    _id: new FormControl('', [Validators.required]),
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
-    age: new FormControl('', [Validators.required]),
-    gender: new FormControl('', [Validators.required]),
-    phone_1: new FormControl('', [Validators.required]),
-    phone_2: new FormControl('', [Validators.required]),
+    _id: new FormControl({value:'',disabled:true}, [Validators.required]),
+    firstName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z]+'),Validators.minLength(3),
+    Validators.maxLength(15)]),
+    lastName: new FormControl('',  [Validators.required, Validators.pattern('[a-zA-Z]+'),Validators.minLength(3),
+    Validators.maxLength(15)]),
+    email: new FormControl('', 
+    [ Validators.required,
+      Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{1,}$')]),
+    age: new FormControl('', [
+        Validators.required,
+      ]),
+    gender: new FormControl({value:'',disabled:true}, [Validators.required]),
+    phone_1: new FormControl('', [Validators.required,Validators.pattern('^1[0-9]{9}$')]),
+    phone_2: new FormControl(''),
     street_1: new FormControl('', [Validators.required]),
     city_1: new FormControl('', [Validators.required]),
     state_1: new FormControl('', [Validators.required]),
-    street_2: new FormControl('', [Validators.required]),
+    street_2: new FormControl(''),
     city_2: new FormControl('', [Validators.required]),
     state_2: new FormControl('', [Validators.required]),
+
   });
 
   onSubmit(e: any) {
@@ -99,6 +157,8 @@ export class OneUserComponent {
     this.isDisabeled = e;
   }
   InputTouched(e: any) {
+    // console.log(this.formGroup.status);
+    
     this.isDisabeled = e;
   }
 

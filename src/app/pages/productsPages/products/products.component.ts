@@ -8,6 +8,7 @@ import { FilterRangeComponent } from '../../../components/filtersComponents/filt
 import { AdminProductService } from '../../../services/admin-product.service';
 import { PaginationComponent } from '../../../components/tableComponents/pagination/pagination.component';
 import { ActivatedRoute } from '@angular/router';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-products',
@@ -20,6 +21,7 @@ import { ActivatedRoute } from '@angular/router';
     FilterDropdownComponent,
     FilterRangeComponent,
     PaginationComponent,
+    ReactiveFormsModule,
   ],
   providers: [AdminProductService],
   templateUrl: './products.component.html',
@@ -29,8 +31,36 @@ export class ProductsComponent {
   constructor(
     private productService: AdminProductService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
+  formGroup = new FormGroup({
+    _id: new FormControl('', [Validators.maxLength(50)]),
+    name: new FormControl('', [Validators.maxLength(6)]),
+    brandName: new FormControl('', [Validators.maxLength(30)]),
+    category: new FormControl('', [Validators.maxLength(30)]),
+    subCategory: new FormControl('', [Validators.maxLength(10)]),
+    sortBy: new FormControl('', [Validators.maxLength(10)]),
+    price: new FormControl('1000', [Validators.maxLength(10)]),
+  });
+  _id: any
+  price: any
+  name: any
+  brandName: any
+  category: any
+  subCategory: any
+  sortBy: any
+
+  ageValues(data: any) {
+    this.price = data
+
+  }
+
+  handelSubmit(data: any) {
+    console.log(data)
+    console.log(this.formGroup.value)
+    console.log(this.price)
+
+  }
   selectedItems: string[] = [];
   products: any;
   productsCount!: number;
@@ -51,20 +81,30 @@ export class ProductsComponent {
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.currentPage = params['page'] ? +params['page'] : 1;
-    });
-    this.getProducts(this.currentPage, this.pageLimit);
-  }
+      this._id = params['id']
+      this.name = params['name']
+      this.brandName = params['brandName']
+      this.category = params['category']
+      this.subCategory = params['subCategory']
+      this.sortBy = params['sortBy']
+      this.formGroup.get('_id')?.patchValue(this._id)
+      this.formGroup.get('name')?.patchValue(this.name)
+      this.formGroup.get('brandName')?.patchValue(this.brandName)
+      this.formGroup.get('category')?.patchValue(this.category)
+      this.formGroup.get('subCategory')?.patchValue(this.subCategory)
+      this.formGroup.get('sortBy')?.patchValue(this.sortBy)
 
+    });
+    this.getProducts(this.currentPage, this.pageLimit, this._id, this.name, this.brandName, this.category, this.subCategory, this.sortBy);
+  }
   getSelected(data: any) {
     this.selectedItems = data;
   }
-
   getPage(n: number) {
-    this.getProducts(n, this.pageLimit);
+    this.getProducts(n, this.pageLimit, this._id, this.name, this.brandName, this.category, this.subCategory, this.sortBy);
   }
-
-  getProducts(n: number, l: number) {
-    this.productService?.getAllProducts(n, l, 'createdAt').subscribe({
+  getProducts(n: number, l: number, _id: string, name: string, brandName: string, category: string, subCategory: string, sortBy: string) {
+    this.productService?.getAllProducts(n, l, sortBy, '', _id, name, brandName, category, subCategory).subscribe({
       next: (data: any) => {
         this.products = data.products;
         this.products.map((p: any) => {

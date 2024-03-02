@@ -18,7 +18,7 @@
       [pagesCount]="pagesCount"
       [pageName]="'users'"
       (pageEmitter)="getPage($event)"
-      class="mx-4"
+      class="mx-1"
     ></app-pagination>
   </div>
   <div
@@ -76,8 +76,9 @@
             (valuesEmiter)="ageValues($event)"
           >
           </app-filter-range>
-
-          <button class="btn btn-dark w-100">Apply</button>
+          <button data-bs-dismiss="offcanvas" class="btn btn-dark w-100">
+            Apply
+          </button>
         </div>
       </div>
     </form>

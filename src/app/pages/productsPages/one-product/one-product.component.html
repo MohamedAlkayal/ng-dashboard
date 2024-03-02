@@ -1,5 +1,6 @@
 <form *ngIf="!isLoading" [formGroup]="formGroup">
   <div class="d-flex gap-5 pt-4 my-5">
+
     <div style="width: 700px" class="d-flex align-items-end flex-column mt-5">
       <app-input
         lable="Product ID"
@@ -241,3 +242,52 @@
   [action]="action"
   (clickedConfirm)="handleConfirming($event)"
 ></app-prompt-danger>
+=======
+      <app-input lable="Product ID" type="text" [disabled]="true" [control]="formGroup.controls._id"></app-input>
+      <app-input lable="Product Name" type="text" [control]="formGroup.controls.name"></app-input>
+      <app-input lable="Brand Name" type="text" [control]="formGroup.controls.brandName"></app-input>
+      <app-input-textarea lable="Description" [control]="formGroup.controls.description"></app-input-textarea>
+      <app-input lable="Price" type="number" [value]="product.price" unit="LE"
+        [control]="formGroup.controls.price"></app-input>
+      <app-input lable="Discount" type="number" [control]="formGroup.controls.discountPercentage" unit="%"></app-input>
+      <app-input lable="Category" [control]="formGroup.controls.category"
+        [options]="['test1', 'test2', 'test3', 'test4', 'test5', 'Smart Phones']" [isDropdown]="true"></app-input>
+      <app-input lable="Sub Category" [control]="formGroup.controls.subcategory"
+        [options]="['test1', 'test2', 'test3', 'test4', 'test5', 'Gaming Phones']" [isDropdown]="true"></app-input>
+      <app-input lable="Model Number" type="text" [control]="formGroup.controls.modelNumber"></app-input>
+      <app-input lable="Manufacturer" type="text" [control]="formGroup.controls.manufacturer"></app-input>
+      <app-input lable="Made In" type="text" [control]="formGroup.controls.countryOfOrigin"></app-input>
+      <app-input-two-fields [control_key]="formGroup.controls.specKey" [control_value]="formGroup.controls.specValue"
+        label="Specification" mainPlaceholder="spec" subPlaceholder="value"
+        [options]="product._specs"></app-input-two-fields>
+      <app-input-two-fields [control_key]="formGroup.controls.color_l_controlKey"
+        [control_value]="formGroup.controls.color_l_controlValue" label="Colors" mainPlaceholder="Color Value"
+        subPlaceholder="Quantity" [options]="product._colors"></app-input-two-fields>
+      <app-input lable="Stock" [disabled]="true" type="number" [control]="formGroup.controls.stock"></app-input>
+      <app-input-keywords [keywords]="product.keywords"></app-input-keywords>
+      <app-card-cta [config]="{
+        data: 'Confirm Freeze: Clicking Confirm will temporarily suspend this product. Proceed?',
+        color: 'secondary',
+        text: 'Freeze'
+      }"></app-card-cta>
+      <app-card-cta [config]="{
+        data: 'Share your reviews and report any issues you encounter. Your feedback helps us improve our service!',
+        color: 'warning',
+        text: 'Open Ticket'
+      }"></app-card-cta>
+      <app-card-cta [config]="{
+        data: 'Attention: This action will permanently delete the user. Are you sure you want to proceed? Please ensure this action is necessary and irreversible. Proceed with caution.',
+        color: 'danger',
+        text: 'Delete'
+      }"></app-card-cta>
+    </div>
+    <div class="mt-5" style="width: 400px">
+      <app-card-prompt [config]="{
+        data: 'make sure changes are saved to enact them. Verify accuracy before proceeding further.',
+        color: 'success',
+        text: 'Apply Changes'
+      }" [isDisabled]="true"></app-card-prompt>
+    </div>
+  </div>
+</form>
+
