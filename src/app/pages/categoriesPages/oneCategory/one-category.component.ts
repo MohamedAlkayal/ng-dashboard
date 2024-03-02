@@ -66,7 +66,6 @@ export class OneCategoryComponent implements OnChanges {
     });
   }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.selectedCategory);
     this.isDisabled = true;
     if (this.selectedCategory) {
       this.currentFieldInfo = {};

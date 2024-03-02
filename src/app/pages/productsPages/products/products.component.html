@@ -8,6 +8,7 @@
       [warningBtn]="'Open Ticket'"
     ></app-table-controls>
     <app-table
+      [isLoading]="isLoading"
       (selectedEmiiter)="getSelected($event)"
       [cols]="tableCols"
       [page]="'products'"
@@ -26,64 +27,62 @@
     id="offcanvasRight"
     aria-labelledby="offcanvasRightLabel"
   >
-  <form [formGroup]="formGroup" (ngSubmit)="handelSubmit($event)">
-    <div class="offcanvas-body">
-      <div
-        class="w-100 overflow-scroll p-4 d-flex flex-column justify-content-between"
-      >
-        <div>
-          <h1 class="mb-5">Filters</h1>
-          <app-filter-text
-            [id]="'idField'"
-            [lable]="'ID/Model Number'"
-            [type]="'text'"
-            [control]="formGroup.controls._id"
-          ></app-filter-text>
-          <app-filter-text 
-          [lable]="'Name'" 
-          [type]="'text'"
-          [control]="formGroup.controls.name"
-          >
-        </app-filter-text>
-          <app-filter-text
-            [lable]="'Brand Name'"
-            [type]="'text'"
-            [control]="formGroup.controls.brandName"
-          ></app-filter-text>
-          <app-filter-dropdown
-            [id]="'catField'"
-            [lable]="'Category'"
-            [items]="['Phones', 'Test1', 'test2', 'test3']"
-            [control]="formGroup.controls.category"
-          ></app-filter-dropdown>
-          <app-filter-dropdown
-            [id]="'subCatField'"
-            [lable]="'Sub Category'"
-            [items]="['Phones', 'Test1', 'test2', 'test3']"
-            [control]="formGroup.controls.subCategory"
-          ></app-filter-dropdown>
-          <app-filter-dropdown
-            [id]="'sortField'"
-            [lable]="'Sort By'"
-            [items]="['Name Asc', 'Name Des', 'Price Asc', 'Price Des']"
-            [control]="formGroup.controls.sortBy"
-          ></app-filter-dropdown>
-          <app-filter-range
-            [allMax]="700000"
-            [allMin]="200"
-            [lable]="'Price'"
-            [myStep]="100"
-            (valuesEmiter)="ageValues($event)"
-          >
-          </app-filter-range>
-        </div>
-        <button 
-        class="btn btn-dark w-100"
-
+    <form [formGroup]="formGroup" (ngSubmit)="handelSubmit($event)">
+      <div class="offcanvas-body">
+        <div
+          class="w-100 overflow-scroll p-4 d-flex flex-column justify-content-between"
         >
-        Apply</button>
+          <div>
+            <h1 class="mb-5">Filters</h1>
+            <app-filter-text
+              [id]="'idField'"
+              [lable]="'ID/Model Number'"
+              [type]="'text'"
+              [control]="formGroup.controls._id"
+            ></app-filter-text>
+            <app-filter-text
+              [lable]="'Name'"
+              [type]="'text'"
+              [control]="formGroup.controls.name"
+            >
+            </app-filter-text>
+            <app-filter-text
+              [lable]="'Brand Name'"
+              [type]="'text'"
+              [control]="formGroup.controls.brandName"
+            ></app-filter-text>
+            <app-filter-dropdown
+              [id]="'catField'"
+              [lable]="'Category'"
+              [items]="['Phones', 'Test1', 'test2', 'test3']"
+              [control]="formGroup.controls.category"
+            ></app-filter-dropdown>
+            <app-filter-dropdown
+              [id]="'subCatField'"
+              [lable]="'Sub Category'"
+              [items]="['Phones', 'Test1', 'test2', 'test3']"
+              [control]="formGroup.controls.subCategory"
+            ></app-filter-dropdown>
+            <app-filter-dropdown
+              [id]="'sortField'"
+              [lable]="'Sort By'"
+              [items]="['Name Asc', 'Name Des', 'Price Asc', 'Price Des']"
+              [control]="formGroup.controls.sortBy"
+            ></app-filter-dropdown>
+            <app-filter-range
+              [allMax]="700000"
+              [allMin]="200"
+              [lable]="'Price'"
+              [myStep]="100"
+              (valuesEmiter)="ageValues($event)"
+            >
+            </app-filter-range>
+          </div>
+          <button data-bs-dismiss="offcanvas" class="btn btn-dark w-100">
+            Apply
+          </button>
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
   </div>
 </div>

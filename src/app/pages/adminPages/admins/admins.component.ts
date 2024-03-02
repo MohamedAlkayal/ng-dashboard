@@ -17,6 +17,7 @@ export class AdminsComponent {
   selectedAdmin: any;
   newAdmin = false;
   isLoading = true;
+
   ngOnInit(): void {
     this.admin.getAll().subscribe({
       next: (response: any) => {
@@ -31,12 +32,22 @@ export class AdminsComponent {
   }
   handleSelectedComponent(args: any) {
     this.newAdmin = false;
-    this.selectedAdmin = this.adminsFromDb.filter((e) => e._id === args)[0];
+    this.selectedAdmin = this.adminsFromDb.find((e) => e._id === args);
+    console.log(this.selectedAdmin);
   }
   handlenewAdmin(args: any) {
     this.newAdmin = true;
     this.selectedAdmin = {
-      username: args,
+      username: '',
+      createdBy: '',
+      authorities: {
+        admin: false,
+        categories: false,
+        orders: false,
+        products: false,
+        users: false,
+        vouchers: false,
+      },
     };
   }
   handleAdminChange() {

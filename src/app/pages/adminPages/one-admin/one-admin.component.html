@@ -1,13 +1,15 @@
-<div style="width: 700px" class="d-flex align-items-end flex-column h-100">
+<div
+  [formGroup]="formGroup"
+  style="width: 700px"
+  class="d-flex align-items-end flex-column h-100"
+>
   <app-input
     lable="Admin Username"
-    [disabled]="true"
-    [value]="currentFieldInfo.username"
+    [control]="formGroup.controls.username"
   ></app-input>
   <app-input
     lable="Created By"
-    [value]="currentFieldInfo.createdBy"
-    [disabled]="true"
+    [control]="formGroup.controls.createdBy"
   ></app-input>
   <div
     class="input-group d-flex gap-3 align-items-start mb-3"
@@ -18,37 +20,67 @@
       <div
         class="d-flex align-items-center gap-2 p-2 border border-color rounded"
       >
-        <input type="checkbox" id="admin" class="form-check-input m-0" />
-        <label for="admin">Admin Authorities</label>
+        <input
+          [formControl]="formGroup.controls.admins"
+          type="checkbox"
+          id="admins"
+          class="form-check-input m-0"
+        />
+        <label for="admins">Admins Authorities</label>
       </div>
       <div
         class="d-flex align-items-center gap-2 p-2 border border-color rounded"
       >
-        <input type="checkbox" id="orders" class="form-check-input m-0" />
+        <input
+          [formControl]="formGroup.controls.orders"
+          type="checkbox"
+          id="orders"
+          class="form-check-input m-0"
+        />
         <label for="orders">Orders Controls</label>
       </div>
       <div
         class="d-flex align-items-center gap-2 p-2 border border-color rounded"
       >
-        <input type="checkbox" id="products" class="form-check-input m-0" />
+        <input
+          [formControl]="formGroup.controls.products"
+          type="checkbox"
+          id="products"
+          class="form-check-input m-0"
+        />
         <label for="products">Products Controls</label>
       </div>
       <div
         class="d-flex align-items-center gap-2 p-2 border border-color rounded"
       >
-        <input type="checkbox" id="users" class="form-check-input m-0" />
+        <input
+          [formControl]="formGroup.controls.users"
+          type="checkbox"
+          id="users"
+          class="form-check-input m-0"
+        />
         <label for="users">Users Controls</label>
       </div>
       <div
         class="d-flex align-items-center gap-2 p-2 border border-color rounded"
       >
-        <input type="checkbox" id="categories" class="form-check-input m-0" />
+        <input
+          [formControl]="formGroup.controls.categories"
+          type="checkbox"
+          id="categories"
+          class="form-check-input m-0"
+        />
         <label for="categories">Categories Controls</label>
       </div>
       <div
         class="d-flex align-items-center gap-2 p-2 border border-color rounded"
       >
-        <input type="checkbox" id="vouchers" class="form-check-input m-0" />
+        <input
+          [formControl]="formGroup.controls.vouchers"
+          type="checkbox"
+          id="vouchers"
+          class="form-check-input m-0"
+        />
         <label for="vouchers">Vouchers Controls</label>
       </div>
     </div>

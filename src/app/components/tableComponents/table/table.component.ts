@@ -18,6 +18,7 @@ export class TableComponent {
   @Input() data!: any;
   @Input() cols!: any;
   @Input() page!: string;
+  @Input() isLoading: boolean = false;
   @Output() selectedEmiiter = new EventEmitter();
 
   selectedElements: any = [];
