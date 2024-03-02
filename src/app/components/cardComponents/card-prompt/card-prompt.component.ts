@@ -20,16 +20,16 @@ export class CardPromptComponent {
   }
 
   @Output() ConfirmUpdated = new EventEmitter();
-  @Input() userData: {} = {}
+  @Input() userData: {} = {};
 
   getUserData(e: any) {
-    console.log(e)
-    this.userData=e  
+    console.log(e);
+    this.userData = e;
   }
 
   Confirm() {
-    // this.ConfirmUpdated.emit()
+    this.ConfirmUpdated.emit();
     console.log('yeeeessss');
-    console.log(this.userData)
+    console.log(this.userData);
   }
 }

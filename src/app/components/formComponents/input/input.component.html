@@ -5,6 +5,7 @@
     style="width: 550px"
     class="form-select form-select-sm rounded"
     aria-label="Small select example"
+    [formControl]="control"
   >
     <option *ngFor="let opt of options" value="opt" [selected]="opt === value">
       {{ opt }}

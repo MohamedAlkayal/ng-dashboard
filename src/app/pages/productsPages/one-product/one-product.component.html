@@ -1,5 +1,4 @@
-
-<form *ngIf="product" [formGroup]="formGroup">
+<form *ngIf="!isLoading" [formGroup]="formGroup">
   <div class="d-flex gap-5 pt-4 my-5">
     <div style="width: 700px" class="d-flex align-items-end flex-column mt-5">
       <app-input
@@ -141,28 +140,21 @@
         lable="Category"
         [control]="formGroup.controls.category"
         [options]="[
-          'test1',
-          'test2',
-          'test3',
-          'test4',
-          'test5',
-          'Smart Phones'
+          'Headphones',
+          'Phone Cases',
+          'Smartphones',
+          'Chargers',
+          'Powerbanks',
+          'Phone Accessories'
         ]"
         [isDropdown]="true"
       ></app-input>
-      <app-input
+      <!-- <app-input
         lable="Sub Category"
         [control]="formGroup.controls.subcategory"
-        [options]="[
-          'test1',
-          'test2',
-          'test3',
-          'test4',
-          'test5',
-          'Gaming Phones'
-        ]"
+        [options]=""
         [isDropdown]="true"
-      ></app-input>
+      ></app-input> -->
       <app-input
         lable="Model Number"
         type="text"
@@ -185,7 +177,7 @@
         mainPlaceholder="spec"
         subPlaceholder="value"
         [options]="product._specs"
-      ></app-input-two-fields>
+      ></app-input-two-fields> 
       <app-input-two-fields
         [control_key]="formGroup.controls.color_l_controlKey"
         [control_value]="formGroup.controls.color_l_controlValue"
@@ -193,19 +185,22 @@
         mainPlaceholder="Color Value"
         subPlaceholder="Quantity"
         [options]="product._colors"
-      ></app-input-two-fields> -->
+      ></app-input-two-fields>-->
       <app-input
         lable="Stock"
         type="number"
         [control]="formGroup.controls.stock"
       ></app-input>
-      <app-input-keywords [keywords]="product?.keywords"></app-input-keywords>
+      <app-input-keywords
+        [keywords]="product.keywords || ['New Keyword']"
+      ></app-input-keywords>
       <app-card-cta
         [config]="{
           data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
           color: 'secondary',
           text: 'Freeze'
         }"
+        *ngIf="this.productID !== 'add'"
       ></app-card-cta>
       <app-card-cta
         [config]="{
@@ -213,6 +208,7 @@
           color: 'warning',
           text: 'Open Ticket'
         }"
+        *ngIf="this.productID !== 'add'"
       ></app-card-cta>
       <app-card-cta
         [config]="{
@@ -220,6 +216,7 @@
           color: 'danger',
           text: 'Delete'
         }"
+        *ngIf="this.productID !== 'add'"
       ></app-card-cta>
     </div>
     <div class="mt-5" style="width: 400px">
@@ -227,10 +224,20 @@
         [config]="{
           data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
           color: 'success',
-          text: 'Apply Changes'
+          text: this.productID !== 'add' ? 'Apply Changes' : 'Create Product'
         }"
-        [isDisabled]="true"
+        (ConfirmUpdated)="handleConfirmation()"
+        [isDisabled]="isDisabled"
       ></app-card-prompt>
     </div>
   </div>
 </form>
+<app-prompt-confirm
+  [promptText]="promptText"
+  (ConfirmUpdated)="handlePromptConfirm()"
+></app-prompt-confirm>
+<app-prompt-danger
+  [Deleted]="this.user.firstName"
+  [action]="action"
+  (clickedConfirm)="handleConfirming($event)"
+></app-prompt-danger>
