@@ -3,6 +3,7 @@
     <div style="width: 700px" class="d-flex align-items-end flex-column mt-5">
 
 
+
       <app-input lable="Product ID" [type]="'text'" [ValidInput]="true" [disabled]="true"
         (touched)="InputTouched($event)" [control]="formGroup.controls._id"></app-input>
       <app-input lable="First Name" [type]="'text'" [ValidInput]="formGroup.get('firstName')?.valid"
@@ -55,6 +56,7 @@
       >
       </app-input-inner-lable>
 
+
       <div *ngIf="!(formGroup.controls.phone_1.valid)" style="height: 10px ; width: 550px;">
         <p class="text-danger" style="transform: translateY(-12px); font-size: 12px;">Must be 11 number</p>
       </div>
@@ -84,6 +86,14 @@
         </div>
 
 
+      <app-input-inner-lable
+        lable=""
+        innerLable="Street"
+        [ValidInput]="formGroup.get('street_1')?.valid"
+        type="string"
+        (isInnerInputToched)="innerinputTouched($event)"
+        [control]="formGroup.controls.street_1"
+      >
       </app-input-inner-lable>
       <app-input-inner-dropdown
         [options]="governorates"
@@ -109,6 +119,14 @@
         [control]="formGroup.controls.street_2"
       >
 
+      <app-input-inner-lable
+        lable=""
+        innerLable="Street"
+        [ValidInput]="formGroup.get('street_2')?.valid"
+        type="string"
+        (isInnerInputToched)="innerinputTouched($event)"
+        [control]="formGroup.controls.street_2"
+      >
       </app-input-inner-lable>
 
       <app-card-cta

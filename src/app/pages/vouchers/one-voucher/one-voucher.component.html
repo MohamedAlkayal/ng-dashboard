@@ -1,54 +1,52 @@
-<!-- <div style="width: 700px" class="d-flex align-items-end flex-column mt-3">
+<form
+  [formGroup]="formGroup"
+  style="width: 700px"
+  class="d-flex align-items-end flex-column mt-3"
+>
   <app-input
     lable="Voucher Code"
+    [control]="formGroup.controls.voucherCode"
     [disabled]="true"
-    [value]="currentFieldInfo.code"
   ></app-input>
   <app-input
-    [value]="currentFieldInfo.discount"
     lable="Discount Value"
-    (valueChange)="onVoucherAttrChange($event, 'discount')"
+    [control]="formGroup.controls.discountValue"
   ></app-input>
   <app-input
     lable="Discount Type"
     [isDropdown]="true"
     [options]="['flat', 'percentage']"
-    [value]="currentFieldInfo.type"
-    (valueChange)="onVoucherAttrChange($event, 'type')"
+    [control]="formGroup.controls.discountType"
   ></app-input>
   <app-input
     lable="Expiry Date"
     [type]="'date'"
-    [value]="currentFieldInfo.expiryDate"
-    (valueChange)="onVoucherAttrChange($event, 'expiryDate')"
+    [control]="formGroup.controls.expiryDate"
   ></app-input>
   <app-input
     lable="Max Usage"
     [type]="'number'"
-    [value]="currentFieldInfo.maxUsage"
-    (valueChange)="onVoucherAttrChange($event, 'maxUsage')"
+    [control]="formGroup.controls.maxUsage"
   ></app-input>
   <app-input
     lable="Current Usage"
     [disabled]="true"
     [type]="'number'"
-    [value]="currentFieldInfo.currentUsage"
-    (valueChange)="onVoucherAttrChange($event, 'currentUsage')"
+    [control]="formGroup.controls.currentUsage"
   ></app-input>
   <app-input
     lable="Status"
     [isDropdown]="true"
     [options]="['Active', 'Inactive']"
-    [value]="currentFieldInfo.active ? 'Active' : 'Inactive'"
-    (valueChange)="onVoucherAttrChange($event, 'active')"
+    [control]="formGroup.controls.status"
   ></app-input>
   <app-card-prompt
     [config]="cardInfo"
     [isDisabled]="isDisabled"
     (cancel)="clickedCancel()"
   ></app-card-prompt>
-</div>
+</form>
 <app-prompt-confirm
   [promptText]="promptText"
   (ConfirmUpdated)="handlePromptConfirm()"
-></app-prompt-confirm> -->
+></app-prompt-confirm>
