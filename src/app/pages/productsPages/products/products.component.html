@@ -6,6 +6,8 @@
       [itemsCount]="itemsCount"
       [dangerBtn]="'Delete'"
       [warningBtn]="'Open Ticket'"
+      pageName="products"
+      (renderEmitter)="render($event)"
     ></app-table-controls>
     <app-table
       [isLoading]="isLoading"

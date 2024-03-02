@@ -184,6 +184,20 @@ export class UsersComponent {
       this.age
     );
   }
+
+  render(data: any) {
+    this.getUsers(
+      this.currentPage,
+      this.pageLimit,
+      this.search,
+      this.gender,
+      this.governorate,
+      this.city,
+      this.sortBy,
+      this.age
+    );
+  }
+
   getUsers(
     p: number,
     l: number,
@@ -194,7 +208,6 @@ export class UsersComponent {
     sortBy: string,
     age: string
   ) {
-    console.log(governorate);
     this.usersService
       .getAllUsers(p, l, sortBy, 'asc', search, gender, governorate, city)
       .subscribe({

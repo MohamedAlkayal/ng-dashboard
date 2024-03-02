@@ -6,7 +6,9 @@
       [dangerBtn]="'Delete'"
       [warningBtn]="'Suspend'"
       [itemsCount]="itemsCount"
+      pageName="users"
       (pageEmitter)="getPage($event)"
+      (renderEmitter)="render($event)"
     ></app-table-controls>
     <app-table
       (selectedEmiiter)="getSelected($event)"
