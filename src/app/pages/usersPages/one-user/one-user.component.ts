@@ -36,7 +36,6 @@ import { ToastrService } from 'ngx-toastr';
     CommonModule,
     PromptConfirmComponent,
     PromptDangerComponent,
-    
   ],
   templateUrl: './one-user.component.html',
   styleUrl: './one-user.component.css',
@@ -72,13 +71,6 @@ export class OneUserComponent {
       next: (data) => {
         this.user = data;
         this.user.email = this.user.email.toLowerCase();
-        // this.cities_1 = this.locations.find(
-        //   (l) => l.governorate === this.user.address_1?.state
-        // )?.cities;
-        // this.cities_2 = this.locations.find(
-        //   (l) => l.governorate === this.user.address_2?.state
-        // )?.cities;
-        // this.formGroup.patchValue({_id: this.user._id,firstName:this.user.firstName,lastName:this.user.lastName})
         const birthDate = this.getBirthDateFromAge(this.user.age);
         this.formGroup.get('_id')?.patchValue(this.user._id);
         this.formGroup.get('firstName')?.patchValue(this.user.firstName);
@@ -118,22 +110,34 @@ export class OneUserComponent {
     });
     // console.log(this.suspensionObject);
   }
-  handleForm(){}
+  handleForm() {}
 
   formGroup = new FormGroup({
-    _id: new FormControl({value:'',disabled:true}, [Validators.required]),
-    firstName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z]+'),Validators.minLength(3),
-    Validators.maxLength(15)]),
-    lastName: new FormControl('',  [Validators.required, Validators.pattern('[a-zA-Z]+'),Validators.minLength(3),
-    Validators.maxLength(15)]),
-    email: new FormControl('', 
-    [ Validators.required,
-      Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{1,}$')]),
-    age: new FormControl('', [
-        Validators.required,
-      ]),
-    gender: new FormControl({value:'',disabled:true}, [Validators.required]),
-    phone_1: new FormControl('', [Validators.required,Validators.pattern('^1[0-9]{9}$')]),
+    _id: new FormControl({ value: '', disabled: true }, [Validators.required]),
+    firstName: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[a-zA-Z]+'),
+      Validators.minLength(3),
+      Validators.maxLength(15),
+    ]),
+    lastName: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[a-zA-Z]+'),
+      Validators.minLength(3),
+      Validators.maxLength(15),
+    ]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{1,}$'),
+    ]),
+    age: new FormControl('', [Validators.required]),
+    gender: new FormControl({ value: '', disabled: true }, [
+      Validators.required,
+    ]),
+    phone_1: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^1[0-9]{9}$'),
+    ]),
     phone_2: new FormControl(''),
     street_1: new FormControl('', [Validators.required,Validators.minLength(7),
       Validators.maxLength(20)]),
@@ -142,7 +146,6 @@ export class OneUserComponent {
     street_2: new FormControl(''),
     city_2: new FormControl('', [Validators.required]),
     state_2: new FormControl('', [Validators.required]),
-
   });
 
   onSubmit(e: any) {
@@ -159,7 +162,7 @@ export class OneUserComponent {
   }
   InputTouched(e: any) {
     // console.log(this.formGroup.status);
-    
+
     this.isDisabeled = e;
   }
 
@@ -238,9 +241,7 @@ export class OneUserComponent {
               queryParams: { page: 1 },
             });
             this.toaster.error(
-              `${
-                this.user.firstName + ' ' + this.user.lastName
-              } is active again`
+              `${this.user.firstName + ' ' + this.user.lastName} is deleted`
             );
           },
           error: (err) => {

@@ -6,10 +6,19 @@
       >{{ itemsCount || 15 }} of {{ resualtsCount }} Results
     </span>
     <span
-      class="fw-normal"
+      class="fw-normal px-2 me-2 border-end"
       [ngClass]="selectedItems.length ? 'text-primary' : 'text-muted'"
       >({{ selectedItems.length }}) selected</span
     >
+    <button
+      [disabled]="selectedItems.length < 1"
+      style="width: 100px"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      class="btn btn-danger"
+    >
+      Delete
+    </button>
   </div>
   <div class="d-flex gap-3">
     <!-- <button class="btn btn-warning btn-width fw-medium">
@@ -19,8 +28,14 @@
       {{ dangerBtn }}
     </button> -->
 
+    <a
+      routerLink="add"
+      class="btn btn-primary text-white"
+      *ngIf="pageName === 'products'"
+    >
+      New Product
+    </a>
     <button
-      type="button"
       data-bs-toggle="offcanvas"
       data-bs-target="#offcanvasRight"
       aria-controls="offcanvasRight"
@@ -31,3 +46,8 @@
     </button>
   </div>
 </div>
+<app-prompt-danger
+  [Deleted]="'user / users'"
+  [action]="'Delete'"
+  (clickedConfirm)="handleConfirming($event)"
+></app-prompt-danger>
