@@ -30,29 +30,13 @@
 
 
 
-      <app-input
-        lable="Date Of Birth"
-        [type]="'date'"
-        [ValidInput]="formGroup.get('age')?.valid"
-        (touched)="InputTouched($event)"
-        [control]="formGroup.controls.age"
-      ></app-input>
+      <app-input lable="Date Of Birth" [type]="'date'" [ValidInput]="formGroup.get('age')?.valid"
+        (touched)="InputTouched($event)" [control]="formGroup.controls.age"></app-input>
 
-      <app-input
-        lable="Gender"
-        [ValidInput]="true"
-        [type]="'text'"
-        (touched)="InputTouched($event)"
-        [control]="formGroup.controls.gender"
-      ></app-input>
-      <app-input-inner-lable
-        lable="Phones"
-        [ValidInput]="formGroup.get('phone_1')?.valid"
-        innerLable="+20"
-        type="number"
-        (isInnerInputToched)="innerinputTouched($event)"
-        [control]="formGroup.controls.phone_1"
-      >
+      <app-input lable="Gender" [ValidInput]="true" [type]="'text'" (touched)="InputTouched($event)"
+        [control]="formGroup.controls.gender"></app-input>
+      <app-input-inner-lable lable="Phones" [ValidInput]="formGroup.get('phone_1')?.valid" innerLable="+20"
+        type="number" (isInnerInputToched)="innerinputTouched($event)" [control]="formGroup.controls.phone_1">
       </app-input-inner-lable>
 
       <div *ngIf="!(formGroup.controls.phone_1.valid)" style="height: 10px ; width: 550px;">
@@ -64,94 +48,52 @@
 
 
       </app-input-inner-lable>
-      <app-input-inner-dropdown
-        [options]="governorates"
-        lable="Address 1"
-        innerLable="State"
-        (selectedEmitter)="getSelectedGov_1($event)"
-        [control]="formGroup.controls.state_1"
-      ></app-input-inner-dropdown>
-      <app-input-inner-dropdown
-        [options]="cities_1"
-        lable=""
-        innerLable="City"
-        [control]="formGroup.controls.city_1"
-      ></app-input-inner-dropdown>
+      <app-input-inner-dropdown [options]="governorates" lable="Address 1" innerLable="State"
+        (selectedEmitter)="getSelectedGov_1($event)" [control]="formGroup.controls.state_1"></app-input-inner-dropdown>
+      <app-input-inner-dropdown [options]="cities_1" lable="" innerLable="City"
+        [control]="formGroup.controls.city_1"></app-input-inner-dropdown>
 
-        <div *ngIf="!(formGroup.controls.street_1.valid)" style="height: 10px ; width: 550px;">
-          <p class="text-danger" style="transform: translateY(-12px); font-size: 12px;">street is required && between
-            7-20</p>
-        </div>
+      <div *ngIf="!(formGroup.controls.street_1.valid)" style="height: 10px ; width: 550px;">
+        <p class="text-danger" style="transform: translateY(-12px); font-size: 12px;">street is required && between
+          7-20</p>
+      </div>
 
 
-      </app-input-inner-lable>
-      <app-input-inner-dropdown
-        [options]="governorates"
-        lable="Address 2"
-        innerLable="State"
-        (selectedEmitter)="getSelectedGov_2($event)"
-        [control]="formGroup.controls.state_2"
-      ></app-input-inner-dropdown>
-      <app-input-inner-dropdown
-        [options]="cities_2"
-        lable=""
-        innerLable="City"
-        [control]="formGroup.controls.city_2"
-      ></app-input-inner-dropdown>
+
+      <app-input-inner-dropdown [options]="governorates" lable="Address 2" innerLable="State"
+        (selectedEmitter)="getSelectedGov_2($event)" [control]="formGroup.controls.state_2"></app-input-inner-dropdown>
+      <app-input-inner-dropdown [options]="cities_2" lable="" innerLable="City"
+        [control]="formGroup.controls.city_2"></app-input-inner-dropdown>
 
 
-      <app-input-inner-lable
-        lable=""
-        innerLable="Street"
-        [ValidInput]="formGroup.get('street_2')?.valid"
-        type="string"
-        (isInnerInputToched)="innerinputTouched($event)"
-        [control]="formGroup.controls.street_2"
-      >
+      <app-input-inner-lable lable="" innerLable="Street" [ValidInput]="formGroup.get('street_2')?.valid" type="string"
+        (isInnerInputToched)="innerinputTouched($event)" [control]="formGroup.controls.street_2">
 
       </app-input-inner-lable>
 
-      <app-card-cta
-        [config]="{
+      <app-card-cta [config]="{
           data: 'Admin Access Granted! Manage users, review analytics, and optimize performance effortlessly. Your dashboard awaits – dive in and take control',
           color: 'light',
           text: 'View Orders'
-        }"
-      ></app-card-cta>
+        }"></app-card-cta>
 
-      <app-card-cta
-        [config]="suspensionObject"
-        (clicked)="handleSuspending($event)"
-      ></app-card-cta>
+      <app-card-cta [config]="suspensionObject" (clicked)="handleSuspending($event)"></app-card-cta>
 
-      <app-card-cta
-        [config]="{
+      <app-card-cta [config]="{
           data: 'Attention: This action will permanently delete the user. Are you sure you want to proceed? Please ensure this action is necessary and irreversible. Proceed with caution.',
           color: 'danger',
           text: 'Delete'
-        }"
-        (clicked)="handleDeleting($event)"
-      ></app-card-cta>
+        }" (clicked)="handleDeleting($event)"></app-card-cta>
     </div>
     <div class="mt-5" style="width: 400px">
-      <app-card-prompt
-        [config]="{
+      <app-card-prompt [config]="{
           data: 'make sure changes are saved to enact them. Verify accuracy before proceeding further.',
           color: 'success',
           text: 'Apply Changes'
-        }"
-        (getUserData)="sendUserData($event)"
-        [isDisabled]="isDisabeled"
-      ></app-card-prompt>
+        }" (getUserData)="sendUserData($event)" [isDisabled]="isDisabeled"></app-card-prompt>
     </div>
-    <app-prompt-confirm
-      [promptText]="promptText"
-      (ConfirmUpdated)="handleUpdate($event)"
-    ></app-prompt-confirm>
-    <app-prompt-danger
-      [Deleted]="this.user.firstName"
-      [action]="action"
-      (clickedConfirm)="handleConfirming($event)"
-    ></app-prompt-danger>
+    <app-prompt-confirm [promptText]="promptText" (ConfirmUpdated)="handleUpdate($event)"></app-prompt-confirm>
+    <app-prompt-danger [Deleted]="this.user.firstName" [action]="action"
+      (clickedConfirm)="handleConfirming($event)"></app-prompt-danger>
   </div>
 </form>

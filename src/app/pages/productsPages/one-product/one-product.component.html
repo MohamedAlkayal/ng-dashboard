@@ -12,16 +12,10 @@
 
       <div style="width: 550px" class="d-flex flex-wrap gap-3 mb-3">
 
-        <div
-          [style.background-image]="product?._images.img1.url"
-          [style.background-size]="'cover'"
-          class="img-input d-flex border border-color flex-wrap align-items-center justify-content-center gap-3"
-        >
-          <label
-            [style.opacity]="product._images.img1.url ? '0' : '1'"
-            class="text-secondary"
-            for="img1"
-            ><mat-icon>add_photo_alternate</mat-icon>
+        <div [style.background-image]="product?._images.img1.url" [style.background-size]="'cover'"
+          class="img-input d-flex border border-color flex-wrap align-items-center justify-content-center gap-3">
+          <label [style.opacity]="product._images.img1.url ? '0' : '1'" class="text-secondary"
+            for="img1"><mat-icon>add_photo_alternate</mat-icon>
           </label>
           <input type="file" id="img1" (change)="onFileSelected($event, 'img1')" />
         </div>
