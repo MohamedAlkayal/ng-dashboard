@@ -1,20 +1,8 @@
-<div
-  [style]="isOpen"
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="fs-5 d-flex align-items-center">
@@ -27,28 +15,14 @@
           cannot be undone.
         </p>
 
-        <input
-          class="CheckChackChock form-control"
-          [(ngModel)]="ConfirmValve"
-          type="text"
-          placeholder='Write "CONFIRM" '
-        />
+        <input class="CheckChackChock form-control" [(ngModel)]="ConfirmValve" type="text"
+          placeholder='Write "CONFIRM" ' />
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-outline-secondary"
-          data-bs-dismiss="modal"
-        >
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
           Close
         </button>
-        <button
-          [disabled]="ConfirmValve !== 'CONFIRM'"
-          data-bs-dismiss="modal"
-          type="button"
-          (click)="ConfirmDelete()"
-          class="btn btn-danger"
-        >
+        <button type="button" (click)="ConfirmDelete()" class="btn btn-danger">
           {{ action.toUpperCase() }}
         </button>
       </div>

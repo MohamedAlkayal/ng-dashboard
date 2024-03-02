@@ -1,5 +1,5 @@
 import { CommonModule, NgClass } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, input } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -20,7 +20,7 @@ export class InputComponent {
     value: new FormControl('', Validators.maxLength(4)),
 
   });
-
+  @Input() ValidInput:any=true
   @Input()control!:FormControl
   @Input() unit: string = '';
   @Input() lable: string = '';

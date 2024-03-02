@@ -2,23 +2,9 @@
   <label [for]="lable" class="form-label fw-semibold m-0 pt-1">
     {{ lable }}
   </label>
-  <div
-    class="input-group input-group-sm mb-3 d-flex align-items-center"
-    style="width: 550px"
-  >
-    <span
-      style="width: 65px"
-      class="input-group-text"
-      id="inputGroup-sizing-sm"
-      >{{ innerLable }}</span
-    >
-    <input
-      [value]="value"
-      [type]="type"
-      class="form-control"
-      aria-label="Sizing example input"
-      aria-describedby="inputGroup-sizing-sm"
-      [formControl]="control"
-    />
+  <div class="input-group input-group-sm mb-3 d-flex align-items-center" style="width: 550px">
+    <span style="width: 65px" class="input-group-text" id="inputGroup-sizing-sm">{{ innerLable }}</span>
+    <input [ngClass]="ValidInput?'':'is-invalid'" [value]="value" [type]="type" class="form-control"
+      aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [formControl]="control" />
   </div>
 </div>
