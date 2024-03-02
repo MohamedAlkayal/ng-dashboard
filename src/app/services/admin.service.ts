@@ -21,8 +21,8 @@ export class AdminServices {
     );
   }
   create(
-    username: string,
-    password: string,
+    username: string | null | undefined,
+    password: string | null | undefined,
     authorities: {
       users: Boolean;
       orders: Boolean;

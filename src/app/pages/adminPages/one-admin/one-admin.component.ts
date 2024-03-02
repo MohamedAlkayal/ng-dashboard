@@ -76,7 +76,10 @@ export class OneAdminComponent {
 
   formGroup = new FormGroup({
     username: new FormControl('', [Validators.required]),
-    createdBy: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+    createdBy: new FormControl({ value: '', disabled: true }, [
+      Validators.required,
+    ]),
     admins: new FormControl('', [Validators.required]),
     orders: new FormControl('', [Validators.required]),
     products: new FormControl('', [Validators.required]),
@@ -141,6 +144,7 @@ export class OneAdminComponent {
   clickedCancel() {
     this.formGroup.get('username')?.patchValue(this.selectedAdmin.username);
     this.formGroup.get('createdBy')?.patchValue(this.selectedAdmin.createdBy);
+    this.formGroup.get('password')?.patchValue('');
     this.formGroup
       .get('admins')
       ?.patchValue(this.selectedAdmin.authorities.admin);
@@ -173,17 +177,25 @@ export class OneAdminComponent {
           error: (err) => {
             console.log(err);
             this.toaster.error(
-              `${this.selectedAdmin.username} updating faield`
+              `${this.selectedAdmin.username} updating failed`
             );
           },
         });
     } else {
+      const adminBody = {
+        username: this.formGroup.get('username')?.value,
+        password: this.formGroup.get('password')?.value,
+        authorities: {
+          admin: Boolean(this.formGroup.get('admins')?.value),
+          categories: Boolean(this.formGroup.get('categories')?.value),
+          orders: Boolean(this.formGroup.get('orders')?.value),
+          products: Boolean(this.formGroup.get('products')?.value),
+          users: Boolean(this.formGroup.get('users')?.value),
+          vouchers: Boolean(this.formGroup.get('vouchers')?.value),
+        },
+      };
       this.admin
-        .create(
-          this.currentFieldInfo.name,
-          this.currentFieldInfo.description,
-          this.currentFieldInfo.subCategories
-        )
+        .create(adminBody.username, adminBody.password, adminBody.authorities)
         .subscribe({
           next: (x) => {
             console.log(x);
@@ -197,43 +209,5 @@ export class OneAdminComponent {
         });
     }
     this.changedAdmin.emit();
-
-    // if (!this.newAdmin) {
-    //   this.admin
-    //     .update(
-    //       this.currentFieldInfo._id,
-    //       this.currentFieldInfo.discount,
-    //       this.currentFieldInfo.type,
-    //       this.currentFieldInfo.expiryDate,
-    //       this.currentFieldInfo.maxUsage
-    //     )
-    //     .subscribe({
-    //       next: (x) => {
-    //         console.log(x);
-    //         this.changedAdmin.emit();
-    //       },
-    //       error(x) {
-    //         console.log(x);
-    //       },
-    //     });
-    // } else {
-    //   this.admin
-    //     .create(
-    //       this.currentFieldInfo.code,
-    //       this.currentFieldInfo.discount,
-    //       this.currentFieldInfo.type,
-    //       this.currentFieldInfo.expiryDate,
-    //       this.currentFieldInfo.maxUsage
-    //     )
-    //     .subscribe({
-    //       next: (x) => {
-    //         console.log(x);
-    //         this.changedAdmin.emit();
-    //       },
-    //       error(x) {
-    //         console.log(x);
-    //       },
-    //     });
-    // }
   }
 }

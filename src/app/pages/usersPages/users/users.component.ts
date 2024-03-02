@@ -69,7 +69,25 @@ export class UsersComponent {
     this.gender = this.formGroup.get('gender')?.value;
     this.governorate = this.formGroup.get('governorate')?.value;
     this.city = this.formGroup.get('city')?.value;
-    this.sortBy = this.formGroup.get('sortBy')?.value;
+    switch (this.formGroup.get('sortBy')?.value) {
+      case 'Name':
+        this.sortBy = 'firstName';
+        break;
+      case 'Email':
+        this.sortBy = 'email';
+        break;
+      case 'Status':
+        this.sortBy = 'active';
+        break;
+      case 'Orders':
+        this.sortBy = 'orders';
+        break;
+
+      default:
+        this.sortBy = '';
+        break;
+    }
+
     this.getUsers(
       1,
       this.pageLimit,
@@ -178,7 +196,7 @@ export class UsersComponent {
   ) {
     console.log(governorate);
     this.usersService
-      .getAllUsers(p, l, 'createdAt', '', search, gender, governorate, city)
+      .getAllUsers(p, l, sortBy, 'asc', search, gender, governorate, city)
       .subscribe({
         next: (data: any) => {
           this.users = data.users;

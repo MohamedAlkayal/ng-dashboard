@@ -8,6 +8,12 @@
     [control]="formGroup.controls.username"
   ></app-input>
   <app-input
+    *ngIf="newAdmin"
+    lable="Admin Password"
+    [control]="formGroup.controls.password"
+    [type]="'password'"
+  ></app-input>
+  <app-input
     lable="Created By"
     [control]="formGroup.controls.createdBy"
   ></app-input>
